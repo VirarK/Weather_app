@@ -1,8 +1,8 @@
-# Meteo application
+# Weather application
 ***
 ## English version
 ***
-## Meteo application make during "Web Applicatioation and Security" class.
+## Weather application make during "Web Applicatioation and Security" class.
 
 ## Table of Contents
 1. [Introduction](#Introduction)

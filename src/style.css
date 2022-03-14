@@ -2,24 +2,43 @@
 
 /* default to border-box */
 html {
-  box-sizing: border-box;
-  font-size: 16px;
+	box-sizing: border-box;
+	font-size: 16px;
 }
 
 *, *:before, *:after {
-  box-sizing: inherit;
+	box-sizing: inherit;
 }
 
 /* adjust typography defaults */
 body {
-  margin: 1rem;
-  font-family: sans-serif;
-  line-height: 1.5;
+	margin: 1rem;
+	font-family: sans-serif;
+	line-height: 1.5;
 }
 
 /* images and videos max out at full width */
 img,
 video {
-  height: auto;
-  max-width: 100%;
+	height: auto;
+	max-width: 100%;
+}
+
+
+header { grid-area: head; }
+#menu { grid-area: menu; }
+#main { grid-area: main; }
+footer { grid-area: foot; }
+
+.main_grid_item {
+	border: 1px solid black;
+}
+
+.main_grid {
+	display: grid;
+    grid-template-areas:
+		"head head head"
+		"menu main main"
+		"foot foot foot";
+	gap: 5px 5px;
 }
