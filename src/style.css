@@ -23,22 +23,3 @@ video {
 	height: auto;
 	max-width: 100%;
 }
-
-
-header { grid-area: head; }
-#menu { grid-area: menu; }
-#main { grid-area: main; }
-footer { grid-area: foot; }
-
-.main_grid_item {
-	border: 1px solid black;
-}
-
-.main_grid {
-	display: grid;
-    grid-template-areas:
-		"head head head"
-		"menu main main"
-		"foot foot foot";
-	gap: 5px 5px;
-}
