@@ -2,7 +2,7 @@
 ***
 ## English version
 ***
-## Weather application make during "Web Applicatioation and Security" class.
+## Weather application made during "Web Applicatioation and Security" class.
 
 ## Table of Contents
 1. [Introduction](#Introduction)
