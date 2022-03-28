@@ -23,3 +23,7 @@ video {
 	height: auto;
 	max-width: 100%;
 }
+
+header {
+	background-color: rgb(77, 151, 216);
+}
