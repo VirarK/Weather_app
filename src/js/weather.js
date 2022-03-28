@@ -350,7 +350,7 @@ function fill_weather() {
 // ##############################################################################################
 
 function main() {
-	fill_date()
+	fill_date();
 	get_location();
 }
 

@@ -27,3 +27,9 @@ video {
 header {
 	background-color: rgb(77, 151, 216);
 }
+
+.btn-primary {
+	background-color: lightgray;
+	border-color: lightgray;
+	color: black;
+}
