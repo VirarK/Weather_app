@@ -23,7 +23,7 @@ if (log_btn != null) {
 function get_login_data() {
 	var email_address = document.getElementById("input-email").value;
 	var password = document.getElementById("input-password").value;
+	is_login = true;
 	alert(`${email_address}, ${password}`);
 	// TODO : action avec la bd
-	is_login = true;
 }

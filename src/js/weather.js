@@ -323,7 +323,7 @@ function fill_weather() {
         // Draw icon
         var weather_date_i = document.createElement("div");
         var weather_icon_date_i = document.createElement("img");
-		var weather_dir_icon_date_i = `../../icons/weather/${weather.daily[i].weather[0].icon}.png`
+		var weather_dir_icon_date_i = `../../icons/weather/${weather.daily[i].weather[0].icon}.png`;
         weather_icon_date_i.setAttribute("src", weather_dir_icon_date_i);
         weather_icon_date_i.setAttribute("width", "56");
         weather_icon_date_i.setAttribute("height", "56");
@@ -345,12 +345,28 @@ function fill_weather() {
 
         div_weather_week.appendChild(div_weather_week_i);
     }
+
+    fill_color_theme();
+}
+
+function fill_color_theme() {
+    var bg = document.body;
+    bg.setAttribute("class", "bg-image")
+
+    //var weather_dir_img = `url(../../icons/bg/${weather.current.weather[0].icon}.jpg)`;
+    var weather_dir_img = `url(../../icons/bg/01d.jpg)`;
+    bg.style.height = "100vh"
+    bg.style.backgroundImage = weather_dir_img;
+
+
 }
 
 // ##############################################################################################
 
 function main() {
 	fill_date();
+
+    // start of function call list 
 	get_location();
 }
 

@@ -17,77 +17,79 @@
     <script src="../js/login_logout.js" defer></script>
 </head>
 
-<body class="container">
-    <!-- https://getbootstrap.com/docs/5.1/examples/headers/ -->
-    <header class="row p-3">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end">
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-            </form>
-    
-            <div class="d-flex text-end">
-                <button type="button" class="btn btn-primary ms-2 me-1">Favoris</button>
-                <div id="log-btn"></div>
+<body>
+    <div class="container p-3">
+        <!-- https://getbootstrap.com/docs/5.1/examples/headers/ -->
+        <header class="row p-3">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end">
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                    <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+                </form>
+        
+                <div class="d-flex text-end">
+                    <button type="button" class="btn btn-primary ms-2 me-1">Favoris</button>
+                    <div id="log-btn"></div>
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <div id="main" class="row p-3">
-        <!-- https://getbootstrap.com/docs/5.1/examples/sidebars/ -->
-        <div class="col-md-3 p-sm-4 text-center text-sm-center text-md-start text-lg-start border rounded">
-            <div class="d-flex flex-column flex-shrink-0">
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item">
-                        <a href="#" class="btn btn-secondary">
-                            <img src="../../icons/sidebar/home.jpg" width="32" height="32" alt="home icon">
-                            Page principale
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link link-dark">
-                            Favories
-                        </a>
-                    </li>
-                </ul>
+        <div class="row p-3">
+            <!-- https://getbootstrap.com/docs/5.1/examples/sidebars/ -->
+            <div class="col-md-3 p-sm-4 text-center text-sm-center text-md-start text-lg-start border rounded">
+                <div class="d-flex flex-column flex-shrink-0">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="#" class="btn btn-secondary">
+                                <img src="../../icons/sidebar/home.jpg" width="32" height="32" alt="home icon">
+                                Page principale
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link link-dark">
+                                Favories
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+            
 
-        <div class="col-md-9">
-            <main class="container">
-                <div class="row p-3">
-                    <div class="d-flex flex-wrap align-items-center justify-content-around">
-                        <div class="text-center">
-                            <div id="place"></div>
-                            <div id="date"></div>
-                            <div id="weather-short-description"></div>
-                        </div>
-                        <div class="text-center">
-                            <img id="icon-weather" src="../../icons/weather/unknown.png" width="56" height="56" alt="icon weather">
-                            <div id="temperature"></div>
-                            <div id="feels-like"></div>
+            <div class="col-md-9">
+                <main class="container">
+                    <div class="row p-3">
+                        <div class="d-flex flex-wrap align-items-center justify-content-around">
+                            <div class="text-center">
+                                <div id="place"></div>
+                                <div id="date"></div>
+                                <div id="weather-short-description"></div>
+                            </div>
+                            <div class="text-center">
+                                <img id="icon-weather" src="../../icons/weather/unknown.png" width="56" height="56" alt="icon weather">
+                                <div id="temperature"></div>
+                                <div id="feels-like"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row p-3">
-                    <div class="d-flex flex-wrap align-items-center justify-content-around">
-                        <div id="UV" class="p-1"></div>
-                        <div id="wind-speed" class="p-1"></div>
-                        <div id="humidity" class="p-1"></div>
-                        <div id="clouds" class="p-1"></div>
+                    <div class="row p-3">
+                        <div class="d-flex flex-wrap align-items-center justify-content-around">
+                            <div id="UV" class="p-1"></div>
+                            <div id="wind-speed" class="p-1"></div>
+                            <div id="humidity" class="p-1"></div>
+                            <div id="clouds" class="p-1"></div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row p-3">
-                    <div id="weather-hour" class="d-flex flex-wrap align-items-center justify-content-around p-3"></div>
-                    <div id="weather-week" class="d-flex flex-wrap align-items-center justify-content-around p-3"></div>
-                </div>
+                    <div class="row p-3">
+                        <div id="weather-hour" class="d-flex flex-wrap align-items-center justify-content-around p-3"></div>
+                        <div id="weather-week" class="d-flex flex-wrap align-items-center justify-content-around p-3"></div>
+                    </div>
 
-            </main>
+                </main>
 
-            <footer class="container"></footer>
+                <footer class="container"></footer>
+            </div>
         </div>
-
     </div>
 </body>
 

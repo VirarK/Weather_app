@@ -28,6 +28,12 @@ header {
 	background-color: rgb(77, 151, 216);
 }
 
+.bg-image {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
 .btn-primary {
 	background-color: lightgray;
 	border-color: lightgray;

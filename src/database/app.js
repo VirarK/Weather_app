@@ -1,13 +1,15 @@
-const express = require('express');
-const mysql = require('mysql');
+//const express = require('express');
+//const mysql = require('mysql');
 
-const db = mysql.createConnection({
+import express from 'express';
+import { createConnection } from 'mysql';
+
+const db = createConnection({
     host: 'localhost',
     user: 'thkr',
     password: 'password',
     database: 'nodemysql'
 });
-
 
 db.connect((err) => {
     if (err) {
