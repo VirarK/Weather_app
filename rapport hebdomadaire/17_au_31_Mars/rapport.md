@@ -1,0 +1,61 @@
+# Applications Web et Sécurité - Groupe 2 - Application Météo
+
+## Répartition des rôles
+- Mickaël Le Denmat : Responsable.
+- Gabriel Scrève : Chercheur.
+- Alloua Melissa et Hasnae Gaizi : Codeuses.
+
+## Résumé du planning du travail
+- 18/03 : Recherche d'idées et de nouvelles technologies.
+- 22/03 : Réunion pour définir les objectifs et les rôles de chacun des membres.
+- 24/03 : Séance de travail entre les codeuses.
+- 25-26/03 : Recherche sur les technologies pour utiliser une base de données et création de la base de données par le chercheur.
+- ??? : Séance de travail en les codeuses.
+- 28/03 : Réunion pour faire un point sur le travail effectué et sur qu'il reste à faire.
+
+***
+
+## Détails du travail effectué
+### Mickaël Le Denmat : Responsable
+- Suivi régulier de l'avancement du travail de chacun.
+- Aidé pour debbuger le code avec les codeuses.
+- Ajout de petite partie de code:
+	- Template navbar en header.
+	- Template pour login page.
+	- Ajout système fond évolutif en fonction de la météo.
+-  Aidé à concevoir la base de données avec le chercheur.
+
+### Gabriel Scrève : Chercheur
+- Recherche sur nodejs et expressjs.
+- Recherche sur la base de données:
+	- Quel langage.
+	- Quel table.
+	- Comment la connecter avec le site.
+	- Création.
+
+### Alloua Melissa : Codeuse
+
+### Hasnae Gaizi : Codeuse
+
+***
+
+## Recherches effectuées
+- [bootstrap](https://getbootstrap.com.).
+- [expressjs](http://expressjs.com).
+- [nodejs](https://nodejs.org/en/).
+- [mysql](https://www.mysql.com/fr/).
+- [openweathermap geocoding](https://openweathermap.org/api/geocoding-api).
+
+## Travail à faire pour la prochaine fois
+- Corriger affichage fond et couleur police.
+- Finir le sidebar.
+- Ajouter partie javascript pour rechercher météo d'une ville.
+- Finir système de connexion.
+- Transformer le projet avec expressjs pour avec des routes et le système de redirection.
+- Finir la base de donnée et l'intégrer au projet.
+- Intégrer système changement de clé pour l'api si le nombre d'appels[ maximal](https://openweathermap.org/full-price#current) à été atteint.
+- Intégrer sauvegarde de la météo pour ne faire des demandes à l'api que toutes les 2h (temps entre les [MAJ](https://openweathermap.org/full-price#current) sur l'api).
+
+## Difficultées rencontrées
+- L'utilisation de nodejs (technologie pas maîtrisé à 100%).
+- Trop grands nombres d'appels à l'api lors de la production, création de 2 clés supplémentaires.
