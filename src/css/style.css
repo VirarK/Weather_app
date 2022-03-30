@@ -24,11 +24,8 @@ video {
 	max-width: 100%;
 }
 
-header {
-	background-color: rgb(77, 151, 216);
-}
-
 .bg-image {
+	background-image: url("../../icons/bg/01d.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;

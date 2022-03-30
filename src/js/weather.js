@@ -1,6 +1,10 @@
 const user_location = {};
 
-const open_weather_key = "27ea29f7607830944e90d5e9f0560259";
+const open_weather_key_hasnae = "27ea29f7607830944e90d5e9f0560259";
+const open_weather_key_melissa = "b0dcff87aa3fbe043e172859070fb6a3";
+const open_weather_key_mickael = "e4b40859cda1f2ff60ebabf6202a6de6";
+const open_weather_key = open_weather_key_mickael
+
 const weather = {};
 
 const today = new Date(Date.now());
@@ -154,23 +158,21 @@ async function get_ip_adress() {
 // ##############################################################################################
 
 async function get_weather() {
-	// console.log("🚀 ~ file: script.js ~ line 44 ~ get_weather ~ user_location", user_location)
-	
-	let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${user_location.lat}&lon=${user_location.lon}&appid=${open_weather_key}&lang=fr&units=metric&exclude=minutely,alerts`;
-	await fetch(api)
-		.then(function(response) {
-			let data = response.json();
-			return data;
-		})
-		.then(function(data) {
-			weather.current = data.current;
+    let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${user_location.lat}&lon=${user_location.lon}&appid=${open_weather_key}&lang=fr&units=metric&exclude=minutely,alerts`;
+    await fetch(api)
+        .then(function(response) {
+            let data = response.json();
+            return data;
+        })
+        .then(function(data) {
+            weather.current = data.current;
             //console.log("🚀 ~ file: script.js ~ line 165 ~ .then ~ weather.current", weather.current)
-			weather.forecast_hourly = data.hourly;
-			weather.daily = data.daily;
-		})
-		.then(function() {
-			fill_weather();
-		});
+            weather.forecast_hourly = data.hourly;
+            weather.daily = data.daily;
+        })
+        .then(function() {
+            fill_weather();
+        });
 }
 
 async function get_weather_hours() {
@@ -191,17 +193,15 @@ async function get_weather_hours() {
 // ##############################################################################################
 
 async function fill_place() {
-	let api = `https://api.openweathermap.org/data/2.5/weather?lat=${user_location.lat}&lon=${user_location.lon}&appid=${open_weather_key}&lang=fr`;
+	let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${user_location.lat}&lon=${user_location.lon}&limit=2&appid=${open_weather_key}`;
 	await fetch(api)
 		.then(function(response) {
 			let data = response.json();
 			return data;
 		})
 		.then(function(data) {
-			user_location.city = data.name;
-            //console.log("🚀 ~ file: script.js ~ line 143 ~ .then ~ user_location.city", user_location.city)
-			user_location.country_code = data.sys.country;
-            //console.log("🚀 ~ file: script.js ~ line 143 ~ .then ~ user_location.country_code", user_location.country_code)
+			user_location.city = data[0].name;
+			user_location.country_code = data[0].country;
 		})
 		.then(function() {
 			get_weather();
@@ -351,14 +351,26 @@ function fill_weather() {
 
 function fill_color_theme() {
     var bg = document.body;
-    bg.setAttribute("class", "bg-image")
 
     //var weather_dir_img = `url(../../icons/bg/${weather.current.weather[0].icon}.jpg)`;
+    
     var weather_dir_img = `url(../../icons/bg/01d.jpg)`;
-    bg.style.height = "100vh"
+    //var weather_dir_img = `url(../../icons/bg/01n.jpg)`;
+    //var weather_dir_img = `url(../../icons/bg/02d.jpg)`;
+    //var weather_dir_img = `url(../../icons/bg/02n.jpg)`;
+    //var weather_dir_img = `url(../../icons/bg/03d.jpg)`;
+    //var weather_dir_img = `url(../../icons/bg/03n.jpg)`;
+    //var weather_dir_img = `url(../../icons/bg/04d.jpg)`;
+    //var weather_dir_img = `url(../../icons/bg/04n.jpg)`;
+    //var weather_dir_img = `url(../../icons/bg/09d.jpg)`;
+    //var weather_dir_img = `url(../../icons/bg/11n.jpg)`;
     bg.style.backgroundImage = weather_dir_img;
 
-
+    //
+    //if (weather.current.weather[0].icon.includes("n")) {
+        //var main_container = document.getElementById("main-container");
+        //main_container.style.color = "white";
+    //}
 }
 
 // ##############################################################################################

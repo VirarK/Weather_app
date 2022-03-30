@@ -26,4 +26,9 @@ function get_login_data() {
 	is_login = true;
 	alert(`${email_address}, ${password}`);
 	// TODO : action avec la bd
+	// TODO : redirection vers le site principale
+	//var current_href = window.location.href;
+	//var table_current_href = current_href.split("/");
+	//current_href = current_href.slice(0, -(table_current_href[table_current_href.length - 1].length ));
+	//window.location = current_href + "index.html?";
 }
