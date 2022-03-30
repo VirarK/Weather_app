@@ -1,3 +1,6 @@
+const regex_email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const regex_email2 = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
 var is_login = false
 
 var log_btn = document.getElementById("log-btn");
@@ -28,7 +31,14 @@ function get_login_data() {
 	var email_address = document.getElementById("input-email").value;
 	var password = document.getElementById("input-password").value;
 	is_login = true;
-	alert(`${email_address}, ${password}`);
+	if (!email_address.match(regex_email2)) {
+		alert("format mail incorrect");
+		//console.log("erreur")
+	}
+	else {
+		alert(`mail : ${email_address}, mot de passe : ${password}`);
+	}
 	// TODO : action avec la bd
+
 	// TODO : redirection vers le site principale
 }
