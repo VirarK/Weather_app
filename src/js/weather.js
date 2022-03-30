@@ -5,8 +5,6 @@ const open_weather_key_melissa = "b0dcff87aa3fbe043e172859070fb6a3";
 const open_weather_key_mickael = "e4b40859cda1f2ff60ebabf6202a6de6";
 const open_weather_key = open_weather_key_mickael
 
-const weather = {};
-
 const today = new Date(Date.now());
 const dt = Math.floor(today / 1000);
 const shift_hours = 3;
@@ -235,6 +233,8 @@ function fill_date() {
     var date_html = document.getElementById("date");
     var date = transform_date(today);
     date_html.innerHTML = date;
+    
+    fill_color_theme();
 }
 
 /**
@@ -280,6 +280,7 @@ function fill_hours_weather() {
     }
 
     var div_weather_hours = document.getElementById("weather-hour");
+    div_weather_hours.innerHTML = '';
 
     // previous hour
     var i = 1;
@@ -341,6 +342,7 @@ function fill_hours_weather() {
  */
 function fill_week_weather() {
     var div_weather_week = document.getElementById("weather-week");
+    div_weather_week.innerHTML = '';   
 
     // create week days
     for (var i = 1; i < 7; i++) {
@@ -379,7 +381,7 @@ function fill_week_weather() {
         div_weather_week.appendChild(div_weather_week_i);
     }
 
-    fill_color_theme();
+    fill_date();
 }
 
 /**
@@ -407,10 +409,9 @@ function fill_color_theme() {
 // ##############################################################################################
 
 function main() {
-    fill_date();
-
     // start of function call list 
     get_location();
+
     show_menu();
 }
 

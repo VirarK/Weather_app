@@ -14,10 +14,14 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- import the webpage's javascript file -->
+    <script>
+        const weather = {};
+    </script>
     <script src="../js/utils.js" defer></script>
     <script src="../js/weather.js" defer></script>
     <script src="../js/login_logout.js" defer></script>
     <script src="../js/fav.js" defer></script>
+    <script src="../js/found_city.js" defer></script>
 
 </head>
 
@@ -33,7 +37,7 @@
                 <!-- header-->
                 <li class="menu nav-item text-center">
                     <a class="nav-link" href="#" data-bs-toggle="collapse">
-                        Menu Principal
+                        Menu principal
                     </a>
                 </li>
 
@@ -42,7 +46,7 @@
                     <a class="nav-link" href="#" data-bs-toggle="collapse">
                         <form class="col-12 col-lg-auto ms-auto mb-lg-0 me-lg-3">
                             <input type="search" class="form-control form-control-dark me-2 ms-2"
-                                placeholder="Ville en favoris..." aria-label="Search">
+                                placeholder="Chercher un favoris..." aria-label="Search">
                         </form>
                     </a>
                 </li>
@@ -68,14 +72,14 @@
             <!-- Search button-->
             <div class="input-group">
                 <div class="form-outline">
-                    <input type="search" id="form1" class="form-control" placeholder="chercher une ville..."/>
+                    <input type="search" id="input-name-city" class="form-control" placeholder="ex: Versailles fr"/>
                 </div>
-                <button type="button" class="btn btn-dark btn-sm">
+                <button type="button" onclick="found_city()" class="btn btn-dark btn-sm">
                     <i class="bx bx-search-alt my-white"></i>
                 </button>
                 
-                <!-- Favorite cities button -->
-                <button type="button" onclick="add_fav()" class="btn btn-outline-light mx-2" title="Cliquez pour accéder au villes favoris">
+                <!-- button shortcut for user's favorite cities -->
+                <button type="button" class="btn btn-outline-light mx-2" title="Cliquez pour accéder au villes favoris">
                     <i class="bx bxs-bookmark-star my-white"></i>
                 </button>
 
@@ -93,7 +97,7 @@
                         <div>
                             <div class="d-flex">
                                 <div id="place">Localisation inconnu</div>
-                                <button type="button" class="btn btn-outline favoris" title="cliquez pour ajouter au favoris">
+                                <button type="button" onclick="add_fav()" class="btn btn-outline favoris" title="cliquez pour ajouter au favoris">
                                     <i class='bx bxs-star' style='color:rgb(231, 185, 85)'></i>
                                 </button>
                             </div>
