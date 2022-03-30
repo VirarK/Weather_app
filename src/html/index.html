@@ -7,10 +7,11 @@
 
     <link id="website-icon" rel="icon" href="../../icons/weather/unknown.png" />
     <title id="website-title">Unknown</title>
-    
+
     <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="../css/bootstrap-5.1.3-dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="../css/bootstrap-5.1.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css" />
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- import the webpage's javascript file -->
     <script src="../js/weather.js" defer></script>
@@ -18,79 +19,99 @@
 </head>
 
 <body>
-    <div class="container p-3">
-        <!-- https://getbootstrap.com/docs/5.1/examples/headers/ -->
-        <header class="row p-3">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end">
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                    <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-                </form>
-        
-                <div class="d-flex text-end">
-                    <button type="button" class="btn btn-primary ms-2 me-1">Favoris</button>
-                    <div id="log-btn"></div>
+    <!-- https://getbootstrap.com/docs/5.1/examples/headers/ -->
+
+    <nav class="navbar navbar-expand-md navbar-light">
+        <a href="#" class="navbar-brand h1">
+            <i class='bx bxs-home d-inline-block' style='color:#f8f5f5'></i>
+            Menu principal
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMenu"
+            aria-controls="toggleMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"> </span>
+        </button>
+
+        <!-- Collapsing menu-->
+        <div class="collapse navbar-collapse " id="toggleMenu">
+            <ul class="navbar-nav text-center ms-auto">
+                <li>
+                    <a class="nav-link" href="#"></a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link"></a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link"></a>
+                </li>
+            </ul>
+        </div>
+
+
+        <!-- Search Input-->
+        <i class='bx bx-search-alt bx-md' style='color:#f1ebeb'></i>
+        <form class="col-12 col-lg-auto ms-auto mb-lg-0 me-lg-3">
+            <input type="search" class="form-control form-control-dark me-2 ms-2" placeholder="Search..."
+                aria-label="Search">
+        </form>
+
+        <!-- Boutton pour accéder au villes favoris -->
+        <button type="button" class="btn btn-outline-light ms-2 me-2 " title="Cliquez pour accéder au villes favoris">
+            <i class='bx bxs-bookmark-star' style='color:rgb(250, 245, 245)'></i> </button>
+
+        <!--Boutton de connexion-->
+        <div id="log-btn"></div>
+        </div>
+    </nav>
+    </div>
+
+
+    <div class="center-block my-5">
+        <main class="container">
+            <div class="row">
+                <div class="d-flex justify-content-center">
+                    <div class="favoris p-1">
+                        <button type="button" class="btn btn-outline me-lg-6 " title="cliquez pour ajouter au favoris">
+                            <i class='bx bxs-star' style='color:rgb(231, 185, 85)'></i>
+                        </button>
+                    </div>
+                    <div class="text-center me-5 p-2">
+                        <div id="place"></div>
+                        <div id="date"></div>
+                        <div id="weather-short-description"></div>
+                    </div>
+                    <div class="text-center ">
+                        <img id="icon-weather" src="../../icons/weather/unknown.png" width="56" height="56"
+                            alt="icon weather">
+                        <div id="temperature"></div>
+                        <div id="feels-like"></div>
+                    </div>
                 </div>
             </div>
-        </header>
+    </div>
 
-        <div class="row p-3">
-            <!-- https://getbootstrap.com/docs/5.1/examples/sidebars/ -->
-            <div class="col-md-3 p-sm-4 text-center text-sm-center text-md-start text-lg-start border rounded">
-                <div class="d-flex flex-column flex-shrink-0">
-                    <ul class="nav nav-pills flex-column mb-auto">
-                        <li class="nav-item">
-                            <a href="#" class="btn btn-secondary">
-                                <img src="../../icons/sidebar/home.jpg" width="32" height="32" alt="home icon">
-                                Page principale
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link link-dark">
-                                Favories
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
 
-            <div class="col-md-9">
-                <main class="container">
-                    <div class="row p-3">
-                        <div class="d-flex flex-wrap align-items-center justify-content-around">
-                            <div class="text-center">
-                                <div id="place"></div>
-                                <div id="date"></div>
-                                <div id="weather-short-description"></div>
-                            </div>
-                            <div class="text-center">
-                                <img id="icon-weather" src="../../icons/weather/unknown.png" width="56" height="56" alt="icon weather">
-                                <div id="temperature"></div>
-                                <div id="feels-like"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row p-3">
-                        <div class="d-flex flex-wrap align-items-center justify-content-around">
-                            <div id="UV" class="p-1"></div>
-                            <div id="wind-speed" class="p-1"></div>
-                            <div id="humidity" class="p-1"></div>
-                            <div id="clouds" class="p-1"></div>
-                        </div>
-                    </div>
-
-                    <div class="row p-3">
-                        <div id="weather-hour" class="d-flex flex-wrap align-items-center justify-content-around p-3"></div>
-                        <div id="weather-week" class="d-flex flex-wrap align-items-center justify-content-around p-3"></div>
-                    </div>
-
-                </main>
-
-                <footer class="container"></footer>
-            </div>
+    <div class="container one d-flex align-items-evenly justify-content-evenly ">
+        <div class="row">
+            <div id="UV" class="col-2"></div>
+            <div id="wind-speed" class="col-4"></div>
+            <div id="humidity" class="col-3"></div>
+            <div id="clouds" class="col"></div>
         </div>
     </div>
+    <div class="container">
+        <div class="row gx-1 p-3">
+            <div class="my-3">
+                <div id="weather-hour" class="d-flex flex-wrap align-items-center justify-content-around p-3"></div>
+            </div>
+            <div id="weather-week" class="d-flex flex-wrap align-items-center justify-content-around p-3"></div>
+        </div>
+    </div>
+    </main>
+
+    <footer class="container my-3"> Weather App</footer>
+    </div>
+
 </body>
 
 </html>

@@ -25,10 +25,15 @@ video {
 }
 
 header {
-	background-color: rgb(77, 151, 216);
+	size-adjust: 100%;
+}
+
+.navbar-brand{
+	color: white;
 }
 
 .bg-image {
+
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -38,4 +43,21 @@ header {
 	background-color: lightgray;
 	border-color: lightgray;
 	color: black;
+}
+
+.btn-outline-light:hover .bxs-bookmark-star{
+	border: solid 3px rgb(155, 155, 155);
+	background-color: rgb(155, 155, 155);
+}
+
+.modal{
+    width: 300px;
+}
+
+.modal-content{
+    width: 300px;
+}
+
+.list-group-item:hover{
+    background-color: rgba(57, 202, 183, 0.781)!important;
 }
