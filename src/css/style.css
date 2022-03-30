@@ -24,6 +24,14 @@ video {
 	max-width: 100%;
 }
 
+header {
+	size-adjust: 100%;
+}
+
+.navbar-brand{
+	color: white;
+}
+
 .bg-image {
 	background-image: url("../../icons/bg/01d.jpg");
 	background-position: center;
@@ -35,4 +43,21 @@ video {
 	background-color: lightgray;
 	border-color: lightgray;
 	color: black;
+}
+
+.btn-outline-light:hover .bxs-bookmark-star{
+	border: solid 3px rgb(155, 155, 155);
+	background-color: rgb(155, 155, 155);
+}
+
+.modal{
+    width: 300px;
+}
+
+.modal-content{
+    width: 300px;
+}
+
+.list-group-item:hover{
+    background-color: rgba(57, 202, 183, 0.781)!important;
 }
