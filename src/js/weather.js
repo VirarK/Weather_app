@@ -11,6 +11,8 @@ const today = new Date(Date.now());
 const dt = Math.floor(today / 1000);
 const shift_hours = 3;
 
+var css_custom = null;
+
 // ##############################################################################################
 
 /**
@@ -246,16 +248,23 @@ function fill_weather() {
  * fill html with different day hours weather.
  */
  function fill_hours_weather() {
+    if (weather.current.weather[0].icon.includes("d")) {
+        css_custom = "px-3 m-4 rounded my-light-white-bg";
+    }
+    else {
+        css_custom = "px-3 m-4 rounded my-dark-white-bg";
+    }
+
     var div_weather_hours = document.getElementById("weather-hour");
 
     // previous hour
     var i = 1;
     for (i; i < today.getHours; i += shift_hours) {
         var div_weather_hours_i = document.createElement("div");
-		div_weather_hours_i.setAttribute("class", "border rounded m-2 p-2");
+		div_weather_hours_i.setAttribute("class", css_custom);
 
         // Write the hour
-        var text_hour_i = document.createElement("p");
+        var text_hour_i = document.createElement("div");
         if (i < 10) {
             text_hour_i.innerHTML = "0" + i + "H";
         } else {
@@ -277,10 +286,10 @@ function fill_weather() {
     var j = 1;
     for (i; i < 24; i += shift_hours) {
 		var div_weather_hours_i = document.createElement("div");
-		div_weather_hours_i.setAttribute("class", "border rounded m-2 p-2");
+		div_weather_hours_i.setAttribute("class", css_custom);
 
         // Write the hour
-        var text_hour_i = document.createElement("p");
+        var text_hour_i = document.createElement("div");
         if (i < 10) {
             text_hour_i.innerHTML = "0" + i + "H";
         } else {
@@ -288,7 +297,7 @@ function fill_weather() {
         }
 
         // Write hour weather
-        var balise_temp_forecast_hour_i = document.createElement("p");
+        var balise_temp_forecast_hour_i = document.createElement("div");
         var text_temp_forecast_hour_i = Math.floor(weather.forecast_hourly[j].temp);
         balise_temp_forecast_hour_i.innerHTML = `${text_temp_forecast_hour_i}°C`;
 
@@ -312,12 +321,12 @@ function fill_weather() {
     // create week days
     for (var i = 1; i < 7; i++) {
         var div_weather_week_i = document.createElement("div");
-		div_weather_week_i.setAttribute("class", "border rounded p-2");
+		div_weather_week_i.setAttribute("class", css_custom);
 
         // Write date
         var date_i = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
         var date_i_transform = transform_date(date_i, 1);
-        var text_date_i = document.createElement("p");
+        var text_date_i = document.createElement("div");
         text_date_i.innerHTML = date_i_transform;
 
         // Draw icon
@@ -352,25 +361,27 @@ function fill_weather() {
 function fill_color_theme() {
     var bg = document.body;
 
-    //var weather_dir_img = `url(../../icons/bg/${weather.current.weather[0].icon}.jpg)`;
+    var weather_dir_img = `url(../../icons/bg/${weather.current.weather[0].icon}.jpg)`;
     
-    var weather_dir_img = `url(../../icons/bg/01d.jpg)`;
-    //var weather_dir_img = `url(../../icons/bg/01n.jpg)`;
-    //var weather_dir_img = `url(../../icons/bg/02d.jpg)`;
-    //var weather_dir_img = `url(../../icons/bg/02n.jpg)`;
-    //var weather_dir_img = `url(../../icons/bg/03d.jpg)`;
-    //var weather_dir_img = `url(../../icons/bg/03n.jpg)`;
-    //var weather_dir_img = `url(../../icons/bg/04d.jpg)`;
-    //var weather_dir_img = `url(../../icons/bg/04n.jpg)`;
-    //var weather_dir_img = `url(../../icons/bg/09d.jpg)`;
-    //var weather_dir_img = `url(../../icons/bg/11n.jpg)`;
     bg.style.backgroundImage = weather_dir_img;
-
+    
     //
-    //if (weather.current.weather[0].icon.includes("n")) {
-        //var main_container = document.getElementById("main-container");
-        //main_container.style.color = "white";
-    //}
+    if (weather.current.weather[0].icon.includes("n")) {
+        var main_container = document.getElementById("main-container");
+        var attr = main_container.getAttribute("class");
+        main_container.setAttribute("class", `${attr} my-white`);
+        var navbar = document.getElementById("main-menu");
+        attr = navbar.getAttribute("class");
+        navbar.setAttribute("class", `${attr} my-white`);
+    }
+    else {
+        var main_container = document.getElementById("main-container");
+        var attr = main_container.getAttribute("class");
+        main_container.setAttribute("class", `${attr} my-black`);
+        var navbar = document.getElementById("main-menu");
+        attr = navbar.getAttribute("class");
+        navbar.setAttribute("class", `${attr} my-black`);
+    }
 }
 
 // ##############################################################################################
