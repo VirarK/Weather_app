@@ -123,6 +123,9 @@ function transform_date(date, mode = 0) {
 
 // ##############################################################################################
 
+/**
+ * Get user location with navigator.
+ */
 function get_location() {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(set_position, get_ip_adress);
@@ -132,6 +135,10 @@ function get_location() {
     }
 }
 
+/**
+ * Set user position structure.
+ * @param {Object} geolocation object with user coords.
+ */
 async function set_position(geolocation) {
 	user_location.lat = geolocation.coords.latitude;
     //console.log("🚀 ~ file: script.js ~ line 131 ~ set_position ~ user_location.lat", user_location.lat)
@@ -141,6 +148,9 @@ async function set_position(geolocation) {
 	fill_place();
 }
 
+/**
+ * Get user ip adress and set latitude/ longitude
+ */
 async function get_ip_adress() {
     let api = `https://eu-api.ipdata.co/?api-key=26764a7363ed0775539678097b1944f2dcc4689d6bc883eebbe7b242`;
     await fetch(api)
@@ -159,6 +169,9 @@ async function get_ip_adress() {
 
 // ##############################################################################################
 
+/**
+ * Get current, forecast hourly and daily weather.
+ */
 async function get_weather() {
     let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${user_location.lat}&lon=${user_location.lon}&appid=${open_weather_key}&lang=fr&units=metric&exclude=minutely,alerts`;
     await fetch(api)
@@ -168,7 +181,6 @@ async function get_weather() {
         })
         .then(function(data) {
             weather.current = data.current;
-            //console.log("🚀 ~ file: script.js ~ line 165 ~ .then ~ weather.current", weather.current)
             weather.forecast_hourly = data.hourly;
             weather.daily = data.daily;
         })
@@ -177,6 +189,9 @@ async function get_weather() {
         });
 }
 
+/**
+ * Get previous hours weather.
+ */
 async function get_weather_hours() {
     let api = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${user_location.lat}&lon=${user_location.lon}&dt=${dt}&appid=${open_weather_key}&lang=fr`;
     await fetch(api)
@@ -194,6 +209,9 @@ async function get_weather_hours() {
 
 // ##############################################################################################
 
+/**
+ * Fill user place in html with latitude and longitude.
+ */
 async function fill_place() {
 	let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${user_location.lat}&lon=${user_location.lon}&limit=2&appid=${open_weather_key}`;
 	await fetch(api)
@@ -210,12 +228,18 @@ async function fill_place() {
 		});
 }
 
+/**
+ * Fill today date in html.
+ */
 function fill_date() {
 	var date_html = document.getElementById("date");
     var date = transform_date(today);
     date_html.innerHTML = date;
 }
 
+/**
+ * Fill current weather in html.
+ */
 function fill_weather() {
 	// 
     document.getElementById("place").innerHTML = `${user_location.city}, ${transform_country_code()}`;
@@ -245,7 +269,7 @@ function fill_weather() {
 }
 
 /**
- * fill html with different day hours weather.
+ * fill hours weather in html.
  */
  function fill_hours_weather() {
     if (weather.current.weather[0].icon.includes("d")) {
@@ -313,7 +337,7 @@ function fill_weather() {
 }
 
 /**
- *
+ * Fill weather week in html.
  */
  function fill_week_weather() {
     var div_weather_week = document.getElementById("weather-week");
@@ -358,6 +382,9 @@ function fill_weather() {
     fill_color_theme();
 }
 
+/**
+ * Set background image and theme color with the current weather.
+ */
 function fill_color_theme() {
     var bg = document.body;
 
