@@ -74,7 +74,7 @@ header {
 	background-color: rgb(155, 155, 155);
 }
 
-#myUl{
+#my_ul{
 	background-color: rgb(209, 203, 203);
 	border-radius: 5px;
 	box-sizing: border-box;
@@ -82,7 +82,7 @@ header {
 	margin-left: 0;
 }
 
-.Menu{
+.menu{
 	background-color: rgb(254, 255, 250);
 	border-radius: 5px;
 }

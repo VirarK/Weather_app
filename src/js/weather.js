@@ -397,27 +397,11 @@ function fill_color_theme() {
         var main_container = document.getElementById("main-container");
         var attr = main_container.getAttribute("class");
         main_container.setAttribute("class", `${attr} my-white`);
-        var navbar = document.getElementById("main-menu");
-        attr = navbar.getAttribute("class");
-        navbar.setAttribute("class", `${attr} my-white`);
     }
     else {
         var main_container = document.getElementById("main-container");
         var attr = main_container.getAttribute("class");
         main_container.setAttribute("class", `${attr} my-black`);
-        var navbar = document.getElementById("main-menu");
-        attr = navbar.getAttribute("class");
-        navbar.setAttribute("class", `${attr} my-black`);
-    }
-}
-
-// Show collapsing Menu
-function showmenu() {
-    var x = document.getElementById('myUl');
-    if (x.style.display == 'none') {
-        x.style.display = 'block';
-    } else {
-        x.style.display = 'none';
     }
 }
 
@@ -428,7 +412,7 @@ function main() {
 
     // start of function call list 
     get_location();
-    showmenu();
+    show_menu();
 }
 
 // ##############################################################################################

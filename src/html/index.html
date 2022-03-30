@@ -14,21 +14,21 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- import the webpage's javascript file -->
+    <script src="../js/utils.js" defer></script>
     <script src="../js/weather.js" defer></script>
-    <script src="../js/login_logout.js" defer></script>
 </head>
 
 <body>
-    <!-- https://getbootstrap.com/docs/5.1/examples/headers/ -->
     <nav class="navbar navbar-expand-md navbar-light">
-        <a href="#" class="navbar-brand h1" onclick='showmenu();' title="Cliquez pour accéder au menu principal">
-            <i class='bx bxs-home d-inline-block bx-lg' style='color:#f8f5f5'></i>
+        <a href="#" class="navbar-brand h1" onclick="show_menu()" title="Cliquez pour accéder au menu principal">
+            <i class="bx bxs-home d-inline-block bx-lg my-white"></i>
         </a>
+
         <!-- Collapsing menu-->
         <div class="collapse navbar-collapse" id="toggleMenu">
-            <ul id="myUl" class="navbar-nav ">
+            <ul id="my_ul" class="navbar-nav text-center">
                 <!-- header-->
-                <li class=" Menu nav-item text-center">
+                <li class="menu nav-item text-center">
                     <a class="nav-link" href="#" data-bs-toggle="collapse">
                         Menu Principal
                     </a>
@@ -38,57 +38,63 @@
                     <a class="nav-link" href="#" data-bs-toggle="collapse">
                         <form class="col-12 col-lg-auto ms-auto mb-lg-0 me-lg-3">
                             <input type="search" class="form-control form-control-dark me-2 ms-2"
-                                placeholder="Chercher une ville..." aria-label="Search">
+                                placeholder="Ville en favoris..." aria-label="Search">
                         </form>
                     </a>
                 </li>
                 <!-- Boutton pour accéder au villes favoris -->
-                <li class="nav-item d-flex justify-content-center">
-                    <a href="#" class="nav-link" data-bs-toggle="collapse">
-                        <button type="button" class="btn btn-outline-light ms-2 me-2 "
-                            title="Cliquez pour accéder au villes favoris">
-                            <i class='bx bxs-bookmark-star' style='color:rgb(250, 245, 245)'> Endroits favoris</i>
-                        </button>
-                    </a>
-                </li>
+                <!--
+                    <li class="nav-item d-flex justify-content-center">
+                        <a href="#" class="nav-link" data-bs-toggle="collapse">
+                            <button type="button" class="btn btn-outline-light ms-2 me-2 "
+                                title="Cliquez pour accéder au villes favoris">
+                                <i class='bx bxs-bookmark-star my-white'> Villes favories</i>
+                            </button>
+                        </a>
+                    </li>
+                -->
+                <li>Ville 1</li>
+                <li>Ville 3</li>
+                <li>...</li>
             </ul>
         </div>
 
+        <!-- Search button-->
+        <button type="button" onclick="" class="btn btn-outline ms-auto" title="lancez la recherche">
+            <i class="bx bx-search-alt bx-md my-white"></i>
+        </button>
 
         <!-- Search Input-->
-        <i class='bx bx-search-alt bx-md' style='color:#f1ebeb'></i>
         <form class="col-12 col-lg-auto ms-auto mb-lg-0 me-lg-3">
-            <input type="search" class="form-control form-control-dark me-2 ms-2" placeholder="Search..."
+            <input type="search" class="form-control form-control-dark me-2 ms-2" placeholder="Chercher une ville..."
                 aria-label="Search">
         </form>
 
-        <!-- Boutton pour accéder au villes favoris -->
+        <!-- Favorite cities button -->
         <button type="button" class="btn btn-outline-light ms-2 me-2 " title="Cliquez pour accéder au villes favoris">
-            <i class='bx bxs-bookmark-star' style='color:rgb(250, 245, 245)'></i> </button>
+            <i class="bx bxs-bookmark-star my-white"></i> </button>
 
-        <!--Boutton de connexion-->
-        <div id="log-btn"></div>
-        </div>
-
+        <!--login button-->
+        <div id="log-btn"></div> </div>
     </nav>
-    </div>
 
-
-    <div class="center-block my-5">
+    <div id="main-container" class="center-block my-5">
         <main class="container">
             <div class="row">
-                <div class="d-flex justify-content-center">
-                    <div class="favoris p-1">
-                        <button type="button" class="btn btn-outline me-lg-6 " title="cliquez pour ajouter au favoris">
-                            <i class='bx bxs-star' style='color:rgb(231, 185, 85)'></i>
-                        </button>
-                    </div>
-                    <div class="text-center me-5 p-2">
-                        <div id="place"></div>
+                <div class="d-flex justify-content-center my-3 align-middle">
+                    <div id="place-container" class="text-center mx-3">
+                        <div>
+                            <div class="d-flex">
+                                <div id="place"></div>
+                                <button type="button" class="btn btn-outline favoris" title="cliquez pour ajouter au favoris">
+                                    <i class='bx bxs-star' style='color:rgb(231, 185, 85)'></i>
+                                </button>
+                            </div>
+                        </div>
                         <div id="date"></div>
                         <div id="weather-short-description"></div>
                     </div>
-                    <div class="text-center ">
+                    <div id="weather-container" class="text-center mx-3">
                         <img id="icon-weather" src="../../icons/weather/unknown.png" width="56" height="56"
                             alt="icon weather">
                         <div id="temperature"></div>
@@ -96,30 +102,28 @@
                     </div>
                 </div>
             </div>
-    </div>
-
-
-    <div class="container one d-flex align-items-evenly justify-content-evenly ">
-        <div class="row">
-            <div id="UV" class="col-2"></div>
-            <div id="wind-speed" class="col-4"></div>
-            <div id="humidity" class="col-3"></div>
-            <div id="clouds" class="col"></div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row gx-1 p-3">
-            <div class="my-3">
-                <div id="weather-hour" class="d-flex flex-wrap align-items-center justify-content-around p-3"></div>
+        
+            <div id="details-container" class="d-flex flex-wrap align-items-center justify-content-center my-3">
+                <div id="UV" class="px-2"></div>
+                <div id="wind-speed" class="px-2"></div>
+                <div id="humidity" class="px-2"></div>
+                <div id="clouds" class="px-2"></div>
             </div>
-            <div id="weather-week" class="d-flex flex-wrap align-items-center justify-content-around p-3"></div>
-        </div>
-    </div>
-    </main>
 
-    <footer class="container my-3"> Weather App</footer>
-    </div>
+            <div class="container">
+                <div class="row">
+                    <div id="weather-hour" class="d-flex flex-wrap align-items-center justify-content-center my-2"></div>
+                    <div id="weather-week" class="d-flex flex-wrap align-items-center justify-content-center my-2"></div>
+                </div>
+            </div>
+        </main>
 
+        <footer class="container">
+            <div class="row">
+                <div class="d-flex align-items-center justify-content-center">Weather App</div>
+            </div>
+        </footer>
+    </div>
 </body>
 
 </html>
