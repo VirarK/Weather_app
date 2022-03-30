@@ -23,6 +23,7 @@
 	- Template navbar en header.
 	- Template pour login page.
 	- Ajout système fond évolutif en fonction de la météo.
+	- Système recherche nouvelle ville, avec chargement météo.
 -  Aidé à concevoir la base de données avec le chercheur.
 
 ### Gabriel Scrève : Chercheur
@@ -33,9 +34,21 @@
 	- Comment la connecter avec le site.
 	- Création.
 
+### Alloua Melissa & Hasnae Gaizi : codeuses
+- Modification des fonctions qui font des appels aux API en fonctions asynchrones.
+- Ajout de la météo pour les jours de la semaine.
+- Refonte total du projet avec la bibliothèque bootstrap.
+- Ajout d'un bouton pour mettre la ville actuelle en favoris.
+
 ### Alloua Melissa : Codeuse
+- Ajout informations supplémentaires (uv, vitesse du vents, humidité, % de vents).
+
 
 ### Hasnae Gaizi : Codeuse
+- Ajout d'une bare de navigation avec:
+	- Un bouton menu (caché) affichant les listes des villes en favoris par l'utilisateur.
+	- une zone de recherche pour avoir la météo d'une autre ville.
+	- un bouton pour se connecter.
 
 ***
 
@@ -48,10 +61,10 @@
 
 ## Travail à faire pour la prochaine fois
 - Corriger affichage fond et couleur police.
-- Finir le sidebar.
-- Ajouter partie javascript pour rechercher météo d'une ville.
+- Finir le bouton menu (affichage villes en favoris).
+- Finir partie javascript pour rechercher météo d'une ville.
 - Finir système de connexion.
-- Transformer le projet avec expressjs pour avec des routes et le système de redirection.
+- Transformer le projet avec expressjs avec des routes pour avoir le système de redirection.
 - Finir la base de donnée et l'intégrer au projet.
 - Intégrer système changement de clé pour l'api si le nombre d'appels[ maximal](https://openweathermap.org/full-price#current) à été atteint.
 - Intégrer sauvegarde de la météo pour ne faire des demandes à l'api que toutes les 2h (temps entre les [MAJ](https://openweathermap.org/full-price#current) sur l'api).
