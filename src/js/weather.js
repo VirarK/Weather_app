@@ -389,7 +389,6 @@ function fill_color_theme() {
     var bg = document.body;
 
     var weather_dir_img = `url(../../icons/bg/${weather.current.weather[0].icon}.jpg)`;
-
     bg.style.backgroundImage = weather_dir_img;
 
     //

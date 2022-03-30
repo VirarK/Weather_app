@@ -16,9 +16,12 @@
     <!-- import the webpage's javascript file -->
     <script src="../js/utils.js" defer></script>
     <script src="../js/weather.js" defer></script>
+    <script src="../js/login_logout.js" defer></script>
+    <script src="../js/fav.js" defer></script>
+
 </head>
 
-<body>
+<body class="bg-image">
     <nav class="navbar navbar-expand-md navbar-light">
         <a href="#" class="navbar-brand h1" onclick="show_menu()" title="Cliquez pour accéder au menu principal">
             <i class="bx bxs-home d-inline-block bx-lg my-white"></i>
@@ -33,6 +36,7 @@
                         Menu Principal
                     </a>
                 </li>
+
                 <!-- Search Input-->
                 <li class="nav-item ">
                     <a class="nav-link" href="#" data-bs-toggle="collapse">
@@ -42,6 +46,7 @@
                         </form>
                     </a>
                 </li>
+                
                 <!-- Boutton pour accéder au villes favoris -->
                 <!--
                     <li class="nav-item d-flex justify-content-center">
@@ -59,23 +64,25 @@
             </ul>
         </div>
 
-        <!-- Search button-->
-        <button type="button" onclick="" class="btn btn-outline ms-auto" title="lancez la recherche">
-            <i class="bx bx-search-alt bx-md my-white"></i>
-        </button>
+        <div class="d-flex align-content-end">
+            <!-- Search button-->
+            <div class="input-group">
+                <div class="form-outline">
+                    <input type="search" id="form1" class="form-control" placeholder="chercher une ville..."/>
+                </div>
+                <button type="button" class="btn btn-dark btn-sm">
+                    <i class="bx bx-search-alt my-white"></i>
+                </button>
+                
+                <!-- Favorite cities button -->
+                <button type="button" onclick="add_fav()" class="btn btn-outline-light mx-2" title="Cliquez pour accéder au villes favoris">
+                    <i class="bx bxs-bookmark-star my-white"></i>
+                </button>
 
-        <!-- Search Input-->
-        <form class="col-12 col-lg-auto ms-auto mb-lg-0 me-lg-3">
-            <input type="search" class="form-control form-control-dark me-2 ms-2" placeholder="Chercher une ville..."
-                aria-label="Search">
-        </form>
-
-        <!-- Favorite cities button -->
-        <button type="button" class="btn btn-outline-light ms-2 me-2 " title="Cliquez pour accéder au villes favoris">
-            <i class="bx bxs-bookmark-star my-white"></i> </button>
-
-        <!--login button-->
-        <div id="log-btn"></div> </div>
+                <!--login button-->
+                <div id="log-btn"></div> </div>
+            </div>
+        </div>
     </nav>
 
     <div id="main-container" class="center-block my-5">
@@ -85,20 +92,20 @@
                     <div id="place-container" class="text-center mx-3">
                         <div>
                             <div class="d-flex">
-                                <div id="place"></div>
+                                <div id="place">Localisation inconnu</div>
                                 <button type="button" class="btn btn-outline favoris" title="cliquez pour ajouter au favoris">
                                     <i class='bx bxs-star' style='color:rgb(231, 185, 85)'></i>
                                 </button>
                             </div>
                         </div>
                         <div id="date"></div>
-                        <div id="weather-short-description"></div>
+                        <div id="weather-short-description">Météo inconnu</div>
                     </div>
                     <div id="weather-container" class="text-center mx-3">
                         <img id="icon-weather" src="../../icons/weather/unknown.png" width="56" height="56"
                             alt="icon weather">
-                        <div id="temperature"></div>
-                        <div id="feels-like"></div>
+                        <div id="temperature">?°c / ?°F</div>
+                        <div id="feels-like">Ressenti : ?</div>
                     </div>
                 </div>
             </div>
@@ -120,7 +127,11 @@
 
         <footer class="container">
             <div class="row">
-                <div class="d-flex align-items-center justify-content-center">Weather App</div>
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="px-2">Potitique de confidentialité</div>
+                    <div class="px-2">A propos de ???</div>
+                    <div class="px-2">Autre</div>
+                </div>
             </div>
         </footer>
     </div>
