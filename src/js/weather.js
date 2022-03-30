@@ -21,7 +21,7 @@ var css_custom = null;
  * @param {String} day english day.
  * @returns french day.
  */
- function transform_day(day) {
+function transform_day(day) {
     const map_day_en_to_fr = {
         "Mon": "Lundi",
         "Tue": "Mardi",
@@ -104,7 +104,7 @@ function transform_date(date, mode = 0) {
  * @param {String} country_code the country code (FR, EN, ...). 
  * @returns the country full name (France, ...).
  */
- function transform_country_code() {
+function transform_country_code() {
     let region_names = new Intl.DisplayNames(['en'], { type: 'region' });
     return region_names.of(user_location.country_code);
 }
@@ -117,7 +117,7 @@ function transform_date(date, mode = 0) {
  * @param {Number} temperature .
  * @returns celsius.
  */
- function celsius_to_fahrenheit(temperature) {
+function celsius_to_fahrenheit(temperature) {
     return (temperature * 9 / 5) + 32;
 }
 
@@ -130,7 +130,7 @@ function get_location() {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(set_position, get_ip_adress);
     }
-	else {
+    else {
         get_ip_adress();
     }
 }
@@ -140,12 +140,12 @@ function get_location() {
  * @param {Object} geolocation object with user coords.
  */
 async function set_position(geolocation) {
-	user_location.lat = geolocation.coords.latitude;
+    user_location.lat = geolocation.coords.latitude;
     //console.log("🚀 ~ file: script.js ~ line 131 ~ set_position ~ user_location.lat", user_location.lat)
-	user_location.lon = geolocation.coords.longitude;
+    user_location.lon = geolocation.coords.longitude;
     //console.log("🚀 ~ file: script.js ~ line 133 ~ set_position ~ user_location.lon", user_location.lon)
 
-	fill_place();
+    fill_place();
 }
 
 /**
@@ -154,15 +154,15 @@ async function set_position(geolocation) {
 async function get_ip_adress() {
     let api = `https://eu-api.ipdata.co/?api-key=26764a7363ed0775539678097b1944f2dcc4689d6bc883eebbe7b242`;
     await fetch(api)
-        .then(function(response) {
+        .then(function (response) {
             let data = response.json();
             return data;
         })
-        .then(function(data) {
+        .then(function (data) {
             user_location.lat = data.latitude;
             user_location.lon = data.longitude;
         })
-		.then(function() {
+        .then(function () {
             fill_place();
         });
 }
@@ -175,16 +175,16 @@ async function get_ip_adress() {
 async function get_weather() {
     let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${user_location.lat}&lon=${user_location.lon}&appid=${open_weather_key}&lang=fr&units=metric&exclude=minutely,alerts`;
     await fetch(api)
-        .then(function(response) {
+        .then(function (response) {
             let data = response.json();
             return data;
         })
-        .then(function(data) {
+        .then(function (data) {
             weather.current = data.current;
             weather.forecast_hourly = data.hourly;
             weather.daily = data.daily;
         })
-        .then(function() {
+        .then(function () {
             fill_weather();
         });
 }
@@ -195,14 +195,14 @@ async function get_weather() {
 async function get_weather_hours() {
     let api = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${user_location.lat}&lon=${user_location.lon}&dt=${dt}&appid=${open_weather_key}&lang=fr`;
     await fetch(api)
-        .then(function(response) {
+        .then(function (response) {
             data = response.json();
             return data;
         })
-        .then(function(data) {
+        .then(function (data) {
             weather.previous_hourly = data.hourly;
         })
-        .then(function() {
+        .then(function () {
             fill_hours_weather()
         });
 }
@@ -213,26 +213,26 @@ async function get_weather_hours() {
  * Fill user place in html with latitude and longitude.
  */
 async function fill_place() {
-	let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${user_location.lat}&lon=${user_location.lon}&limit=2&appid=${open_weather_key}`;
-	await fetch(api)
-		.then(function(response) {
-			let data = response.json();
-			return data;
-		})
-		.then(function(data) {
-			user_location.city = data[0].name;
-			user_location.country_code = data[0].country;
-		})
-		.then(function() {
-			get_weather();
-		});
+    let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${user_location.lat}&lon=${user_location.lon}&limit=2&appid=${open_weather_key}`;
+    await fetch(api)
+        .then(function (response) {
+            let data = response.json();
+            return data;
+        })
+        .then(function (data) {
+            user_location.city = data[0].name;
+            user_location.country_code = data[0].country;
+        })
+        .then(function () {
+            get_weather();
+        });
 }
 
 /**
  * Fill today date in html.
  */
 function fill_date() {
-	var date_html = document.getElementById("date");
+    var date_html = document.getElementById("date");
     var date = transform_date(today);
     date_html.innerHTML = date;
 }
@@ -241,37 +241,37 @@ function fill_date() {
  * Fill current weather in html.
  */
 function fill_weather() {
-	// 
+    // 
     document.getElementById("place").innerHTML = `${user_location.city}, ${transform_country_code()}`;
     document.getElementById("weather-short-description").innerHTML = `${weather.current.weather[0].description}`;
-	
+
     // set today weather icon
-	var icon = document.getElementById("icon-weather");
+    var icon = document.getElementById("icon-weather");
     var dir_icon = `../../icons/weather/${weather.current.weather[0].icon}.png`;
     icon.setAttribute("src", dir_icon);
 
-	// set today weather temperature and feels like
+    // set today weather temperature and feels like
     document.getElementById("temperature").innerHTML = `${Math.floor(weather.current.temp)}°C 
         / ${celsius_to_fahrenheit(Math.floor(weather.current.temp))}°F`;
     document.getElementById("feels-like").innerText = `Ressenti ${Math.floor(weather.current.feels_like)}°C`;
 
-	// set icon and title website
+    // set icon and title website
     document.getElementById("website-icon").setAttribute("href", dir_icon);
     document.getElementById("website-title").innerHTML = `météo de ${user_location.city}`;
 
-	// 
-	document.getElementById("UV").innerHTML = `UV ${weather.current.uvi}`;
+    // 
+    document.getElementById("UV").innerHTML = `UV ${weather.current.uvi}`;
     document.getElementById("wind-speed").innerHTML = `vitesse du vent ${weather.current.wind_speed}m/s`;
     document.getElementById("humidity").innerHTML = `Humidité ${weather.current.humidity}%`;
     document.getElementById("clouds").innerHTML = `Nuage ${weather.current.clouds}%`;
 
-	get_weather_hours();
+    get_weather_hours();
 }
 
 /**
  * fill hours weather in html.
  */
- function fill_hours_weather() {
+function fill_hours_weather() {
     if (weather.current.weather[0].icon.includes("d")) {
         css_custom = "px-3 m-4 rounded my-light-white-bg";
     }
@@ -285,7 +285,7 @@ function fill_weather() {
     var i = 1;
     for (i; i < today.getHours; i += shift_hours) {
         var div_weather_hours_i = document.createElement("div");
-		div_weather_hours_i.setAttribute("class", css_custom);
+        div_weather_hours_i.setAttribute("class", css_custom);
 
         // Write the hour
         var text_hour_i = document.createElement("div");
@@ -297,7 +297,7 @@ function fill_weather() {
 
         // Write hour weather
         var balise_temp_previous_hour_i = document.createElement("div");
-        var text_temp_previous_hour_i = Math.floor(weather.previous_hourly[i-1].temp);
+        var text_temp_previous_hour_i = Math.floor(weather.previous_hourly[i - 1].temp);
         balise_temp_previous_hour_i.innerHTML = `${text_temp_previous_hour_i}°C`;
 
         div_weather_hours_i.appendChild(text_hour_i);
@@ -309,8 +309,8 @@ function fill_weather() {
     // forecast hour
     var j = 1;
     for (i; i < 24; i += shift_hours) {
-		var div_weather_hours_i = document.createElement("div");
-		div_weather_hours_i.setAttribute("class", css_custom);
+        var div_weather_hours_i = document.createElement("div");
+        div_weather_hours_i.setAttribute("class", css_custom);
 
         // Write the hour
         var text_hour_i = document.createElement("div");
@@ -333,19 +333,19 @@ function fill_weather() {
         j += shift_hours;
     }
 
-	fill_week_weather();
+    fill_week_weather();
 }
 
 /**
  * Fill weather week in html.
  */
- function fill_week_weather() {
+function fill_week_weather() {
     var div_weather_week = document.getElementById("weather-week");
 
     // create week days
     for (var i = 1; i < 7; i++) {
         var div_weather_week_i = document.createElement("div");
-		div_weather_week_i.setAttribute("class", css_custom);
+        div_weather_week_i.setAttribute("class", css_custom);
 
         // Write date
         var date_i = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
@@ -356,7 +356,7 @@ function fill_weather() {
         // Draw icon
         var weather_date_i = document.createElement("div");
         var weather_icon_date_i = document.createElement("img");
-		var weather_dir_icon_date_i = `../../icons/weather/${weather.daily[i].weather[0].icon}.png`;
+        var weather_dir_icon_date_i = `../../icons/weather/${weather.daily[i].weather[0].icon}.png`;
         weather_icon_date_i.setAttribute("src", weather_dir_icon_date_i);
         weather_icon_date_i.setAttribute("width", "56");
         weather_icon_date_i.setAttribute("height", "56");
@@ -368,7 +368,7 @@ function fill_weather() {
         temperature_day_i_max.innerHTML = `max : ${Math.floor(weather.daily[i].temp.max)}`;
 
         var temperature_day_i_min = document.createElement("div");
-        temperature_day_i_min.innerHTML = `min : ${Math.floor(weather.daily[i].temp.min) }`;
+        temperature_day_i_min.innerHTML = `min : ${Math.floor(weather.daily[i].temp.min)}`;
 
         weather_date_i.appendChild(temperature_day_i_max);
         weather_date_i.appendChild(temperature_day_i_min);
@@ -389,9 +389,9 @@ function fill_color_theme() {
     var bg = document.body;
 
     var weather_dir_img = `url(../../icons/bg/${weather.current.weather[0].icon}.jpg)`;
-    
+
     bg.style.backgroundImage = weather_dir_img;
-    
+
     //
     if (weather.current.weather[0].icon.includes("n")) {
         var main_container = document.getElementById("main-container");
@@ -411,13 +411,24 @@ function fill_color_theme() {
     }
 }
 
+// Show collapsing Menu
+function showmenu() {
+    var x = document.getElementById('myUl');
+    if (x.style.display == 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
 // ##############################################################################################
 
 function main() {
-	fill_date();
+    fill_date();
 
     // start of function call list 
-	get_location();
+    get_location();
+    showmenu();
 }
 
 // ##############################################################################################
