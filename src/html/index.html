@@ -50,7 +50,7 @@
                         </form>
                     </a>
                 </li>
-                
+
                 <!-- Boutton pour accéder au villes favoris -->
                 <!--
                     <li class="nav-item d-flex justify-content-center">
@@ -69,32 +69,31 @@
         </div>
 
         <div class="d-flex align-content-end">
-            <!-- Search button-->
-            <div class="input-group">
-                <!--  -->
+            <div class="input-group align-items-center">
+                <!-- -->
                 <div class="localisation">
                     <button type="button" class="btn btn-outline">
-                        <i class='bx bxs-map bx-sm' style='color:#f10909' ></i>
+                        <i class='bx bxs-map bx-sm' style='color:black' ></i>
                     </button>
                 </div>
                 
                 <!--  -->
                 <div class="form-outline">
-                    <input type="search" id="input-name-city" class="form-control" placeholder="ex: Versailles fr"/>
+                    <input type="search" id="input-name-city" class="form-control" placeholder="ex: Versailles fr" />
                 </div>
 
                 <!--  -->
-                <button type="button" onclick="found_city()" class="btn btn-dark">
+                <button type="button" onclick="found_city()" class="btn btn-dark btn-ms">
                     <i class="bx bx-search-alt my-white"></i>
                 </button>
-                
+
                 <!-- button shortcut for user's favorite cities -->
-                <button type="button" class="btn btn-outline-light" title="Cliquez pour accéder au villes favoris">
+                <button type="button" class="btn btn-outline-dark mx-2" title="Cliquez pour accéder au villes favoris">
                     <i class="bx bxs-bookmark-star my-white"></i>
                 </button>
 
                 <!--login button-->
-                <div id="log-btn"></div> </div>
+                <div id="log-btn"></div>
             </div>
         </div>
     </nav>
@@ -123,7 +122,7 @@
                     </div>
                 </div>
             </div>
-        
+
             <div id="details-container" class="d-flex flex-wrap align-items-center justify-content-center my-3">
                 <div id="UV" class="px-2"></div>
                 <div id="wind-speed" class="px-2"></div>
@@ -133,13 +132,15 @@
 
             <div class="container">
                 <div class="row">
-                    <div id="weather-hour" class="d-flex flex-wrap align-items-center justify-content-center my-2"></div>
-                    <div id="weather-week" class="d-flex flex-wrap align-items-center justify-content-center my-2"></div>
+                    <div id="weather-hour" class="d-flex flex-wrap align-items-center justify-content-center my-2">
+                    </div>
+                    <div id="weather-week" class="d-flex flex-wrap align-items-center justify-content-center my-2">
+                    </div>
                 </div>
             </div>
         </main>
 
-        <footer class="container">
+        <footer class="container my-5">
             <div class="row">
                 <div class="d-flex align-items-center justify-content-center">
                     <div class="px-2">Potitique de confidentialité</div>
