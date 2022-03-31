@@ -63,12 +63,12 @@
                     </li>
                 -->
                 <li>Ville 1</li>
-                <li>Ville 3</li>
+                <li>Ville 2</li>
                 <li>...</li>
             </ul>
         </div>
 
-        <div class="d-flex align-content-end align-items-center">
+        <div class="d-flex align-content-end">
             <!-- Search button-->
             <div class="input-group align-items-center">
                 <div class="localisation">
@@ -101,15 +101,14 @@
                     <div id="place-container" class="text-center mx-3">
                         <div>
                             <div class="d-flex">
-                                <div id="place">Localisation inconnu</div>
-                                <button type="button" onclick="add_fav()" class="btn btn-outline favoris"
-                                    title="cliquez pour ajouter au favoris">
-                                    <i class='bx bxs-star' style='color:rgb(231, 185, 85)'></i>
+                                <div id="place" class="h3">Localisation inconnu</div>
+                                <button type="button" onclick="add_fav()" class="btn btn-outline favoris" title="Cliquez pour ajouter au favoris">
+                                    <i class='bx bxs-star bx-sm' style='color:rgb(231, 185, 85)'></i>
                                 </button>
                             </div>
                         </div>
-                        <div id="date"></div>
-                        <div id="weather-short-description">Météo inconnu</div>
+                        <div id="date" class="h4"></div>
+                        <div id="weather-short-description" class="h5">Météo inconnu</div>
                     </div>
                     <div id="weather-container" class="text-center mx-3">
                         <img id="icon-weather" src="../../icons/weather/unknown.png" width="56" height="56"
