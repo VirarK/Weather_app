@@ -249,6 +249,8 @@ function fill_weather() {
     var icon = document.getElementById("icon-weather");
     var dir_icon = `../../icons/weather/${weather.current.weather[0].icon}.png`;
     icon.setAttribute("src", dir_icon);
+    icon.setAttribute("width", "128");
+    icon.setAttribute("height", "128");
 
     // set today weather temperature and feels like
     document.getElementById("temperature").innerHTML = `${Math.floor(weather.current.temp)}°C 
@@ -367,10 +369,10 @@ function fill_week_weather() {
 
         // Write max and min temperature
         var temperature_day_i_max = document.createElement("div");
-        temperature_day_i_max.innerHTML = `max : ${Math.floor(weather.daily[i].temp.max)}`;
+        temperature_day_i_max.innerHTML = `max : ${Math.floor(weather.daily[i].temp.max)}°C`;
 
         var temperature_day_i_min = document.createElement("div");
-        temperature_day_i_min.innerHTML = `min : ${Math.floor(weather.daily[i].temp.min)}`;
+        temperature_day_i_min.innerHTML = `min : ${Math.floor(weather.daily[i].temp.min)}°C`;
 
         weather_date_i.appendChild(temperature_day_i_max);
         weather_date_i.appendChild(temperature_day_i_min);
@@ -394,15 +396,14 @@ function fill_color_theme() {
     bg.style.backgroundImage = weather_dir_img;
 
     //
+    var main_container = document.getElementById("main-container");
     if (weather.current.weather[0].icon.includes("n")) {
-        var main_container = document.getElementById("main-container");
-        var attr = main_container.getAttribute("class");
-        main_container.setAttribute("class", `${attr} my-white`);
+        main_container.classList.remove("my-black");
+        main_container.classList.add("my-white");
     }
     else {
-        var main_container = document.getElementById("main-container");
-        var attr = main_container.getAttribute("class");
-        main_container.setAttribute("class", `${attr} my-black`);
+        main_container.classList.remove("my-white");
+        main_container.classList.add("my-black");
     }
 }
 
