@@ -71,6 +71,11 @@
         <div class="d-flex align-content-end">
             <!-- Search button-->
             <div class="input-group">
+                <div class="localisation">
+                    <button type="button" class="btn btn-outline">
+                        <i class='bx bxs-map bx-sm' style='color:#f10909' ></i>
+                    </button>
+                </div>
                 <div class="form-outline">
                     <input type="search" id="input-name-city" class="form-control" placeholder="ex: Versailles fr"/>
                 </div>
@@ -96,14 +101,14 @@
                     <div id="place-container" class="text-center mx-3">
                         <div>
                             <div class="d-flex">
-                                <div id="place" class="h2">Localisation inconnu</div>
+                                <div id="place" class="h3">Localisation inconnu</div>
                                 <button type="button" onclick="add_fav()" class="btn btn-outline favoris" title="Cliquez pour ajouter au favoris">
                                     <i class='bx bxs-star bx-sm' style='color:rgb(231, 185, 85)'></i>
                                 </button>
                             </div>
                         </div>
-                        <div id="date" class="h3"></div>
-                        <div id="weather-short-description" class="h4">Météo inconnu</div>
+                        <div id="date" class="h4"></div>
+                        <div id="weather-short-description" class="h5">Météo inconnu</div>
                     </div>
                     <div id="weather-container" class="text-center mx-3">
                         <img id="icon-weather" src="../../icons/weather/unknown.png" width="56" height="56"
