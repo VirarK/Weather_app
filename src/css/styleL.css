@@ -5,7 +5,7 @@
 
 body {
   background: url("../../icons/bg-log.jpg") no-repeat center center fixed;
-  background-size: cover;
+  background-size: cover !important;
 }
 
 .card-body{
