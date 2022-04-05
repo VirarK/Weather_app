@@ -56,10 +56,8 @@ header {
 }
 
 .bg-image {
-	background-image: url("../../icons/bg/01d.jpg");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
+	background-image: url("../../icons/bg/01d.jpg") no-repeat center center fixed;
+	background-size: cover !important;
 }
 
 .btn-primary {
@@ -74,15 +72,54 @@ header {
 	background-color: rgb(155, 155, 155);
 }
 
-#my_ul{
-	background-color: rgb(209, 203, 203);
-	border-radius: 5px;
-	box-sizing: border-box;
-	padding: 0;
-	margin-left: 0;
-}
 
-.menu{
-	background-color: rgb(254, 255, 250);
-	border-radius: 5px;
-}
+/* Sidepanel Menu */
+.sidepanel {
+    height: 1000px;
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    overflow-x: hidden; /* hides the content of sidepanel */
+    padding-top:70px; /* Place content 70px from the top */
+    transition: 0.3s; /* 0.3s to slide in the sidepanel */
+  }
+  
+  /* The sidepanel links */
+  .sidepanel a {
+    padding: 8px 8px 8px 10px;
+    text-decoration: none;
+    left:0;
+    font-size: 25px;
+    display: block;
+    transition: 0.3s;
+  }
+  .sidepanel a{
+    color:white;
+  }
+
+  /* close button */
+  .sidepanel .closebtn {
+    position: absolute;
+    top: 0px;
+    right: 30px;
+    font-size: 36px;
+    margin-left: 250px;
+    border-radius: 5px;
+  }
+
+  .sidepanel .bxs-home{
+    position: absolute;
+    top: 10px;
+    left: 25px;
+  }
+  
+  /*open button*/
+  .openbtn {
+    color: white;
+  }
+  
+  .openbtn:hover {
+    background-color: rgb(9, 9, 9);
+  }
