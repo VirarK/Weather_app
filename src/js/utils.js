@@ -1,11 +1,13 @@
 /**
- * 
+ *
  */
- function show_menu() {
-    var x = document.getElementById('my_ul');
-    if (x.style.display == 'none') {
-        x.style.display = 'block';
-    } else {
-        x.style.display = 'none';
-    }
+/* sidePanel functions */
+/*show sidePanel of width 325*/
+function openNav() {
+  document.getElementById("sidePanel").style.width = "325px";
+}
+
+/* hide sidePanel width 0 */
+function closeNav() {
+  document.getElementById("sidePanel").style.width = "0";
 }
