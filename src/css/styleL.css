@@ -1,0 +1,17 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background: url("../../icons/bg-log.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.card-body{
+    background-color: transparent;
+}
+
+.bx{
+    margin-left: 20px;
+}
