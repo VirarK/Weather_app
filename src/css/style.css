@@ -95,7 +95,7 @@ header {
     display: block;
     transition: 0.3s;
   }
-  .sidepanel a{
+  .sidepanel a:hover{
     color:white;
   }
 
@@ -123,3 +123,18 @@ header {
   .openbtn:hover {
     background-color: rgb(9, 9, 9);
   }
+
+  .time-zone {
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #time {
+    color: rgb(11, 11, 11);
+    margin-top: 0;
+    position: center;
+    font-weight: 450;
+  }
+  
