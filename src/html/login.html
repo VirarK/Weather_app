@@ -31,21 +31,27 @@
       ></i>
     </a>
 
+    <!--Clock-->
+    <div class="time-zone">
+      <div id="time"></div>
+    </div>
+
     <!-- code from : https://mdbootstrap.com/docs/standard/extended/login/ -->
     <div class="container">
       <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="col-sm-12 col-md-7 col-lg-5 mx-auto">
           <div class="rounded-circle border-0 shadow rounded-3 my-5">
             <div class="rounded-circle border card-body p-4 p-sm-5">
-              <div class="text-center">
+              <div id="gif" class="text-center">
                 <img
                   src="../../icons/weather-icon-gif-23-unscreen.gif"
-                  alt="Italian Trulli"
                   class="rounded"
                   width="150"
                 />
               </div>
-              <h2 class="card-title text-center mb-4">Se connecter</h2>
+              <h2 id="seConnecter" class="card-title text-center mb-4">
+                Se connecter
+              </h2>
               <form>
                 <div class="form-floating mb-3">
                   <input
@@ -73,13 +79,18 @@
                     value=""
                     id="rememberPasswordCheck"
                   />
-                  <label class="form-check-label" for="rememberPasswordCheck">
+                  <label
+                    id="rememberMe"
+                    class="form-check-label"
+                    for="rememberPasswordCheck"
+                  >
                     Se souvenir de moi
                     <!-- TODO : que faut il faire ? -->
                   </label>
                 </div>
                 <div class="d-flex justify-content-center">
                   <button
+                    id="btn"
                     onclick="get_login_data()"
                     class="btn btn-outline-dark btn-login text-uppercase fw-bold"
                     type="submit"
