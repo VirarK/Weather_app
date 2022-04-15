@@ -1,0 +1,27 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background: url("images/bg-log.jpg") no-repeat center center fixed;
+    background-size: cover !important;
+}
+
+.card-body {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.bx {
+    margin-left: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--my_black);
+}
+
+a:hover {
+    text-decoration: none;
+    color: var(--my_black);
+}
