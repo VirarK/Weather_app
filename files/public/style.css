@@ -107,7 +107,7 @@ header {
     background-image: url("/bg/01d.jpg") no-repeat center center fixed;
     background-size: cover !important;
 }
-
+/*
 .btn-primary {
     border-radius: 5px;
     text-decoration: none;
@@ -121,13 +121,21 @@ header {
     text-decoration: none;
     color: var(--my_black);
 }
-
+*/
+.cnx a {
+    color: white;
+    text-decoration:none; 
+    font-weight: 650;
+}
 .btn-outline-light:hover .bxs-bookmark-star {
     text-decoration: none;
     border: solid 1px rgb(155, 155, 155);
     background-color: rgb(155, 155, 155);
 }
 
+.research{
+    border-top-right-radius: 5px;
+}
 
 /* Sidepanel Menu */
 
