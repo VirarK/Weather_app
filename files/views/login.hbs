@@ -17,9 +17,10 @@
     />
 
     <!-- import the webpage's javascript file -->
-    {{!-- <script src="/js/login_logout.js" defer></script> --}}
+  <script src="/js/utils.js" defer></script>
   </head>
-  <body>
+
+  <body class="bg-images">
     <a href="/">
       <i
         class="bx bxs-home d-inline-block bx-lg mt-md-5"
@@ -29,20 +30,24 @@
       ></i>
     </a>
 
+    <div class="time-zone my-2">
+      <div id="time">time</div>
+    </div>
+
     <!-- code from : https://mdbootstrap.com/docs/standard/extended/login/ -->
     <div class="container">
       <div class="row">
         <div class="col-sm-10 col-md-12 col-lg-6 mx-auto">
           <div class="rounded-circle border-0 shadow rounded-3 my-5">
             <div class="rounded-circle border card-body p-4 p-sm-5">
-              <div class="text-center">
+              <div id="gif" class="text-center">
                 <img 
                   src="images/weather-icon-gif-23-unscreen.gif" 
                   class="rounded" 
                   width="150"
                   />
               </div>
-              <h2 class="card-title text-center mb-4">Se connecter</h2>
+              <h2 id="seConnecter" class="card-title text-center mb-4">Se connecter</h2>
               
               <form action="/auth/login" method="POST">
                 <div class="form-floating mb-3">
@@ -71,22 +76,23 @@
                     value=""
                     id="rememberPasswordCheck"
                   />
-                  <label class="form-check-label" for="rememberPasswordCheck">
+                  <label id="rememberMe" class="form-check-label" for="rememberPasswordCheck">
                     Se souvenir de moi
                     <!-- TODO : que faut il faire ? -->
                   </label>
                 </div>
                 <div class="d-flex justify-content-center">
                   <button
+                    id="cnx"
                     onclick="get_login_data()"
                     class="btn btn-outline-dark btn-login text-uppercase fw-bold my-2"
                     type="submit"
                   >
                     Connexion
                 </div>
-                <div class="d-flex justify-content-center">
                   </button>
-                  <button class="btn btn-outline-dark text-uppercase fw-bold">
+                <div class="d-flex justify-content-center">
+                  <button id="rs" class="btn btn-outline-dark text-uppercase fw-bold">
                     <a href="/register" class="href">S'inscrire</a>
                   </button>
                 </div>
