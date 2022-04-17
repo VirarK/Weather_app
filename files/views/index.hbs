@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -8,8 +7,13 @@
     <title id="website-title">Unknown</title>
 
     <!-- import the webpage's stylesheet -->
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="/style.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
@@ -38,9 +42,13 @@
           class="closebtn col-4"
           onclick="closeNav()"
           title="Cliquez pour fermer le menu principal"
-          >&times;
+        >&times;
         </a>
-        <img src="images/animatedWeather-unscreen (1).gif" alt="wicon mt-3" width="115">
+        <img
+          src="images/animatedWeather-unscreen (1).gif"
+          alt="wicon mt-3"
+          width="115"
+        />
         <a href="#">
           <div
             class="input-group d-flex justify-content-center my-3"
@@ -77,7 +85,11 @@
         <!-- Search button-->
         <div class="input-group align-items-center">
           <div class="localisation">
-            <button type="button" class="btn btn-outline" title="Ville actuelle">
+            <button
+              type="button"
+              class="btn btn-outline"
+              title="Ville actuelle"
+            >
               <i class="bx bxs-map bx-sm" style="color: rgb(35, 34, 34)"></i>
             </button>
           </div>
@@ -85,40 +97,47 @@
             <input
               type="search"
               id="input-name-city"
-              class="form-control"
+              class="form-control rounded"
               placeholder="ex: Versailles fr"
             />
           </div>
           <button
             type="button"
             onclick="found_city()"
-            class="btn btn-dark btn-ms"
+            class="research btn btn-dark btn-ms"
             title="Lancer la recherche"
           >
-            <i class="bx bx-search-alt my-white"></i>
+            <i
+              onclick="found_city()"
+              class="bx bx-search-alt my-white bx-sm"
+            ></i>
           </button>
 
           <!-- button shortcut for user's favorite cities -->
           <button
             type="button"
-            class="btn btn-outline-dark mx-2"
+            class="btn btn-outline-dark mx-2 rounded"
             title="Cliquez pour accéder aux villes favorites"
           >
-            <i class="bx bxs-bookmark-star my-white"></i>
+            <i class="bx bxs-bookmark-star my-white bx-sm"></i>
           </button>
 
-          <!--login button-->          
-
-
-          {{#if user }}
-            <button class="btn btn-primary">
+          <!--login button-->
+          {{#if user}}
+            <button class="cnx btn btn-outline-dark rounded">
               <a href="/profile" class="href">Mon profil</a>
             </button>
-            <button class="btn btn-primary">
+            <button
+              class="cnx btn btn-outline-dark rounded"
+              title="se déconnecter du compte"
+            >
               <a href="/logout" class="href">Se déconnecter</a>
             </button>
           {{else}}
-            <button class="btn btn-primary">
+            <button
+              class="cnx btn btn-outline-dark rounded"
+              title="accéder à mon compte"
+            >
               <a href="/login" class="href">Se connecter</a>
             </button>
           {{/if}}
@@ -133,6 +152,10 @@
         <div class="row">
           <div class="d-flex justify-content-center my-3 align-middle">
             <div id="place-container" class="text-center mx-3">
+              <!--Clock-->
+              <div class="time-zone my-2">
+                <div id="time">time</div>
+              </div>
               <div>
                 <div class="d-flex">
                   <div id="place" class="h3">Localisation inconnu</div>
@@ -152,7 +175,7 @@
               <div id="date" class="h4"></div>
               <div id="weather-short-description" class="h5">Météo inconnu</div>
             </div>
-            <div id="weather-container" class="text-center mx-3">
+            <div id="weather-container" class="text-center mx-3 my-2">
               <img
                 id="icon-weather"
                 src="images/weather/unknown.png"
