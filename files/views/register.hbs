@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Connexion...</title>
+    <title>Inscription...</title>
 
     <!-- import the webpage's stylesheet -->
     
@@ -66,7 +66,12 @@
                   <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="********">
                   <label for="passwordConfirm">Confirmez le mot de passe</label>
                 </div>
-
+                {{#if message }}
+                        <h4 class="alert alert-danger mt-3"> {{message}} </h4>
+                {{/if}}
+                {{#if message2 }}
+                        <h4 class="alert alert-success mt-3"> {{message2}} </h4>
+                {{/if}}
                 <div class="d-flex justify-content-center">
                   <button
                     id="cnx"
