@@ -51,22 +51,12 @@
               
               <form action="/auth/login" method="POST">
                 <div class="form-floating mb-3">
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="input-email"
-                    placeholder="nom@exemple.fr"
-                  />
-                  <label for="floatingInput">Adresse mail</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="nom@exemple.fr">
+                  <label for="email">Adresse mail</label>
                 </div>
                 <div class="form-floating mb-5">
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="input-password"
-                    placeholder="********"
-                  />
-                  <label for="floatingPassword">Mot de passe</label>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="********">
+                  <label for="password">Mot de passe</label>
                 </div>
 
                 <div class="form-check mb-3 d-flex justify-content-center">
@@ -101,6 +91,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>  
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   </body>
 </html>
