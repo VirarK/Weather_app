@@ -82,17 +82,32 @@ exports.register = (req, res) => {
                         message: 'Passwords do not match'
                     });
                 }
-                let hashedPassword = await bcrypt.hash(password, 8);
 
-                db.query('INSERT INTO users SET ?', { username: name, email: email, password: hashedPassword }, (error, results) => {
-                    if (error) {
-                        console.log(error);
-                    } else {
-                        return res.render('register', {
-                            message2: 'User registered'
-                        });
-                    }
-                })
+                bcrypt.genSalt(10, function(err, salt) {
+                    bcrypt.hash(password, salt, function(err, hash) {
+                        db.query('INSERT INTO users SET ?', { username: name, email: email, password: hash }, (error, results) => {
+                            if (error) {
+                                console.log(error);
+                            } else {
+                                return res.render('register', {
+                                    message2: 'User registered'
+                                });
+                            }
+                        })
+                    });
+                });
+
+                // let hashedPassword = await bcrypt.hash(password, 10);
+
+                // db.query('INSERT INTO users SET ?', { username: name, email: email, password: hashedPassword }, (error, results) => {
+                //     if (error) {
+                //         console.log(error);
+                //     } else {
+                //         return res.render('register', {
+                //             message2: 'User registered'
+                //         });
+                //     }
+                // })
             })
         })
         // res.send("Form submitted");
