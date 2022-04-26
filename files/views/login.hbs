@@ -42,7 +42,7 @@
             <div class="rounded-circle border card-body p-4 p-sm-5">
               <div id="gif" class="text-center">
                 <img 
-                  src="images/weather-icon-gif-23-unscreen.gif" 
+                  src="../images/weather-icon-gif-23-unscreen.gif" 
                   class="rounded" 
                   width="150"
                   />
@@ -55,11 +55,11 @@
                   <label for="email">Adresse mail</label>
                 </div>
                 <div class="form-floating mb-5">
-                  <input type="password" class="form-control" id="password" name="password" placeholder="********">
+                  <input type="password" class="form-control" id="password" name="password" placeholder="********" value="">
                   <label for="password">Mot de passe</label>
                 </div>
 
-                <div class="form-check mb-3 d-flex justify-content-center">
+                {{!-- <div class="form-check mb-3 d-flex justify-content-center">
                   <input
                     class="form-check-input me-2"
                     type="checkbox"
@@ -70,11 +70,17 @@
                     Se souvenir de moi
                     <!-- TODO : que faut il faire ? -->
                   </label>
-                </div>
+                </div> --}}
+                {{#if message }}
+                        <h4 class="alert alert-danger mt-2"> {{message}} </h4>
+                {{/if}}
+                {{#if message2 }}
+                        <h4 class="alert alert-success mt-2"> {{message2}} </h4>
+                {{/if}}
                 <div class="d-flex justify-content-center">
                   <button
                     id="cnx"
-                    onclick="get_login_data()"
+                    {{!-- onclick="get_login_data()" --}}
                     class="btn btn-outline-dark btn-login text-uppercase fw-bold my-2"
                     type="submit"
                   >
@@ -91,10 +97,8 @@
           </div>
         </div>
       </div>
-    {{#if message }}
-      <h4 class="alert alert-danger mt-4">{{message}}</h4>
-    {{/if}}
     </div>  
+    <script src="../js/form-validation.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   </body>
 </html>

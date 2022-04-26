@@ -4,7 +4,7 @@
 }
 
 body {
-    background: url("images/bg-log.jpg") no-repeat center center fixed;
+    background: url("../images/bg-log.jpg") no-repeat center center fixed;
     background-size: cover !important;
 }
 
@@ -20,7 +20,7 @@ body {
     background-repeat: no-repeat;
     background-position: center center fixed;
     background-size: cover;
-  }
+}
 
 a {
     text-decoration: none;
@@ -35,31 +35,30 @@ a:hover {
 .time-zone {
     font-size: 25px;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
-    
-  }
+}
 
-  #cnx{
-      width: 120px;
-  }
-  #rs{
+#cnx {
     width: 120px;
-  }
-  
-  #time {
+}
+
+#rs {
+    width: 120px;
+}
+
+#time {
     color: black;
     position: relative;
     font-weight: 450;
     letter-spacing: 2px;
-    border: 3px solid rgb(231, 157, 88) ;
+    border: 3px solid rgb(231, 157, 88);
     border-width: 2px;
     border-radius: 10px;
     border-left: 3px;
     border-right: 3px;
-  }
+}
 
-  #rememberMe{
+#rememberMe {
     font-weight: 650;
-  }
-  
+}

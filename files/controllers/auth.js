@@ -16,37 +16,35 @@ exports.login = async(req, res) => {
 
         if (!email || !password) {
             return res.status(400).render('login', {
-                message: 'Please provide an email and password'
+                message: "Veuillez fournir une adresse mail et un mot de passe"
             })
+        } else {
+            db.query('SELECT * FROM users WHERE email = ?', [email], async(error, results) => {
+                console.log(results);
+
+                if (!results.length || !(await bcrypt.compare(password, results[0].password))) {
+                    res.status(401).render('login', {
+                        message: "L'adresse mail ou le mot de passe est incorrect"
+                    })
+                } else {
+                    const email = results[0].email;
+                    const token = jwt.sign({ email }, process.env.JWT_SECRET, {
+                        expiresIn: process.env.JWT_EXPIRES_IN
+                    });
+                    console.log("The token is: " + token);
+                    const cookieOptions = {
+                        expires: new Date(
+                            Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+                        ),
+                        httpOnly: true
+                    }
+                    res.cookie('jwt', token, cookieOptions);
+                    res.status(200).redirect("/");
+                }
+            })
+
         }
 
-        db.query('SELECT * FROM users WHERE email = ?', [email], async(error, results) => {
-            console.log(results);
-            if (!results || !(await bcrypt.compare(password, results[0].password))) {
-                res.status(401).render('login', {
-                    message: 'Email or Password is incorrect'
-                })
-            } else {
-                const email = results[0].email;
-
-                const token = jwt.sign({ email }, process.env.JWT_SECRET, {
-                    expiresIn: process.env.JWT_EXPIRES_IN
-                });
-
-                console.log("The token is: " + token);
-
-                const cookieOptions = {
-                    expires: new Date(
-                        Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
-                    ),
-                    httpOnly: true
-                }
-
-                res.cookie('jwt', token, cookieOptions);
-                res.status(200).redirect("/");
-            }
-
-        })
 
     } catch (error) {
         console.log(error);
@@ -55,62 +53,48 @@ exports.login = async(req, res) => {
 
 exports.register = (req, res) => {
     console.log(req.body);
-    // const name = req.body.name;
-    // const email = req.body.email;
-    // const password = req.body.password;
-    // const passwordConfirm = req.body.passwordConfirm;
-    // Ligne en dessous fait la meme que au dessus
     const { name, email, password, passwordConfirm } = req.body;
     db.query('SELECT email FROM users WHERE email = ?', [email], async(error, results) => {
-            const test = db.query('SELECT username FROM users WHERE username = ?', [name], async(error2, results2) => {
-                if (error) {
-                    console.log(error);
-                }
-                if (error2) {
-                    console.log(error2);
-                }
-                if (results2.length > 0) {
-                    return res.render('register', {
-                        message: 'This username is already in use'
-                    })
-                } else if (results.length > 0) {
-                    return res.render('register', {
-                        message: 'This email is already in use'
-                    })
-                } else if (password !== passwordConfirm) {
-                    return res.render('register', {
-                        message: 'Passwords do not match'
-                    });
-                }
-
-                bcrypt.genSalt(10, function(err, salt) {
-                    bcrypt.hash(password, salt, function(err, hash) {
-                        db.query('INSERT INTO users SET ?', { username: name, email: email, password: hash }, (error, results) => {
-                            if (error) {
-                                console.log(error);
-                            } else {
-                                return res.render('register', {
-                                    message2: 'User registered'
-                                });
-                            }
-                        })
-                    });
+        const test = db.query('SELECT username FROM users WHERE username = ?', [name], async(error2, results2) => {
+            if (error) {
+                console.log(error);
+            }
+            if (error2) {
+                console.log(error2);
+            }
+            if (results2.length > 0) {
+                return res.render('register', {
+                    message: "Ce nom d'utilisateur existe déjà"
+                })
+            } else if (results.length > 0) {
+                return res.render('register', {
+                    message: "Cette adresse mail existe déjà"
+                })
+            } else if (password !== passwordConfirm) {
+                return res.render('register', {
+                    message: "Les mots de passe ne correspondent pas"
+                })
+            } else if (password == '') {
+                return res.render('register', {
+                    message: "Le mot de passe ne peut pas être vide"
                 });
+            }
 
-                // let hashedPassword = await bcrypt.hash(password, 10);
-
-                // db.query('INSERT INTO users SET ?', { username: name, email: email, password: hashedPassword }, (error, results) => {
-                //     if (error) {
-                //         console.log(error);
-                //     } else {
-                //         return res.render('register', {
-                //             message2: 'User registered'
-                //         });
-                //     }
-                // })
-            })
+            bcrypt.genSalt(10, function(err, salt) {
+                bcrypt.hash(password, salt, function(err, hash) {
+                    db.query('INSERT INTO users SET ?', { username: name, email: email, password: hash }, (error, results) => {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            return res.render('register', {
+                                message2: "Utilisateur enregistré"
+                            });
+                        }
+                    })
+                });
+            });
         })
-        // res.send("Form submitted");
+    })
 }
 
 
