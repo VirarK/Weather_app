@@ -1,0 +1,201 @@
+nav {
+    background-color: none;
+    color: #fff;
+    justify-content: space-between;
+}
+
+nav ul {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav li {
+    align-items: flex-end;
+    list-style: none;
+}
+
+nav li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 8px;
+}
+
+nav li a:hover {
+    color: lightblue;
+    text-decoration: none;
+}
+
+.avatar-ctn {
+    background-color: orange;
+    text-align: center;
+}
+
+.avatar {
+    width: 65%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+
+/* a minimalist set of CSS resets */
+
+
+/* default to border-box */
+
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+
+/* adjust typography defaults */
+
+body {
+    margin: 1rem;
+    font-family: sans-serif;
+    line-height: 1.5;
+}
+
+
+/* images and videos max out at full width */
+
+img,
+video {
+    height: auto;
+    max-width: 100%;
+}
+
+:root {
+    --my_white: #f8f5f5;
+    --my_black: #000000;
+    --my_light_grey: rgba(255, 255, 255, 0.6);
+    --my_dark_grey: rgba(169, 169, 169, 0.6);
+}
+
+header {
+    size-adjust: 100%;
+}
+
+.navbar-brand {
+    color: var(--my_white);
+}
+
+.my-white {
+    color: var(--my_white);
+}
+
+.my-black {
+    color: var(--my_black);
+}
+
+.my-light-white-bg {
+    background-color: var(--my_light_grey);
+}
+
+.my-dark-white-bg {
+    background-color: var(--my_dark_grey);
+}
+
+.bg-image {
+    background-image: url("/bg/01d.jpg") no-repeat center center fixed;
+    background-size: cover !important;
+}
+/*
+.btn-primary {
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: lightgray;
+    border-color: lightgray;
+    border: solid 1px black;
+    color: var(--my_black);
+}
+
+.btn-primary a {
+    text-decoration: none;
+    color: var(--my_black);
+}
+*/
+.cnx a {
+    color: white;
+    text-decoration:none; 
+    font-weight: 650;
+}
+.btn-outline-light:hover .bxs-bookmark-star {
+    text-decoration: none;
+    border: solid 1px rgb(155, 155, 155);
+    background-color: rgb(155, 155, 155);
+}
+
+.research{
+    border-top-right-radius: 5px;
+}
+
+/* Sidepanel Menu */
+
+.sidepanel {
+    height: 1000px;
+    width: 0;
+    /* 0 width - change this with JavaScript */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(168, 163, 163, 0.5);
+    overflow-x: hidden;
+    /* hides the content of sidepanel */
+    padding-top: 70px;
+    /* Place content 70px from the top */
+    transition: 0.3s;
+    /* 0.3s to slide in the sidepanel */
+}
+
+
+/* The sidepanel links */
+
+.sidepanel a {
+    padding: 8px 8px 8px 10px;
+    text-decoration: none;
+    left: 0;
+    font-size: 25px;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidepanel a {
+    color: white;
+}
+
+
+/* close button */
+
+.sidepanel .closebtn {
+    position: absolute;
+    top: 0px;
+    right: 30px;
+    font-size: 36px;
+    margin-left: 250px;
+    border-radius: 5px;
+}
+
+.sidepanel .bxs-home {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+}
+
+
+/*open button*/
+
+.openbtn {
+    color: white;
+}
+
+.openbtn:hover {
+    background-color: rgb(9, 9, 9);
+}
