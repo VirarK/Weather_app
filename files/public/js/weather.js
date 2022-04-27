@@ -105,7 +105,7 @@ function transform_date(date, mode = 0) {
  */
 function transform_country_code() {
     let region_names = new Intl.DisplayNames(['en'], { type: 'region' });
-    return region_names.of(user_location.country_code);
+    return region_names.of(city_found.country_code);
 }
 
 // ##############################################################################################
@@ -141,7 +141,10 @@ async function set_position(geolocation) {
     user_location.lat = geolocation.coords.latitude;
     user_location.lon = geolocation.coords.longitude;
 
-    fill_place(user_location);
+    city_found.lat = geolocation.coords.latitude;
+    city_found.lon = geolocation.coords.longitude;
+
+    fill_place();
 }
 
 /**
@@ -157,9 +160,12 @@ async function get_ip_adress() {
         .then(function(data) {
             user_location.lat = data.latitude;
             user_location.lon = data.longitude;
+
+            city_found.lat = data.latitude;
+            city_found.lon = data.longitude;
         })
         .then(function() {
-            fill_place(user_location);
+            fill_place();
         });
 }
 
@@ -169,7 +175,7 @@ async function get_ip_adress() {
  * Get current, forecast hourly and daily weather.
  */
 async function get_weather() {
-    let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${user_location.lat}&lon=${user_location.lon}&appid=${open_weather_key}&lang=fr&units=metric&exclude=minutely,alerts`;
+    let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${city_found.lat}&lon=${city_found.lon}&appid=${open_weather_key}&lang=fr&units=metric&exclude=minutely,alerts`;
     await fetch(api)
         .then(function(response) {
             let data = response.json();
@@ -189,7 +195,7 @@ async function get_weather() {
  * Get previous hours weather.
  */
 async function get_weather_hours() {
-    let api = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${user_location.lat}&lon=${user_location.lon}&dt=${dt}&appid=${open_weather_key}&lang=fr`;
+    let api = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${city_found.lat}&lon=${city_found.lon}&dt=${dt}&appid=${open_weather_key}&lang=fr`;
     await fetch(api)
         .then(function(response) {
             data = response.json();
@@ -208,16 +214,17 @@ async function get_weather_hours() {
 /**
  * Fill user place in html with latitude and longitude.
  */
-async function fill_place(struct) {
-    let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${struct.lat}&lon=${struct.lon}&limit=2&appid=${open_weather_key}`;
+async function fill_place() {
+    console.log(city_found)
+    let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${city_found.lat}&lon=${city_found.lon}&limit=2&appid=${open_weather_key}`;
     await fetch(api)
         .then(function(response) {
             let data = response.json();
             return data;
         })
         .then(function(data) {
-            struct.city = data[0].name;
-            struct.country_code = data[0].country;
+            city_found.city = data[0].name;
+            city_found.country_code = data[0].country;
         })
         .then(function() {
             get_weather();
@@ -240,7 +247,7 @@ function fill_date() {
  */
 function fill_weather() {
     // 
-    document.getElementById("place").innerHTML = `${user_location.city}, ${transform_country_code()}`;
+    document.getElementById("place").innerHTML = `${city_found.city}, ${transform_country_code()}`;
     document.getElementById("weather-short-description").innerHTML = `${weather.current.weather[0].description}`;
 
     // set today weather icon
@@ -257,7 +264,7 @@ function fill_weather() {
 
     // set icon and title website
     document.getElementById("website-icon").setAttribute("href", dir_icon);
-    document.getElementById("website-title").innerHTML = `météo de ${user_location.city}`;
+    document.getElementById("website-title").innerHTML = `météo de ${city_found.city}`;
 
     // 
     document.getElementById("UV").innerHTML = `UV ${weather.current.uvi}`;

@@ -107,7 +107,6 @@
 				title="Lancer la recherche"
 			>
 				<i
-				onclick="found_city()"
 				class="bx bx-search-alt my-white bx-sm"
 				></i>
 			</button>
@@ -160,7 +159,7 @@
 					<div id="place" class="h3">Localisation inconnu</div>
 					<script>
 						function new_fav() {
-							window.location = `/favories/new/${user_location.city}/${user_location.country_code}/${user_location.lat}/${user_location.lon}`;
+							window.location = `/favories/new/${city_found.city}/${city_found.country_code}/${user_location.lat}/${user_location.lon}`;
 						}
 					</script>
 					{{#if user}}

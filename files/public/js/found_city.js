@@ -32,6 +32,7 @@ async function found_city() {
             })
 
         if(country_code != -1) {
+            console.log("here")
             let api = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${country_code}&limit=1&appid=${open_weather_key}`;
             await fetch(api)
                 .then(function(response) {
@@ -39,11 +40,13 @@ async function found_city() {
                     return data;
                 })
                 .then(function(data) {
+                    console.log("here 2")
                     city_found.lat = data[0].lat;
                     city_found.lon = data[0].lon;
+                    console.log(city_found)
                 })
                 .then(function() {
-                    fill_place(city_found);
+                    fill_place();
                 });
         }
     }
