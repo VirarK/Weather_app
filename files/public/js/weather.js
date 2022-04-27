@@ -1,4 +1,5 @@
 const user_location = {};
+const city_found = {};
 
 const open_weather_key_hasnae = "27ea29f7607830944e90d5e9f0560259";
 const open_weather_key_melissa = "b0dcff87aa3fbe043e172859070fb6a3";
@@ -138,11 +139,9 @@ function get_location() {
  */
 async function set_position(geolocation) {
     user_location.lat = geolocation.coords.latitude;
-    //console.log("🚀 ~ file: script.js ~ line 131 ~ set_position ~ user_location.lat", user_location.lat)
     user_location.lon = geolocation.coords.longitude;
-    //console.log("🚀 ~ file: script.js ~ line 133 ~ set_position ~ user_location.lon", user_location.lon)
 
-    fill_place();
+    fill_place(user_location);
 }
 
 /**
@@ -160,7 +159,7 @@ async function get_ip_adress() {
             user_location.lon = data.longitude;
         })
         .then(function() {
-            fill_place();
+            fill_place(user_location);
         });
 }
 
@@ -209,16 +208,16 @@ async function get_weather_hours() {
 /**
  * Fill user place in html with latitude and longitude.
  */
-async function fill_place() {
-    let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${user_location.lat}&lon=${user_location.lon}&limit=2&appid=${open_weather_key}`;
+async function fill_place(struct) {
+    let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${struct.lat}&lon=${struct.lon}&limit=2&appid=${open_weather_key}`;
     await fetch(api)
         .then(function(response) {
             let data = response.json();
             return data;
         })
         .then(function(data) {
-            user_location.city = data[0].name;
-            user_location.country_code = data[0].country;
+            struct.city = data[0].name;
+            struct.country_code = data[0].country;
         })
         .then(function() {
             get_weather();

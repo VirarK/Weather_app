@@ -1,3 +1,7 @@
+// const regex_email =
+//     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+// const regex_email2 = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
@@ -20,7 +24,7 @@ exports.login = async(req, res) => {
             })
         } else {
             db.query('SELECT * FROM users WHERE email = ?', [email], async(error, results) => {
-                console.log(results);
+                //console.log(results);
 
                 if (!results.length || !(await bcrypt.compare(password, results[0].password))) {
                     res.status(401).render('login', {
@@ -31,7 +35,7 @@ exports.login = async(req, res) => {
                     const token = jwt.sign({ email }, process.env.JWT_SECRET, {
                         expiresIn: process.env.JWT_EXPIRES_IN
                     });
-                    console.log("The token is: " + token);
+                    //console.log("The token is: " + token);
                     const cookieOptions = {
                         expires: new Date(
                             Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
@@ -52,7 +56,7 @@ exports.login = async(req, res) => {
 }
 
 exports.register = (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     const { name, email, password, passwordConfirm } = req.body;
     db.query('SELECT email FROM users WHERE email = ?', [email], async(error, results) => {
         const test = db.query('SELECT username FROM users WHERE username = ?', [name], async(error2, results2) => {
@@ -107,19 +111,19 @@ exports.isLoggedIn = async(req, res, next) => {
                 process.env.JWT_SECRET
             );
 
-            console.log(decoded);
+            //console.log(decoded);
 
             //2) Check if the user still exists
             db.query('SELECT * FROM users WHERE email = ?', [decoded.email], (error, result) => {
-                console.log(result);
+                //console.log(result);
 
                 if (!result) {
                     return next();
                 }
 
                 req.user = result[0];
-                console.log("user is")
-                console.log(req.user);
+                //console.log("user is")
+                //console.log(req.user);
                 return next();
 
             });

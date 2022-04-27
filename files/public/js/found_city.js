@@ -2,30 +2,52 @@
  * 
  */
 
+var country_code = null
+
 async function found_city() {
     var place = document.getElementById("input-name-city").value;
-    var table_place = place.split(" ");
+    var table_place = place.split(",");
+    
     if (table_place.length == 2) {
         var city = table_place[0];
-        //console.log("🚀 ~ file: found_city.js ~ line 9 ~ found_city ~ city", city)
-        var country_code = table_place[1];
-        //console.log("🚀 ~ file: found_city.js ~ line 11 ~ found_city ~ country_code", country_code)
-        let api = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${country_code}&limit=1&appid=${open_weather_key}`;
+        var country = table_place[1]
+        country = country.slice(1)
+
+        let api = `https://restcountries.com/v3.1/name/${country}`
         await fetch(api)
             .then(function(response) {
-                let data = response.json();
-                return data;
+                if(response.status == 404) {
+                    alert(`Ville ou Pays inconnu`);
+                    country_code = -1
+                }
+                else {
+                    let data = response.json();
+                    return data;
+                }
             })
             .then(function(data) {
-                user_location.lat = data[0].lat;
-                //console.log("🚀 ~ file: found_city.js ~ line 20 ~ user_location.lat", user_location.lat)
-                user_location.lon = data[0].lon;
-                //console.log("🚀 ~ file: found_city.js ~ line 22 ~ user_location.lon", user_location.lon)
+                if(country_code != -1) {
+                    country_code = data[0].cca2
+                }
             })
-            .then(function() {
-                fill_place();
-            });
-    } else {
+
+        if(country_code != -1) {
+            let api = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${country_code}&limit=1&appid=${open_weather_key}`;
+            await fetch(api)
+                .then(function(response) {
+                    let data = response.json();
+                    return data;
+                })
+                .then(function(data) {
+                    city_found.lat = data[0].lat;
+                    city_found.lon = data[0].lon;
+                })
+                .then(function() {
+                    fill_place(city_found);
+                });
+        }
+    }
+    else {
         alert(`${place} : Format invalide`);
     }
 }
