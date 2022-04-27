@@ -41,6 +41,7 @@ async function found_city() {
                 })
                 .then(function(data) {
                     console.log("here 2")
+                    city_found = {}
                     city_found.lat = data[0].lat;
                     city_found.lon = data[0].lon;
                     console.log(city_found)
