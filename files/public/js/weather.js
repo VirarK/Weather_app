@@ -215,7 +215,7 @@ async function get_weather_hours() {
  * Fill user place in html with latitude and longitude.
  */
 async function fill_place() {
-    console.log(city_found)
+    //console.log(city_found)
     let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${city_found.lat}&lon=${city_found.lon}&limit=2&appid=${open_weather_key}`;
     await fetch(api)
         .then(function(response) {
@@ -408,6 +408,13 @@ function fill_color_theme() {
         main_container.classList.remove("my-white");
         main_container.classList.add("my-black");
     }
+}
+
+function reset_weather() {
+    city_found.lat = user_location.lat
+    city_found.lon = user_location.lon
+
+    fill_place()
 }
 
 // ##############################################################################################
