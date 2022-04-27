@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="/style.css">
-  <title>Document</title>
+  <link rel="stylesheet" href="../styleP.css">
+  <title>Mon profil</title>
 </head>
 <body>
   <nav>
-    <h4>Node MySQL</h4>
+    <h4>Weather App</h4>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/profile">Profile</a></li>
-      <li><a href="/auth/logout">Logout</a></li>
+      <li><a href="/">Menu Principal</a></li>
+      <li><a href="/profile">Mon profil</a></li>
+      <li><a href="/auth/logout">Se déconnecter</a></li>
     </ul>
   </nav>
 
@@ -22,11 +22,11 @@
       <div class="col-4">
         <div class="card">
           <div class="avatar-ctn">
-            <img src="/avatar.png" class="avatar" alt="user profile picture"/>
+            <img src="../images/avatar.png" class="avatar" alt="user profile picture"/>
           </div>
           <div class="card-body">
             <h5 class="card-title">{{user.name}}</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p class="card-text">Adresse Email</p>
             <a href="#" class="btn btn-primary">{{user.email}}</a>
           </div>
         </div>
@@ -38,12 +38,11 @@
             Profile Page
           </div>
           <div class="card-body">
-            <h5 class="card-title">Hey {{user.name}} welcome back</h5>
-            <p class="card-text">This is your profile page where you can add all the information about yourself</p>
-            <a href="#" class="btn btn-primary">Go Somewhere</a>
+            <h5 class="card-title">Hey {{user.name}}, bienvenue sur ta page de profil !</h5>
+            <p class="card-text">Tu peux y retrouver ton email.</p>
           </div>
           <div class="card-footer text-muted">
-            Node MySQL - Project
+            Weather App
           </div>
         </div>
       </div>
