@@ -27,201 +27,200 @@
     <script src="js/utils.js"></script>
     <script src="js/weather.js"></script>
     <script src="js/login_logout.js"></script>
-    <script src="js/fav.js"></script>
     <script src="js/found_city.js"></script>
 
   </head>
 
-  <body class="bg-image">
-    <!-- Header-->
-    <header class="container-fluid d-flex align-items-arround">
-      <!--sidePanel-->
-      <div id="sidePanel" class="sidepanel text-center">
-        <a
-          href="javascript:void(0)"
-          class="closebtn col-4"
-          onclick="closeNav()"
-          title="Cliquez pour fermer le menu principal"
-        >&times;
-        </a>
-        <img
-          src="images/animatedWeather-unscreen (1).gif"
-          alt="wicon mt-3"
-          width="115"
-        />
-        <a href="#">
-          <div
-            class="input-group d-flex justify-content-center my-3"
-            title="lancez la recherche"
-          >
-            <div class="form-outline">
-              <input
-                type="search"
-                id="form1"
-                class="form-control"
-                placeholder="Chercher une ville..."
-              />
-            </div>
-            <button type="button" class="btn btn-dark btn-sm">
-              <i class="bx bx-search-alt" style="color: #f1ebeb"></i>
-            </button>
-          </div>
-        </a>
-        <a href="#" class="city">City1</a>
-        <a href="#" class="city">City2</a>
-        <a href="#" class="city">City3</a>
-      </div>
-      <button
-        class="btn openbtn"
-        onclick="openNav()"
-        title="Cliquez pour accéder au menu principal"
-      >
-        <i class="bx bxs-home d-inline-block bx-lg" style="color: #f8f5f5"></i>
-      </button>
-      <!--end sidePannel-->
+	<body class="bg-image">
+		<!-- Header-->
+		<header class="container-fluid d-flex align-items-arround">
+		<!--sidePanel-->
+		<div id="sidePanel" class="sidepanel text-center">
+			<a
+				href="javascript:void(0)"
+				class="closebtn col-4"
+				onclick="closeNav()"
+				title="Cliquez pour fermer le menu principal"
+			>&times;
+			</a>
+				<img
+					src="images/animatedWeather-unscreen (1).gif"
+					alt="wicon mt-3"
+					width="115"
+				/>
+			<a href="#">
+				<div
+					class="input-group d-flex justify-content-center my-3"
+					title="lancez la recherche"
+				>
+				<div class="form-outline">
+				<input
+					type="search"
+					id="form1"
+					class="form-control"
+					placeholder="Chercher une ville..."
+				/>
+				</div>
+				<button type="button" class="btn btn-dark btn-sm">
+				<i class="bx bx-search-alt" style="color: #f1ebeb"></i>
+				</button>
+			</div>
+			</a>
+			<a href="#" class="city">City1</a>
+			<a href="#" class="city">City2</a>
+			<a href="#" class="city">City3</a>
+		</div>
+		<button
+			class="btn openbtn"
+			onclick="openNav()"
+			title="Cliquez pour accéder au menu principal"
+		>
+			<i class="bx bxs-home d-inline-block bx-lg" style="color: #f8f5f5"></i>
+		</button>
+		<!--end sidePannel-->
 
-      <!--navBar-->
-      <div class="d-flex offset-md-6 ms-auto">
-        <!-- Search button-->
-        <div class="input-group align-items-center">
-          <div class="localisation">
-            <button
-              type="button"
-              class="btn btn-outline"
-              title="Ville actuelle"
-            >
-              <i class="bx bxs-map bx-sm" style="color: rgb(35, 34, 34)"></i>
-            </button>
-          </div>
-          <div class="form-outline">
-            <input
-              type="search"
-              id="input-name-city"
-              class="form-control rounded"
-              placeholder="ex: Versailles fr"
-            />
-          </div>
-          <button
-            type="button"
-            onclick="found_city()"
-            class="research btn btn-dark btn-ms"
-            title="Lancer la recherche"
-          >
-            <i
-              onclick="found_city()"
-              class="bx bx-search-alt my-white bx-sm"
-            ></i>
-          </button>
+		<!--navBar-->
+		<div class="d-flex offset-md-6 ms-auto">
+			<!-- Search button-->
+			<div class="input-group align-items-center">
+			<div class="localisation">
+				<button
+				type="button"
+				class="btn btn-outline"
+				title="Ville actuelle"
+				>
+				<i class="bx bxs-map bx-sm" style="color: rgb(35, 34, 34)"></i>
+				</button>
+			</div>
+			<div class="form-outline">
+				<input
+				type="search"
+				id="input-name-city"
+				class="form-control rounded"
+				placeholder="ex: Versailles fr"
+				/>
+			</div>
+			<button
+				type="button"
+				onclick="found_city()"
+				class="research btn btn-dark btn-ms"
+				title="Lancer la recherche"
+			>
+				<i
+				onclick="found_city()"
+				class="bx bx-search-alt my-white bx-sm"
+				></i>
+			</button>
 
-          <!-- button shortcut for user's favorite cities -->
-          <button
-            type="button"
-            class="btn btn-outline-dark mx-2 rounded"
-            title="Cliquez pour accéder aux villes favorites"
-          >
-            <i class="bx bxs-bookmark-star my-white bx-sm"></i>
-          </button>
+			<!-- button shortcut for user's favorite cities -->
+			<button
+				type="button"
+				class="btn btn-outline-dark mx-2 rounded"
+				title="Cliquez pour accéder aux villes favorites"
+			>
+				<i class="bx bxs-bookmark-star my-white bx-sm"></i>
+			</button>
 
-          <!--login button-->
-          {{#if user}}
-            <button class="cnx btn btn-outline-dark rounded">
-              <a href="/profile" class="href">Mon profil</a>
-            </button>
-            <button
-              class="cnx btn btn-outline-dark rounded"
-              title="se déconnecter du compte"
-            >
-              <a href="/auth/logout" class="href">Se déconnecter</a>
-            </button>
-          {{else}}
-            <button
-              class="cnx btn btn-outline-dark rounded"
-              title="accéder à mon compte"
-            >
-              <a href="/login" class="href">Se connecter</a>
-            </button>
-          {{/if}}
-        </div>
-      </div>
-      <!--end navbar-->
-    </header>
-    <!-- end Header-->
+			<!--login button-->
+			{{#if user}}
+				<button class="cnx btn btn-outline-dark rounded">
+				<a href="/profile" class="href">Mon profil</a>
+				</button>
+				<button
+				class="cnx btn btn-outline-dark rounded"
+				title="se déconnecter du compte"
+				>
+				<a href="/auth/logout" class="href">Se déconnecter</a>
+				</button>
+			{{else}}
+				<button
+				class="cnx btn btn-outline-dark rounded"
+				title="accéder à mon compte"
+				>
+				<a href="/login" class="href">Se connecter</a>
+				</button>
+			{{/if}}
+			</div>
+		</div>
+		<!--end navbar-->
+		</header>
+		<!-- end Header-->
 
-    <div id="main-container" class="center-block my-5">
-      <main class="container">
-        <div class="row">
-          <div class="d-flex justify-content-center my-3 align-middle">
-            <div id="place-container" class="text-center mx-3">
-              <!--Clock-->
-              <div class="time-zone my-2">
-                <div id="time">time</div>
-              </div>
-              <div>
-                <div class="d-flex">
-                  <div id="place" class="h3">Localisation inconnu</div>
-                  <button
-                    type="button"
-                    onclick="add_fav()"
-                    class="btn btn-outline favoris"
-                    title="Cliquez pour ajouter au favoris"
-                  >
-                    <i
-                      class="bx bxs-star bx-sm"
-                      style="color: rgb(231, 185, 85)"
-                    ></i>
-                  </button>
-                </div>
-              </div>
-              <div id="date" class="h4"></div>
-              <div id="weather-short-description" class="h5">Météo inconnu</div>
-            </div>
-            <div id="weather-container" class="text-center mx-3 my-2">
-              <img
-                id="icon-weather"
-                src="images/weather/unknown.png"
-                width="56"
-                height="56"
-                alt="icon weather"
-              />
-              <div id="temperature">?°c / ?°F</div>
-              <div id="feels-like">Ressenti : ?</div>
-            </div>
-          </div>
-        </div>
+		<div id="main-container" class="center-block my-5">
+		<main class="container">
+			<div class="row">
+			<div class="d-flex justify-content-center my-3 align-middle">
+				<div id="place-container" class="text-center mx-3">
+				<!--Clock-->
+				<div class="time-zone my-2">
+					<div id="time">time</div>
+				</div>
+				<div>
+					<div class="d-flex">
+					<div id="place" class="h3">Localisation inconnu</div>
+					<button
+						class="btn btn-outline favoris"
+						title="Cliquez pour ajouter au favoris"
+					>
+						<i
+						class="bx bxs-star bx-sm"
+						style="color: rgb(231, 185, 85)"
+						>
+						</i>
+						<a href="/favories/new" class="href"></a>
+					</button>
+					</div>
+				</div>
+				<div id="date" class="h4"></div>
+				<div id="weather-short-description" class="h5">Météo inconnu</div>
+				</div>
+				<div id="weather-container" class="text-center mx-3 my-2">
+				<img
+					id="icon-weather"
+					src="images/weather/unknown.png"
+					width="56"
+					height="56"
+					alt="icon weather"
+				/>
+				<div id="temperature">?°c / ?°F</div>
+				<div id="feels-like">Ressenti : ?</div>
+				</div>
+			</div>
+			</div>
 
-        <div
-          id="details-container"
-          class="d-flex flex-wrap align-items-center justify-content-center my-3"
-        >
-          <div id="UV" class="px-2"></div>
-          <div id="wind-speed" class="px-2"></div>
-          <div id="humidity" class="px-2"></div>
-          <div id="clouds" class="px-2"></div>
-        </div>
+			<div
+			id="details-container"
+			class="d-flex flex-wrap align-items-center justify-content-center my-3"
+			>
+			<div id="UV" class="px-2"></div>
+			<div id="wind-speed" class="px-2"></div>
+			<div id="humidity" class="px-2"></div>
+			<div id="clouds" class="px-2"></div>
+			</div>
 
-        <div class="container">
-          <div class="row">
-            <div
-              id="weather-hour"
-              class="d-flex flex-wrap align-items-center justify-content-center my-2"
-            ></div>
-            <div
-              id="weather-week"
-              class="d-flex flex-wrap align-items-center justify-content-center my-2"
-            ></div>
-          </div>
-        </div>
-      </main>
+			<div class="container">
+			<div class="row">
+				<div
+				id="weather-hour"
+				class="d-flex flex-wrap align-items-center justify-content-center my-2"
+				></div>
+				<div
+				id="weather-week"
+				class="d-flex flex-wrap align-items-center justify-content-center my-2"
+				></div>
+			</div>
+			</div>
+		</main>
 
-      <footer class="container my-5">
-        <div class="row">
-          <div class="d-flex align-items-center justify-content-center">
-            <div class="px-2">Potitique de confidentialité</div>
-            <div class="px-2">A propos de ???</div>
-            <div class="px-2">Autre</div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  </body>
+		<footer class="container my-5">
+			<div class="row">
+			<div class="d-flex align-items-center justify-content-center">
+				<div class="px-2">Potitique de confidentialité</div>
+				<div class="px-2">A propos de ???</div>
+				<div class="px-2">Autre</div>
+			</div>
+			</div>
+		</footer>
+		</div>
+	</body>
 </html>
