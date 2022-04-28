@@ -4,7 +4,7 @@
 
 var country_code = null
 
-async function found_city() {
+async function looking_for_city() {
     var place = document.getElementById("input-name-city").value;
     var table_place = place.split(",");
     
