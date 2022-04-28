@@ -11,7 +11,8 @@
 - 22/04: - Recherches sur Bcrypt et les méthodes de hachage du mot de passe.
 - 24/04: - Réunion pour définir les tâches à faire et les répartir entre les différents membres du groupe.
 - 26/04: - Séance de travail entre codeurs.
-- 27/04: - Séance de travail entre codeurs. - Réunion pour faire une mise au point sur le travail réalisé et précision des tâches qui restent à faire.
+- 27/04: - Séance de travail entre codeurs. 
+		 - Réunion pour faire une mise au point sur le travail réalisé et précision des tâches qui restent à faire.
 
 ## Détails du travail effectué
 
