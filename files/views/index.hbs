@@ -123,15 +123,15 @@
 
 			<!--login button-->
 			{{#if user}}
-				<div class="cnx btn btn-outline-dark rounded mx-2">
+				<button class="cnx btn btn-outline-dark rounded">
 				<a href="/profile" class="href">{{user.username}}</a>
-				</div>
-				<div
+				</button>
+				<button
 				class="cnx btn btn-outline-dark rounded"
 				title="se déconnecter du compte"
 				>
 				<a href="/auth/logout" class="href">Se déconnecter</a>
-				</div>
+				</button>
 			{{else}}
 				<button
 				class="cnx btn btn-outline-dark rounded"

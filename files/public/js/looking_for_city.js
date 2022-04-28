@@ -32,7 +32,7 @@ async function looking_for_city() {
             })
 
         if(country_code != -1) {
-            //console.log("here")
+            console.log("here")
             let api = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${country_code}&limit=1&appid=${open_weather_key}`;
             await fetch(api)
                 .then(function(response) {
