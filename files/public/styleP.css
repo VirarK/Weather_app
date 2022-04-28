@@ -1,5 +1,5 @@
 nav {
-    background-color: #563d7c;
+    background:linear-gradient( #6da4fc, rgb(247, 164, 11));
     color: #fff;
     padding: 30px 60px;
     display: flex;
@@ -31,9 +31,33 @@ nav li a:hover {
 .avatar-ctn {
     background-color: orange;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .avatar {
     width: 65%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-header{
+    border-radius: solid 5px;
+    border-color: orange;
+}
+
+
+.PP{
+    border-radius: solid 5px;
+    border-color: rgba(192, 190, 190, 0.608);
+    height: 250px;
+}
+
+.card-body{
+    height: 330px;
+}
+.card-p{
+    border-radius: solid 3px;
+    border-color: rgba(192, 190, 190, 0.608);
+    margin-left: 5px;
+    margin-right: 5px;
 }
