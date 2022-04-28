@@ -44,7 +44,7 @@ async function looking_for_city() {
                     city_found = {}
                     city_found.lat = data[0].lat;
                     city_found.lon = data[0].lon;
-                    console.log(city_found)
+                    //console.log(city_found)
                 })
                 .then(function() {
                     fill_place();

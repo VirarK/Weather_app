@@ -25,7 +25,7 @@ router.get(
 
         if (result[0] == undefined) {
           // looking if city already existe in the database
-          let sql_already_existe = `SELECT * FROM cities WHERE name = '${req.params.city}'`;
+          let sql_already_existe = `SELECT * FROM cities WHERE name = '${req.params.city}' AND country_code = '${req.params.country_code}'`;
           db.query(sql_already_existe, (err, result) => {
             if (err) throw err;
 
@@ -37,7 +37,7 @@ router.get(
               });
             }
 
-            let sql_add_city_fav = `INSERT INTO favories (city_id, email) SELECT city_id , email FROM cities c , users u WHERE c.name = '${req.params.city}' AND u.email = '${user.email}'`;
+            let sql_add_city_fav = `INSERT INTO favories (city_id, email) SELECT city_id, email FROM cities c, users u WHERE c.name = '${req.params.city}' AND u.email = '${user.email}'`;
             db.query(sql_add_city_fav, (err, result) => {
               if (err) throw err;
             });
