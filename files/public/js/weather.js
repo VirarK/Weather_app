@@ -181,20 +181,21 @@ async function get_ip_adress() {
  * Get current, forecast hourly and daily weather.
  */
 async function get_weather() {
-  let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${city_found.lat}&lon=${city_found.lon}&appid=${open_weather_key}&lang=fr&units=metric&exclude=minutely,alerts`;
-  await fetch(api)
-    .then(function (response) {
-      let data = response.json();
-      return data;
-    })
-    .then(function (data) {
-      weather.current = data.current;
-      weather.forecast_hourly = data.hourly;
-      weather.daily = data.daily;
-    })
-    .then(function () {
-      fill_weather();
-    });
+    let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${city_found.lat}&lon=${city_found.lon}&appid=${open_weather_key}&lang=fr&units=metric&exclude=minutely,alerts`;
+    await fetch(api)
+        .then(function(response) {
+            let data = response.json();
+            return data;
+        })
+        .then(function(data) {
+            dt = data.current.dt
+            weather.current = data.current;
+            weather.forecast_hourly = data.hourly;
+            weather.daily = data.daily;
+        })
+        .then(function() {
+            fill_weather();
+        });
 }
 
 /**
@@ -324,31 +325,33 @@ function fill_hours_weather() {
       text_hour_i.innerHTML = i + "H";
     }
 
-    // Write hour weather
-    var balise_temp_previous_hour_i = document.createElement("div");
-    var text_temp_previous_hour_i = Math.floor(
-      weather.previous_hourly[i - 1].temp
-    );
-    balise_temp_previous_hour_i.innerHTML = `${text_temp_previous_hour_i}°C`;
+    var div_weather_hours = document.getElementById("weather-hour");
+    div_weather_hours.innerHTML = '';
 
-    div_weather_hours_i.appendChild(text_hour_i);
-    div_weather_hours_i.appendChild(balise_temp_previous_hour_i);
+    // previous hour
+    var i = 1;
+    day = Date(dt)
+    for (i; i < day.getHours; i += shift_hours) {
+        var div_weather_hours_i = document.createElement("div");
+        div_weather_hours_i.setAttribute("class", css_custom);
 
-    div_weather_hours.appendChild(div_weather_hours_i);
-  }
+        // Write the hour
+        var text_hour_i = document.createElement("div");
+        if (i < 10) {
+            text_hour_i.innerHTML = "0" + i + "H";
+        } else {
+            text_hour_i.innerHTML = i + "H";
+        }
 
-  // forecast hour
-  var j = 1;
-  for (i; i < 24; i += shift_hours) {
-    var div_weather_hours_i = document.createElement("div");
-    div_weather_hours_i.setAttribute("class", css_custom);
+        // Write hour weather
+        var balise_temp_previous_hour_i = document.createElement("div");
+        var text_temp_previous_hour_i = Math.floor(weather.previous_hourly[i - 1].temp);
+        balise_temp_previous_hour_i.innerHTML = `${text_temp_previous_hour_i}°C`;
 
-    // Write the hour
-    var text_hour_i = document.createElement("div");
-    if (i < 10) {
-      text_hour_i.innerHTML = "0" + i + "H";
-    } else {
-      text_hour_i.innerHTML = i + "H";
+        div_weather_hours_i.appendChild(text_hour_i);
+        div_weather_hours_i.appendChild(balise_temp_previous_hour_i);
+
+        div_weather_hours.appendChild(div_weather_hours_i);
     }
 
     // Write hour weather
