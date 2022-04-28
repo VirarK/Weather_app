@@ -30,20 +30,16 @@ router.get(
             if (err) throw err;
 
             // city isn't in the database
-            if (!result) {
+            if (result[0] == undefined) {
               let sql_insert_new_city = `INSERT INTO cities (name, country_code, lat, lon) VALUES ('${req.params.city}', '${req.params.country_code}', ${req.params.lat}, ${req.params.lon})`;
               db.query(sql_insert_new_city, (err, result) => {
                 if (err) throw err;
               });
             }
 
-            let sql_add_city_fav = `INSERT INTO favories (city_id) SELECT city_id FROM cities WHERE name = '${req.params.city}'`;
+            let sql_add_city_fav = `INSERT INTO favories (city_id, email) SELECT city_id , email FROM cities c , users u WHERE c.name = '${req.params.city}' AND u.email = '${user.email}'`;
             db.query(sql_add_city_fav, (err, result) => {
               if (err) throw err;
-              let sql_add_user_fav = `UPDATE favories SET email = '${user.email}' WHERE ISNULL(email)`;
-              db.query(sql_add_user_fav, (err, result) => {
-                if (err) throw err;
-              });
             });
           });
         } else {
