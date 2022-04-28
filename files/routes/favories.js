@@ -35,15 +35,17 @@ router.get(
               db.query(sql_insert_new_city, (err, result) => {
                 if (err) throw err;
               });
+            } else {
+              console.log("Ville déjà dans la base de données");
             }
 
-            let sql_add_city_fav = `INSERT INTO favories (city_id, email) SELECT city_id, email FROM cities c, users u WHERE c.name = '${req.params.city}' AND u.email = '${user.email}'`;
+            let sql_add_city_fav = `INSERT INTO favories (city_id, email) SELECT city_id, email FROM cities c, users u WHERE c.name = '${req.params.city}'  AND country_code = '${req.params.country_code}' AND u.email = '${user.email}'`;
             db.query(sql_add_city_fav, (err, result) => {
               if (err) throw err;
             });
           });
         } else {
-          console.log("Ville déjà dans la base de données");
+          console.log("Ville déjà en favoris");
         }
       });
     }
