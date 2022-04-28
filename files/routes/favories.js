@@ -19,7 +19,7 @@ router.get(
       user = req.user;
 
       // looking if city is already in favories
-      let sql_already_fav = `SELECT * FROM users u, favories f, cities c WHERE u.email = '${user.email}' AND u.email = f.email AND f.city_id = c.city_id AND c.name = '${req.params.city}'`;
+      let sql_already_fav = `SELECT * FROM users u, favories f, cities c WHERE u.email = '${user.email}' AND u.email = f.email AND f.city_id = c.city_id AND c.name = '${req.params.city}' AND c.country_code = '${req.params.country_code}'`;
       db.query(sql_already_fav, (err, result) => {
         if (err) throw err;
 
