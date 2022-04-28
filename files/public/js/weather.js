@@ -182,6 +182,7 @@ async function get_weather() {
             return data;
         })
         .then(function(data) {
+            dt = data.current.dt
             weather.current = data.current;
             weather.forecast_hourly = data.hourly;
             weather.daily = data.daily;
@@ -290,7 +291,8 @@ function fill_hours_weather() {
 
     // previous hour
     var i = 1;
-    for (i; i < today.getHours; i += shift_hours) {
+    day = Date(dt)
+    for (i; i < day.getHours; i += shift_hours) {
         var div_weather_hours_i = document.createElement("div");
         div_weather_hours_i.setAttribute("class", css_custom);
 
