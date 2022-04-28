@@ -7,7 +7,7 @@ const open_weather_key_mickael = "e4b40859cda1f2ff60ebabf6202a6de6";
 const open_weather_key = open_weather_key_hasnae;
 
 const today = new Date(Date.now());
-const dt = Math.floor(today / 1000);
+let dt = Math.floor(today / 1000);
 const shift_hours = 3;
 
 var css_custom = null;
@@ -456,13 +456,4 @@ function reset_weather() {
 
 // ##############################################################################################
 
-function main() {
-  // start of function call list
-  get_location();
-
-  //show_menu();
-}
-
-// ##############################################################################################
-
-main();
+get_location();
