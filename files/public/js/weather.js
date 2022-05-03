@@ -1,5 +1,5 @@
-const user_location = {};
-let city_found = {};
+let user_location = null;
+let city_found = null;
 
 const open_weather_key_hasnae = "27ea29f7607830944e90d5e9f0560259";
 const open_weather_key_melissa = "b0dcff87aa3fbe043e172859070fb6a3";
@@ -144,9 +144,11 @@ function get_location() {
  * @param {Object} geolocation object with user coords.
  */
 async function set_position(geolocation) {
+  user_location = {}
   user_location.lat = geolocation.coords.latitude;
   user_location.lon = geolocation.coords.longitude;
-
+  
+  city_found = {}
   city_found.lat = geolocation.coords.latitude;
   city_found.lon = geolocation.coords.longitude;
 
@@ -164,9 +166,11 @@ async function get_ip_adress() {
       return data;
     })
     .then(function (data) {
+      user_location = {}
       user_location.lat = data.latitude;
       user_location.lon = data.longitude;
-
+      
+      city_found = {}
       city_found.lat = data.latitude;
       city_found.lon = data.longitude;
     })
@@ -222,7 +226,6 @@ async function get_weather_hours() {
  * Fill user place in html with latitude and longitude.
  */
 async function fill_place() {
-  //console.log(city_found)
   let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${city_found.lat}&lon=${city_found.lon}&limit=2&appid=${open_weather_key}`;
   await fetch(api)
     .then(function (response) {
@@ -328,32 +331,31 @@ function fill_hours_weather() {
     var div_weather_hours = document.getElementById("weather-hour");
     div_weather_hours.innerHTML = "";
 
-    // previous hour
-    var i = 1;
-    day = Date(dt);
-    for (i; i < day.getHours; i += shift_hours) {
-      var div_weather_hours_i = document.createElement("div");
-      div_weather_hours_i.setAttribute("class", css_custom);
+    // Write hour weather
+    var balise_temp_previous_hour_i = document.createElement("div");
+    var text_temp_previous_hour_i = Math.floor(
+      weather.previous_hourly[i - 1].temp
+    );
+    balise_temp_previous_hour_i.innerHTML = `${text_temp_previous_hour_i}°C`;
 
-      // Write the hour
-      var text_hour_i = document.createElement("div");
-      if (i < 10) {
-        text_hour_i.innerHTML = "0" + i + "H";
-      } else {
-        text_hour_i.innerHTML = i + "H";
-      }
+    div_weather_hours_i.appendChild(text_hour_i);
+    div_weather_hours_i.appendChild(balise_temp_previous_hour_i);
 
-      // Write hour weather
-      var balise_temp_previous_hour_i = document.createElement("div");
-      var text_temp_previous_hour_i = Math.floor(
-        weather.previous_hourly[i - 1].temp
-      );
-      balise_temp_previous_hour_i.innerHTML = `${text_temp_previous_hour_i}°C`;
+    div_weather_hours.appendChild(div_weather_hours_i);
+  }
 
-      div_weather_hours_i.appendChild(text_hour_i);
-      div_weather_hours_i.appendChild(balise_temp_previous_hour_i);
+  // forcast hour
+  var j = 1;
+  for (i; i < 24; i += shift_hours) {
+    var div_weather_hours_i = document.createElement("div");
+    div_weather_hours_i.setAttribute("class", css_custom);
 
-      div_weather_hours.appendChild(div_weather_hours_i);
+    // Write the hour
+    var text_hour_i = document.createElement("div");
+    if (i < 10) {
+      text_hour_i.innerHTML = "0" + i + "H";
+    } else {
+      text_hour_i.innerHTML = i + "H";
     }
 
     // Write hour weather
@@ -456,4 +458,10 @@ function reset_weather() {
 
 // ##############################################################################################
 
-get_location();
+if(user_location == null) {
+  console.log("null")
+  get_location();
+} else {
+  console.log("not null")
+  fill_date();
+}
