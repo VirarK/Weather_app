@@ -4,8 +4,8 @@ const favController = require('../controllers/fav_profile');
 
 const router = express.Router();
 
-router.get('/', authController.isLoggedIn, (req, res) => {
-    res.render('index', {
+router.get('/weather/:city/:country_code/:lat/:lon"', authController.isLoggedIn, (req, res) => {
+    res.render('weather', {
         user: req.user
     });
 });
