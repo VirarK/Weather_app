@@ -301,7 +301,7 @@ function fill_weather() {
     get_weather_hours();
 }
 
-/**
+/** 
  * fill hours weather in html.
  */
 function fill_hours_weather() {
