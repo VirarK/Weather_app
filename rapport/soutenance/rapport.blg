@@ -1,9 +1,15 @@
 [0] Config.pm:307> INFO - This is Biber 2.17
 [0] Config.pm:310> INFO - Logfile is 'rapport.blg'
-[184] biber-MSWIN32:340> INFO - === 
-[256] Biber.pm:418> INFO - Reading 'rapport.bcf'
-[423] Biber.pm:972> INFO - Found 0 citekeys in bib section 0
-[447] bbl.pm:654> INFO - Writing 'rapport.bbl' with encoding 'UTF-8'
-[447] bbl.pm:757> INFO - Output to rapport.bbl
-[449] Biber.pm:130> WARN - The file 'rapport.bcf' does not contain any citations!
-[450] Biber.pm:132> INFO - WARNINGS: 1
+[132] biber-MSWIN32:340> INFO - === 
+[188] Biber.pm:418> INFO - Reading 'rapport.bcf'
+[345] Biber.pm:972> INFO - Found 4 citekeys in bib section 0
+[362] Biber.pm:4383> INFO - Processing section 0
+[376] Biber.pm:4574> INFO - Looking for bibtex file 'rapport.bib' for section 0
+[496] bibtex.pm:1713> INFO - LaTeX decoding ...
+[558] bibtex.pm:1518> INFO - Found BibTeX data source 'rapport.bib'
+[573] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[573] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[573] Biber.pm:4203> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'fr-FR'
+[573] Biber.pm:4209> INFO - No sort tailoring available for locale 'fr-FR'
+[576] bbl.pm:654> INFO - Writing 'rapport.bbl' with encoding 'UTF-8'
+[577] bbl.pm:757> INFO - Output to rapport.bbl

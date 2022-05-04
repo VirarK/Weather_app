@@ -16,5 +16,38 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{Bootstrap-Exemples}{misc}{}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://getbootstrap.com/docs/5.1/examples/}}
+      \field{title}{Exemple Bootstrap}
+    \endentry
+    \entry{Bootstrap}{misc}{}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://getbootstrap.com}}
+      \field{title}{Get Bootstrap}
+    \endentry
+    \entry{OpenWeatherApp}{misc}{}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://openweathermap.org}}
+      \field{title}{OpenWeatherApp}
+    \endentry
+    \entry{OpenWeatherApp-OneCall}{misc}{}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://openweathermap.org/api/one-call-api}}
+      \field{title}{OpenWeatherApp one call api}
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 
