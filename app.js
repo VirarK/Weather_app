@@ -9,7 +9,7 @@ dotenv.config({ path: './config.env' })
 const app = express();
 
 const db = mysql.createConnection({
-    url: process.env.DATABASE_HOST,
+    hostname: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE
@@ -39,6 +39,4 @@ app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
 app.use('/favories', require('./routes/favories'))
 
-app.listen(process.env.PORT, () => {
-    console.log("Server started on port " + process.env.PORT);
-})
+app.listen(process.env.PORT || 8080);
