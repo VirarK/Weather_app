@@ -34,41 +34,51 @@
 	<body class="bg-image">
 		<!-- Header-->
 		<header class="container-fluid d-flex align-items-arround">
+			<div>
+				<img
+				src="images/animatedWeather-unscreen (1).gif"
+				alt="wicon mt-3"
+				width="64"
+				/>
+			</div>
 		<!--sidePanel-->
-		<div id="sidePanel" class="sidepanel text-center">
+		{{!-- <div id="sidePanel" class="sidepanel text-center">
 			<a
 				href="javascript:void(0)"
 				class="closebtn col-4"
 				onclick="closeNav()"
 				title="Cliquez pour fermer le menu principal"
-			>&times;
+				>&times;
 			</a>
-				<img
-					src="images/animatedWeather-unscreen (1).gif"
-					alt="wicon mt-3"
-					width="115"
-				/>
-			<a href="#">
-				<div
-					class="input-group d-flex justify-content-center my-3"
-					title="lancez la recherche"
-				>
-				<div class="form-outline">
+			<img
+				src="images/animatedWeather-unscreen (1).gif"
+				alt="wicon mt-3"
+				width="115"
+			/>
+			<div
+				class="input-group d-flex justify-content-center my-3"
+				title="lancez la recherche"
+			>
+			<div class="form-outline">
 				<button type="button" class="btn btn-dark btn-sm">
-				<input
-					type="search"
-					id="form1"
-					class="form-control"
-					placeholder="Chercher une ville..."
-				/>
-				</div>
-				<i class="bx bx-search-alt" style="color: #f1ebeb"></i>
+					<input
+						type="search"
+						id="form1"
+						class="form-control"
+						placeholder="Chercher une ville..."
+					/>
+					<i class="bx bx-search-alt" style="color: #f1ebeb"></i>
 				</button>
 			</div>
-			</a>
 			<a href="#" class="city">City1</a>
 			<a href="#" class="city">City2</a>
 			<a href="#" class="city">City3</a>
+			<div id="fav-city-1">Ville1</div>
+			<div id="fav-city-2">Ville2</div>
+			<div id="fav-city-3">Ville3</div>
+			<div id="fav-city-4">Ville4</div>
+			<div id="fav-city-5">Ville5</div>
+			<div>...</div>
 		</div>
 		<button
 			class="btn openbtn"
@@ -76,7 +86,7 @@
 			title="Cliquez pour accéder au menu principal"
 		>
 			<i class="bx bxs-home d-inline-block bx-lg" style="color: #f8f5f5"></i>
-		</button>
+		</button> --}}
 		<!--end sidePannel-->
 
 		<!--navBar-->
@@ -113,28 +123,28 @@
 			</button>
 
 			<!-- button shortcut for user's favorite cities -->
-			<button
+			{{!-- <button
 				type="button"
 				class="btn btn-outline-dark mx-2 rounded"
 				title="Cliquez pour accéder aux villes favorites"
 			>
 				<i class="bx bxs-bookmark-star my-white bx-sm"></i>
-			</button>
+			</button> --}}
 
 			<!--login button-->
 			{{#if user}}
-				<button class="cnx btn btn-outline-dark rounded">
+				<button class="cnx btn ms-2 btn-outline-dark rounded">
 				<a href="/profile" class="href">{{user.username}}</a>
 				</button>
 				<button
-				class="cnx btn btn-outline-dark rounded"
+				class="cnx btn mx-2 btn-outline-dark rounded"
 				title="se déconnecter du compte"
 				>
 				<a href="/auth/logout" class="href">Se déconnecter</a>
 				</button>
 			{{else}}
 				<button
-				class="cnx btn btn-outline-dark rounded"
+				class="cnx btn ms-2 btn-outline-dark rounded"
 				title="accéder à mon compte"
 				>
 				<a href="/login" class="href">Se connecter</a>

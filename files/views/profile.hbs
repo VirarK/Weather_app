@@ -13,11 +13,9 @@
   </head>
   <body class="pbody">
     <nav>
-      <h4>Weather App</h4>
+      <h4><a href="/" class="link">Menu Principal</a></h4>
       <ul>
-        <li><a href="/">Menu Principal</a></li>
-        <li><a href="/profile">Mon profil</a></li>
-        <li><a href="/auth/logout">Se déconnecter</a></li>
+        <li><a href="/auth/logout" class="link">Se déconnecter</a></li>
       </ul>
     </nav>
 
@@ -49,15 +47,10 @@
         <div class="col-8 my-3">
           <div class="card text-center PP d-flex justify-content-center">
             <div class="card-header">
-              My Profil
+              Liste favoris
             </div>
-            <div class="card-body">
-              <h5 class="card-title">Hey
-                {{user.username}}, bienvenue sur ta page de profil !</h5>
-              <p class="card-text">Tu peux y retrouver tes informations.</p>
-            </div>
-            <div class="card-footer text-muted">
-              Weather App
+            <div id="fav-list">
+
             </div>
           </div>
         </div>

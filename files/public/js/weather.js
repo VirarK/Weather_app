@@ -458,10 +458,4 @@ function reset_weather() {
 
 // ##############################################################################################
 
-if(user_location == null) {
-  console.log("null")
-  get_location();
-} else {
-  console.log("not null")
-  fill_date();
-}
+get_location();

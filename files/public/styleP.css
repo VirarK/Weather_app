@@ -17,13 +17,16 @@ nav li {
 }
 
 nav li a {
-    color: #fff;
     text-decoration: none;
     font-weight: bold;
     padding: 5px 8px;
 }
 
-nav li a:hover {
+.link {
+    color: #fff;
+}
+
+.link:hover {
     color: yellow;
     text-decoration: none;
 }
@@ -40,22 +43,21 @@ nav li a:hover {
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
-.card-header{
+.card-header {
     border-radius: solid 5px;
     border-color: orange;
 }
 
 
-.PP{
+.PP {
     border-radius: solid 5px;
     border-color: rgba(192, 190, 190, 0.608);
-    height: 250px;
 }
 
-.card-body{
+.card-body {
     height: 330px;
 }
-.card-p{
+.card-p {
     border-radius: solid 3px;
     border-color: rgba(192, 190, 190, 0.608);
     margin-left: 5px;
