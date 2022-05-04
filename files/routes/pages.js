@@ -1,5 +1,6 @@
 const express = require('express');
 const authController = require('../controllers/auth');
+const favController = require('../controllers/fav_profile');
 
 const router = express.Router();
 
@@ -19,8 +20,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-router.get('/profile', authController.isLoggedIn, (req, res) => {
-    console.log(req.username);
+router.get('/profile', authController.isLoggedIn, favController.get_fav, (req, res) => {
     if (req.user) {
         res.render('profile', {
             user: req.user

@@ -49,8 +49,10 @@
             <div class="card-header">
               Liste favoris
             </div>
-            <div id="fav-list">
-
+            <div>
+              {{#each favs}}
+                <div>{{this.name}}, {{this.country_code}}, ({{this.lat}}, {{this.lon}})</div>
+              {{/each}}
             </div>
           </div>
         </div>
