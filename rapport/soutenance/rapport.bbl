@@ -47,6 +47,13 @@
       \field{howpublished}{\url{https://openweathermap.org/api/one-call-api}}
       \field{title}{OpenWeatherApp one call api}
     \endentry
+    \entry{MySQL-wikipedia}{misc}{}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://fr.wikipedia.org/wiki/MySQL}}
+      \field{title}{Wikipedia MySQL}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

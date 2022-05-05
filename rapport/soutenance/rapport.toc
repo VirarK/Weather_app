@@ -4,6 +4,6 @@
 \contentsline {subsection}{\numberline {2.1}Bootstrap}{2}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}OpenWeatherApp}{3}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Express et NodeJS}{3}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}}{3}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Quelques points importants}{3}{section.3}%
+\contentsline {subsection}{\numberline {2.4}MySQL}{3}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Quelques point(s) important(s)}{3}{section.3}%
 \contentsline {section}{\numberline {4}Structure}{3}{section.4}%
