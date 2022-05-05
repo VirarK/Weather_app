@@ -214,7 +214,7 @@ async function get_weather_hours() {
  * Fill user place in html with latitude and longitude.
  */
 async function fill_place() {
-  let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${city_found.lat}&lon=${city_found.lon}&limit=2&appid=${open_weather_key}`;
+  let api = `https://api.openweathermap.org/geo/1.0/reverse?lat=${city_found.lat}&lon=${city_found.lon}&limit=2&appid=${open_weather_key}`;
   await fetch(api)
     .then(function (response) {
       let data = response.json();
