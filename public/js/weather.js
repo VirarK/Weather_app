@@ -214,7 +214,7 @@ async function get_weather_hours() {
  * Fill user place in html with latitude and longitude.
  */
 async function fill_place() {
-  let api = `https://api.openweathermap.org/geo/1.0/reverse?lat=${city_found.lat}&lon=${city_found.lon}&limit=2&appid=${open_weather_key}`;
+  let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${city_found.lat}&lon=${city_found.lon}&limit=2&appid=${open_weather_key}`;
   await fetch(api)
     .then(function (response) {
       let data = response.json();
@@ -299,10 +299,8 @@ function fill_hours_weather() {
     css_custom = "px-2 mx-2 my-1 rounded my-dark-white-bg";
   }
 
-  var div_weather_hours1 = document.getElementById("weather-hour1");
-  div_weather_hours1.innerHTML = "";
-  var div_weather_hours2 = document.getElementById("weather-hour2");
-  div_weather_hours2.innerHTML = "";
+  var div_weather_hours = document.getElementById("weather-hour");
+  div_weather_hours.innerHTML = "";
   
   var cpt = 0
 
@@ -333,12 +331,7 @@ function fill_hours_weather() {
     div_weather_hours_i.appendChild(text_hour_i);
     div_weather_hours_i.appendChild(balise_temp_previous_hour_i);
 
-    if(cpt < 11) {
-      div_weather_hours1.appendChild(div_weather_hours_i);
-    } else {
-      div_weather_hours2.appendChild(div_weather_hours_i);
-    }
-    cpt++;
+    div_weather_hours.appendChild(div_weather_hours_i);
   }
 
   // forcast hour
@@ -363,12 +356,7 @@ function fill_hours_weather() {
     div_weather_hours_i.appendChild(text_hour_i);
     div_weather_hours_i.appendChild(balise_temp_forecast_hour_i);
 
-    if(cpt < 11) {
-      div_weather_hours1.appendChild(div_weather_hours_i);
-    } else {
-      div_weather_hours2.appendChild(div_weather_hours_i);
-    }
-    cpt++;
+    div_weather_hours.appendChild(div_weather_hours_i);
   }
 
   fill_week_weather();
