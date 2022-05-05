@@ -117,18 +117,6 @@ function transform_country_code() {
 // ##############################################################################################
 
 /**
- * Convert celsius in fehrenheit.
- *
- * @param {Number} temperature .
- * @returns celsius.
- */
-function celsius_to_fahrenheit(temperature) {
-  return (temperature * 9) / 5 + 32;
-}
-
-// ##############################################################################################
-
-/**
  * Get user location with navigator.
  */
 function get_location() {
@@ -185,7 +173,7 @@ async function get_ip_adress() {
  * Get current, forecast hourly and daily weather.
  */
 async function get_weather() {
-  let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${city_found.lat}&lon=${city_found.lon}&appid=${open_weather_key}&lang=fr&units=metric&exclude=minutely,alerts`;
+  let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${city_found.lat}&lon=${city_found.lon}&appid=${open_weather_key}&lang=fr&units=metric&exclude=minutely,alerts$units={metric}`;
   await fetch(api)
     .then(function (response) {
       let data = response.json();
@@ -206,7 +194,7 @@ async function get_weather() {
  * Get previous hours weather.
  */
 async function get_weather_hours() {
-  let api = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${city_found.lat}&lon=${city_found.lon}&dt=${dt}&appid=${open_weather_key}&lang=fr`;
+  let api = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${city_found.lat}&lon=${city_found.lon}&dt=${dt}&appid=${open_weather_key}&lang=fr&units=metric`;
   await fetch(api)
     .then(function (response) {
       data = response.json();
@@ -226,7 +214,7 @@ async function get_weather_hours() {
  * Fill user place in html with latitude and longitude.
  */
 async function fill_place() {
-  let api = `https://api.openweathermap.org/geo/1.0/reverse?lat=${city_found.lat}&lon=${city_found.lon}&limit=2&appid=${open_weather_key}`;
+  let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${city_found.lat}&lon=${city_found.lon}&limit=2&appid=${open_weather_key}`;
   await fetch(api)
     .then(function (response) {
       let data = response.json();
@@ -275,7 +263,7 @@ function fill_weather() {
   document.getElementById("temperature").innerHTML = `${Math.floor(
     weather.current.temp
   )}°C 
-        / ${celsius_to_fahrenheit(Math.floor(weather.current.temp))}°F`;
+        / ${Math.floor(weather.current.temp)}°F`;
   document.getElementById("feels-like").innerText = `Ressenti ${Math.floor(
     weather.current.feels_like
   )}°C`;
@@ -306,69 +294,81 @@ function fill_weather() {
  */
 function fill_hours_weather() {
   if (weather.current.weather[0].icon.includes("d")) {
-    css_custom = "px-3 m-4 rounded my-light-white-bg";
+    css_custom = "px-2 mx-2 my-1 rounded my-light-white-bg";
   } else {
-    css_custom = "px-3 m-4 rounded my-dark-white-bg";
+    css_custom = "px-2 mx-2 my-1 rounded my-dark-white-bg";
   }
 
-  var div_weather_hours = document.getElementById("weather-hour");
-  div_weather_hours.innerHTML = "";
+  var div_weather_hours1 = document.getElementById("weather-hour1");
+  div_weather_hours1.innerHTML = "";
+  var div_weather_hours2 = document.getElementById("weather-hour2");
+  div_weather_hours2.innerHTML = "";
+  
+  var cpt = 0
 
   // previous hour
-  var i = 1;
-  for (i; i < today.getHours; i += shift_hours) {
+  var date = new Date(weather.previous_hourly[0].dt*1000);
+  var end = today.getHours() - date.getHours()
+
+  for (i = 0; i < end; i++) {
     var div_weather_hours_i = document.createElement("div");
     div_weather_hours_i.setAttribute("class", css_custom);
 
     // Write the hour
     var text_hour_i = document.createElement("div");
-    if (i < 10) {
-      text_hour_i.innerHTML = "0" + i + "H";
+    var date_i = new Date(weather.previous_hourly[i].dt * 1000);
+    if (date_i.getHours() < 10) {
+      text_hour_i.innerHTML = "0" + date_i.getHours() + "H";
     } else {
-      text_hour_i.innerHTML = i + "H";
+      text_hour_i.innerHTML = date_i.getHours() + "H";
     }
-
-    var div_weather_hours = document.getElementById("weather-hour");
-    div_weather_hours.innerHTML = "";
 
     // Write hour weather
     var balise_temp_previous_hour_i = document.createElement("div");
     var text_temp_previous_hour_i = Math.floor(
-      weather.previous_hourly[i - 1].temp
+      weather.previous_hourly[i].temp
     );
     balise_temp_previous_hour_i.innerHTML = `${text_temp_previous_hour_i}°C`;
 
     div_weather_hours_i.appendChild(text_hour_i);
     div_weather_hours_i.appendChild(balise_temp_previous_hour_i);
 
-    div_weather_hours.appendChild(div_weather_hours_i);
+    if(cpt < 11) {
+      div_weather_hours1.appendChild(div_weather_hours_i);
+    } else {
+      div_weather_hours2.appendChild(div_weather_hours_i);
+    }
+    cpt++;
   }
 
   // forcast hour
-  var j = 1;
-  for (i; i < 24; i += shift_hours) {
+  for (i = 0; i < 24 - end - 2; i++) {
     var div_weather_hours_i = document.createElement("div");
     div_weather_hours_i.setAttribute("class", css_custom);
 
     // Write the hour
     var text_hour_i = document.createElement("div");
-    if (i < 10) {
-      text_hour_i.innerHTML = "0" + i + "H";
+    var date_i = new Date(weather.forecast_hourly[i].dt * 1000)
+    if (date_i.getHours() < 10) {
+      text_hour_i.innerHTML = "0" + date_i.getHours() + "H";
     } else {
-      text_hour_i.innerHTML = i + "H";
+      text_hour_i.innerHTML = date_i.getHours() + "H";
     }
 
     // Write hour weather
     var balise_temp_forecast_hour_i = document.createElement("div");
-    var text_temp_forecast_hour_i = Math.floor(weather.forecast_hourly[j].temp);
+    var text_temp_forecast_hour_i = Math.floor(weather.forecast_hourly[i].temp);
     balise_temp_forecast_hour_i.innerHTML = `${text_temp_forecast_hour_i}°C`;
 
     div_weather_hours_i.appendChild(text_hour_i);
     div_weather_hours_i.appendChild(balise_temp_forecast_hour_i);
 
-    div_weather_hours.appendChild(div_weather_hours_i);
-
-    j += shift_hours;
+    if(cpt < 11) {
+      div_weather_hours1.appendChild(div_weather_hours_i);
+    } else {
+      div_weather_hours2.appendChild(div_weather_hours_i);
+    }
+    cpt++;
   }
 
   fill_week_weather();
