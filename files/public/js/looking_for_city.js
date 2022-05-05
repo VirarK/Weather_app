@@ -44,6 +44,7 @@ async function looking_for_city() {
                     city_found.lon = data[0].lon;
                 })
                 .then(function() {
+                    
                     fill_place();
                 });
         }

@@ -51,7 +51,7 @@ function changeBg() {
 	}
 }
 
-	/*change login.hbs colors*/
+/*change login.hbs colors*/
 function changeColors() {
 	if (changeBg() == "n") {
 		console.log("night");
