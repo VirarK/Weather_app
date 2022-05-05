@@ -37,6 +37,6 @@ db.connect((err) => {
 // On définit les routes
 app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
-app.use('/favories', require('./routes/favories'))
+app.use('/favorites', require('./routes/favorites'))
 
 app.listen(process.env.PORT || 8080);
