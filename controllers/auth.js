@@ -16,7 +16,7 @@ const db = mysql.createConnection({
 
 exports.login = async(req, res) => {
     try {
-        const { email, password     } = req.body;
+        const { email, password } = req.body;
 
         if (!email || !password) {
             return res.status(400).render('login', {
@@ -90,9 +90,10 @@ exports.register = (req, res) => {
                         if (error) {
                             console.log(error);
                         } else {
-                            return res.render('register', {
-                                message2: "Utilisateur enregistré"
-                            });
+                            res.status(200).redirect('/login');
+                            // return res.render('register', {
+                            //     message2: "Utilisateur enregistré"
+                            // });
                         }
                     })
                 });
