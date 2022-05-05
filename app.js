@@ -39,4 +39,6 @@ app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
 app.use('/favorites', require('./routes/favorites'))
 
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT, () => {
+    console.log("Server started on port " + process.env.PORT);
+})

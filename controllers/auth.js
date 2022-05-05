@@ -90,7 +90,7 @@ exports.register = (req, res) => {
                         if (error) {
                             console.log(error);
                         } else {
-                            res.status(200).redirect('/login');
+                            res.status(200).redirect("/login");
                             // return res.render('register', {
                             //     message2: "Utilisateur enregistré"
                             // });

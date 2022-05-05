@@ -9,7 +9,5 @@ router.post('/login', authController.login);
 
 router.get('/logout', authController.logout);
 
-router.get('/profile', authController.isLoggedIn);
-
 
 module.exports = router;
