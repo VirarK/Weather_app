@@ -1,179 +1,17 @@
-let user_location = null;
-let city_found = null;
-
-const open_weather_key_hasnae = "27ea29f7607830944e90d5e9f0560259";
-const open_weather_key_melissa = "b0dcff87aa3fbe043e172859070fb6a3";
-const open_weather_key_mickael = "e4b40859cda1f2ff60ebabf6202a6de6";
-const open_weather_key = open_weather_key_hasnae;
+const weather = {};
 
 const today = new Date(Date.now());
 let dt = Math.floor(today / 1000);
-const shift_hours = 3;
 
 var css_custom = null;
 
 // ##############################################################################################
 
 /**
- * Return corresponding french day.
- *
- * @param {String} day english day.
- * @returns french day.
- */
-function transform_day(day) {
-  const map_day_en_to_fr = {
-    Mon: "Lundi",
-    Tue: "Mardi",
-    Wed: "Mercredi",
-    Thu: "Jeudi",
-    Fri: "Vendredi",
-    Sat: "Samedi",
-    Sun: "Dimanche",
-  };
-
-  return map_day_en_to_fr[day];
-}
-
-/**
- * Return corresponding french day but shortest version.
- *
- * @param {String} day english day.
- * @returns french day.
- */
-function transform_day_low(day) {
-  const map_day_en_to_fr = {
-    Mon: "Lun",
-    Tue: "Mar",
-    Wed: "Mer",
-    Thu: "Jeu",
-    Fri: "Ven",
-    Sat: "Sam",
-    Sun: "Dim",
-  };
-
-  return map_day_en_to_fr[day];
-}
-
-/**
- * Return corresponding french month.
- *
- * @param {*} month english month.
- * @returns french month.
- */
-function transform_month(month) {
-  const map_month_en_to_fr = {
-    Jan: "Janvier",
-    Feb: "Fevrier",
-    Mar: "Mars",
-    Apr: "Avril",
-    May: "Mai",
-    Jun: "Juin",
-    Jul: "Juillet",
-    Aug: "Aout",
-    Sep: "Septembre",
-    Oct: "Octobre",
-    Nov: "Novembre",
-    Dec: "Decembre",
-  };
-
-  return map_month_en_to_fr[month];
-}
-
-/**
- * Transform date in french version.
- *
- * @param {Date} date english version (ex Mer Mar 16).
- * @param {Number} mode shortest day or not.
- * @returns date in french version (ex Mer Mar 16 -> Mercredi 16 Mars or Mer 16 Mars).
- */
-function transform_date(date, mode = 0) {
-  var date_str = date.toDateString();
-  var table_date_str = date_str.split(" ");
-
-  if (mode == 0) {
-    return (
-      transform_day(table_date_str[0]) +
-      " " +
-      table_date_str[2] +
-      " " +
-      transform_month(table_date_str[1])
-    );
-  } else if (mode == 1) {
-    return transform_day_low(table_date_str[0]) + " " + table_date_str[2];
-  }
-}
-
-/**
- * Return country code corresponding to country name.
- *
- * @param {String} country_code the country code (FR, EN, ...).
- * @returns the country full name (France, ...).
- */
-function transform_country_code() {
-  let region_names = new Intl.DisplayNames(["en"], { type: "region" });
-  return region_names.of(city_found.country_code);
-}
-
-// ##############################################################################################
-
-/**
- * Get user location with navigator.
- */
-function get_location() {
-  if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(set_position, get_ip_adress);
-  } else {
-    get_ip_adress();
-  }
-}
-
-/**
- * Set user position structure.
- * @param {Object} geolocation object with user coords.
- */
-async function set_position(geolocation) {
-  user_location = {}
-  user_location.lat = geolocation.coords.latitude;
-  user_location.lon = geolocation.coords.longitude;
-  
-  city_found = {}
-  city_found.lat = geolocation.coords.latitude;
-  city_found.lon = geolocation.coords.longitude;
-
-  fill_place();
-}
-
-/**
- * Get user ip adress and set latitude/ longitude
- */
-async function get_ip_adress() {
-  let api = `https://eu-api.ipdata.co/?api-key=26764a7363ed0775539678097b1944f2dcc4689d6bc883eebbe7b242`;
-  await fetch(api)
-    .then(function (response) {
-      let data = response.json();
-      return data;
-    })
-    .then(function (data) {
-      user_location = {}
-      user_location.lat = data.latitude;
-      user_location.lon = data.longitude;
-      
-      city_found = {}
-      city_found.lat = data.latitude;
-      city_found.lon = data.longitude;
-    })
-    .then(function () {
-      fill_place();
-    });
-}
-
-// ##############################################################################################
-
-/**
  * Get current, forecast hourly and daily weather.
  */
-async function get_weather() {
-  let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${city_found.lat}&lon=${city_found.lon}&appid=${open_weather_key}&lang=fr&units=metric&exclude=minutely,alerts$units={metric}`;
+async function get_weather(city, country, lat, lon) {
+  let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${open_weather_key}&lang=fr&units=metric&exclude=minutely,alerts`;
   await fetch(api)
     .then(function (response) {
       let data = response.json();
@@ -186,15 +24,15 @@ async function get_weather() {
       weather.daily = data.daily;
     })
     .then(function () {
-      fill_weather();
+      fill_weather(city, country, lat, lon);
     });
 }
 
 /**
  * Get previous hours weather.
  */
-async function get_weather_hours() {
-  let api = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${city_found.lat}&lon=${city_found.lon}&dt=${dt}&appid=${open_weather_key}&lang=fr&units=metric`;
+async function get_weather_hours(city, country, lat, lon) {
+  let api = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${lon}&dt=${dt}&appid=${open_weather_key}&lang=fr&units=metric`;
   await fetch(api)
     .then(function (response) {
       data = response.json();
@@ -213,19 +51,15 @@ async function get_weather_hours() {
 /**
  * Fill user place in html with latitude and longitude.
  */
-async function fill_place() {
-  let api = `https://api.openweathermap.org/geo/1.0/reverse?lat=${city_found.lat}&lon=${city_found.lon}&limit=2&appid=${open_weather_key}`;
+async function fill_place(city, country, lat, lon) {
+  let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=2&appid=${open_weather_key}`;
   await fetch(api)
     .then(function (response) {
       let data = response.json();
       return data;
     })
-    .then(function (data) {
-      city_found.city = data[0].name;
-      city_found.country_code = data[0].country;
-    })
     .then(function () {
-      get_weather();
+      get_weather(city, country, lat, lon);
     });
 }
 
@@ -243,18 +77,18 @@ function fill_date() {
 /**
  * Fill current weather in html.
  */
-function fill_weather() {
+function fill_weather(city, country, lat, lon) {
   //
   document.getElementById("place").innerHTML = `${
-    city_found.city
-  }, ${transform_country_code()}`;
+    city
+  }, ${transform_country(country)}`;
   document.getElementById(
     "weather-short-description"
   ).innerHTML = `${weather.current.weather[0].description}`;
 
   // set today weather icon
   var icon = document.getElementById("icon-weather");
-  var dir_icon = `images/weather/${weather.current.weather[0].icon}.png`;
+  var dir_icon = `/images/weather/${weather.current.weather[0].icon}.png`;
   icon.setAttribute("src", dir_icon);
   icon.setAttribute("width", "128");
   icon.setAttribute("height", "128");
@@ -263,7 +97,7 @@ function fill_weather() {
   document.getElementById("temperature").innerHTML = `${Math.floor(
     weather.current.temp
   )}°C 
-        / ${Math.floor(weather.current.temp)}°F`;
+        / ${celsius_to_fahrenheit(Math.floor(weather.current.temp))}°F`;
   document.getElementById("feels-like").innerText = `Ressenti ${Math.floor(
     weather.current.feels_like
   )}°C`;
@@ -272,7 +106,7 @@ function fill_weather() {
   document.getElementById("website-icon").setAttribute("href", dir_icon);
   document.getElementById(
     "website-title"
-  ).innerHTML = `météo de ${city_found.city}`;
+  ).innerHTML = `météo de ${city}`;
 
   //
   document.getElementById("UV").innerHTML = `UV ${weather.current.uvi}`;
@@ -286,13 +120,13 @@ function fill_weather() {
     "clouds"
   ).innerHTML = `Nuage ${weather.current.clouds}%`;
 
-  get_weather_hours();
+  get_weather_hours(city, country, lat, lon);
 }
 
 /**
  * fill hours weather in html.
  */
-function fill_hours_weather() {
+ function fill_hours_weather() {
   if (weather.current.weather[0].icon.includes("d")) {
     css_custom = "px-2 mx-2 my-1 rounded my-light-white-bg";
   } else {
@@ -301,8 +135,6 @@ function fill_hours_weather() {
 
   var div_weather_hours = document.getElementById("weather-hour");
   div_weather_hours.innerHTML = "";
-  
-  var cpt = 0
 
   // previous hour
   var date = new Date(weather.previous_hourly[0].dt*1000);
@@ -361,7 +193,6 @@ function fill_hours_weather() {
 
   fill_week_weather();
 }
-
 /**
  * Fill weather week in html.
  */
@@ -387,7 +218,7 @@ function fill_week_weather() {
     // Draw icon
     var weather_date_i = document.createElement("div");
     var weather_icon_date_i = document.createElement("img");
-    var weather_dir_icon_date_i = `images/weather/${weather.daily[i].weather[0].icon}.png`;
+    var weather_dir_icon_date_i = `/images/weather/${weather.daily[i].weather[0].icon}.png`;
     weather_icon_date_i.setAttribute("src", weather_dir_icon_date_i);
     weather_icon_date_i.setAttribute("width", "56");
     weather_icon_date_i.setAttribute("height", "56");
@@ -423,7 +254,7 @@ function fill_week_weather() {
 function fill_color_theme() {
   var bg = document.body;
 
-  var weather_dir_img = `url(images/bg/${weather.current.weather[0].icon}.jpg)`;
+  var weather_dir_img = `url(/images/bg/${weather.current.weather[0].icon}.jpg)`;
   bg.style.backgroundImage = weather_dir_img;
 
   //
@@ -437,13 +268,7 @@ function fill_color_theme() {
   }
 }
 
-function reset_weather() {
-  city_found.lat = user_location.lat;
-  city_found.lon = user_location.lon;
-
-  fill_place();
-}
-
 // ##############################################################################################
 
-get_location();
+// get_location();
+

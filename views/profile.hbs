@@ -51,7 +51,7 @@
             </div>
             <div>
               {{#each favs}}
-                <div>{{this.name}}, {{this.country_code}}, ({{this.lat}}, {{this.lon}})</div>
+                <div><a href="/weather/{{this.name}}/{{this.country_code}}/{{this.lat}}/{{this.lon}}">{{this.name}}, {{this.country_code}}, ({{this.lat}}, {{this.lon}})</a></div>
               {{/each}}
             </div>
           </div>
