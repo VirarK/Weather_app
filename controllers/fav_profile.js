@@ -10,7 +10,7 @@ const db = mysql.createConnection({
 exports.get_fav = async(req, res) => {
 	var user = req.user
     try {
-      sql_get_favs = `SELECT c.name, c.country_code, c.lat, c.lon FROM cities c, users u, favorites f WHERE u.email = '${user.email}' AND f.email = u.email AND f.city_id = c.city_id`
+      sql_get_favs = `SELECT c.name, c.country_code, c.lat, c.lon FROM cities c, users u, favourites f WHERE u.email = '${user.email}' AND f.email = u.email AND f.city_id = c.city_id`
       db.query(sql_get_favs, (err, result) => {
         if (err) throw err
 		else {
