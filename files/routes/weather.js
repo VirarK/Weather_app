@@ -1,35 +1,9 @@
 const express = require("express");
-const authController = require("../controllers/auth");
+const authController = require('../controllers/auth');
+const weatherController = require('../controllers/weather');
 
-let router = express.Router();
+const router = express.Router();
 
-router.get(
-	"/:city/:country_code/:lat/:lon",
-	authController.isLoggedIn,
-	(req, res) => {
-		if (req.user) {
-			res.render(
-				"weather", 
-				{
-					user:req.user,
-					city:req.params.city, 
-					country_code:req.params.country_code,
-					lat:req.params.lat,
-					lon:req.params.lon
-				}
-			)
-		} else {
-			res.render(
-				"weather", 
-				{
-					city:req.params.city, 
-					country_code:req.params.country_code,
-					lat:req.params.lat,
-					lon:req.params.lon
-				}
-			)
-		}
-	}
-);
+router.get("/:city/:country_code/:lat/:lon", authController.isLoggedIn, weatherController.is_favourite, weatherController.get_weather);
 
 module.exports = router;

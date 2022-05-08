@@ -1,5 +1,6 @@
 const express = require('express');
 const authController = require('../controllers/auth');
+const weatherController = require('../controllers/weather');
 const favController = require('../controllers/favourites');
 
 const router = express.Router();

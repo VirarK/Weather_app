@@ -47,17 +47,44 @@ exports.add_favourite = async(req, res) => {
 };
 
 exports.get_favourite = async(req, res) => {
-	var user = req.user
+  if (req.user) {
     try {
-      sql_get_favs = `SELECT c.name, c.country_code, c.lat, c.lon FROM cities c, users u, favourites f WHERE u.email = '${user.email}' AND f.email = u.email AND f.city_id = c.city_id`
+      sql_get_favs = `SELECT c.name, c.country_code, c.lat, c.lon FROM cities c, users u, favourites f WHERE u.email = '${req.user.email}' AND f.email = u.email AND f.city_id = c.city_id`
       db.query(sql_get_favs, (err, result) => {
         if (err) throw err
-		else {
-			res.render("profile", {user:user, favs:result})
-		}
+        else {
+          res.render("profile", {user:req.user, favs:result})
+        }
       })
-      
     } catch (error) {
       console.log(error)
     }
-}
+  }
+};
+
+exports.del_favourite = async(req, res) => {
+ if (req.user) {
+  var user = req.user
+  let sql_already_fav = `SELECT * FROM users u, favourites f, cities c WHERE u.email = '${user.email}' AND u.email = f.email AND f.city_id = c.city_id AND c.name = '${req.params.city}' AND c.country_code = '${req.params.country_code}'`;
+    db.query(sql_already_fav, (err, result) => {
+      if (err) throw err;
+      
+      if (result[0] != undefined) {  
+        let sql_found_city_id = `SELECT city_id FROM cities WHERE name = '${req.params.city}' AND country_code = '${req.params.country_code}'`
+        db.query(sql_found_city_id, (err, result) => {
+          if (err) throw err;
+
+          if (result[0] != undefined) {
+            let sql_del_fav = `DELETE FROM favourites WHERE city_id = ${result[0].city_id}`
+            db.query(sql_del_fav, (err, result) => {
+              if (err) throw err;
+              else {
+                res.status(200).redirect(`/weather/${req.params.city}/${req.params.country_code}/${req.params.lat}/${req.params.lon}`);
+              }
+            })
+          }
+        })
+      }
+    })
+  }
+};
