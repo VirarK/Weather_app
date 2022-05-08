@@ -24,7 +24,7 @@
 			<a
 				href="javascript:void(0)"
 				class="closebtn col-4"
-				onclick="closeNav()"
+				onclick="close_nav()"
 				title="Cliquez pour fermer le menu principal"
 				>&times;
 			</a>
@@ -60,7 +60,7 @@
 		</div>
 		<button
 			class="btn openbtn"
-			onclick="openNav()"
+			onclick="open_nav()"
 			title="Cliquez pour accéder au menu principal"
 		>
 			<i class="bx bxs-home d-inline-block bx-lg" style="color: #f8f5f5"></i>
@@ -73,7 +73,7 @@
 			<div class="input-group align-items-center">
 				<div class="localisation">
 					<button
-						onclick="reset_weather()"
+						onclick="get_location()"
 						type="button"
 						class="btn btn-outline"
 						title="Ville actuelle"
@@ -231,6 +231,7 @@
 
     <!-- import the webpage's javascript file -->
     <script src="/js/constante.js"></script>
+    <script src="/js/colors.js"></script>
     <script src="/js/utils.js"></script>
     <script src="/js/weather.js"></script>
     <script src="/js/looking_for_city.js"></script>
