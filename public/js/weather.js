@@ -52,7 +52,7 @@ async function get_weather_hours(city, country, lat, lon) {
  * Fill user place in html with latitude and longitude.
  */
 async function fill_place(city, country, lat, lon) {
-  let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=2&appid=${open_weather_key}`;
+  let api = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=2&appid=${open_weather_key}`;
   await fetch(api)
     .then(function (response) {
       let data = response.json();

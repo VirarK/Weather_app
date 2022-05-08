@@ -129,7 +129,7 @@ async function set_position(geolocation) {
 	lat = geolocation.coords.latitude;
 	lon = geolocation.coords.longitude;
   
-	let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=2&appid=${open_weather_key}`;
+	let api = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=2&appid=${open_weather_key}`;
 	await fetch(api)
 	.then(function (response) {
 		let data = response.json();
