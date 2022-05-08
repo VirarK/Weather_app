@@ -20,6 +20,7 @@ app.use(express.static(publicDirectory));
 
 // Récup les données encodées par l'URL (HTML forms)
 app.use(express.urlencoded({ extended: false }));
+
 // Parse JSON bodies (api clients)
 app.use(express.json());
 app.use(cookieParser());
@@ -37,7 +38,8 @@ db.connect((err) => {
 // On définit les routes
 app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
-app.use('/favories', require('./routes/favories'))
+app.use('/favourites', require('./routes/favourites'))
+app.use('/weather', require('./routes/weather'))
 
 app.listen(process.env.PORT, () => {
     console.log("Server started on port " + process.env.PORT);

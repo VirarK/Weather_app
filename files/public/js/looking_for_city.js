@@ -1,55 +1,33 @@
-/**
- * 
- */
-
-var country_code = null
-
 async function looking_for_city() {
-    var place = document.getElementById("input-name-city").value;
-    var table_place = place.split(",");
-    
-    if (table_place.length == 2) {
-        var city = table_place[0];
-        var country = table_place[1]
-        country = country.slice(1)
+	var lat = null;
+	var lon = null;
+	var country = null
 
-        let api = `https://restcountries.com/v3.1/name/${country}`
-        await fetch(api)
-            .then(function(response) {
-                if(response.status == 404) {
-                    alert(`Ville ou Pays inconnu`);
-                    country_code = -1
-                }
-                else {
-                    let data = response.json();
-                    return data;
-                }
-            })
-            .then(function(data) {
-                if(country_code != -1) {
-                    country_code = data[0].cca2
-                }
-            })
+	var place = document.getElementById("input-name-city").value;
+	var table_place = place.split(",");
+		
+	if (table_place.length == 2) {
+		var city = table_place[0];
+		var country = table_place[1]
+		country = country.slice(1)
 
-        if(country_code != -1) {
-            let api = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${country_code}&limit=1&appid=${open_weather_key}`;
-            await fetch(api)
-                .then(function(response) {
-                    let data = response.json();
-                    return data;
-                })
-                .then(function(data) {
-                    city_found = {}
-                    city_found.lat = data[0].lat;
-                    city_found.lon = data[0].lon;
-                })
-                .then(function() {
-                    
-                    fill_place();
-                });
-        }
-    }
-    else {
-        alert(`${place} : Format invalide`);
-    }
+		let api = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&limit=1&appid=${open_weather_key}`;
+		await fetch(api)
+		.then(function(response) {
+			let data = response.json();
+			return data;
+		})
+		.then(function(data) {
+			lat = data[0].lat;
+			lon = data[0].lon;
+			country = data[0].country
+			city = data[0].name
+		})
+		.then(function() {
+			window.location = `/weather/${city}/${country}/${lat}/${lon}`;
+		});
+	}
+	else {
+		alert(`${place} : Format invalide`);
+	}
 }

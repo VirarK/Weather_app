@@ -12,14 +12,14 @@ const db = mysql.createConnection({
 let router = express.Router();
 
 router.get(
-  "/new/:city/:country_code/:lat/:lon",
+  "/:city/:country_code/:lat/:lon",
   authController.isLoggedIn,
   (req, res) => {
     if (req.user) {
       user = req.user;
 
-      // looking if city is already in favories
-      let sql_already_fav = `SELECT * FROM users u, favories f, cities c WHERE u.email = '${user.email}' AND u.email = f.email AND f.city_id = c.city_id AND c.name = '${req.params.city}' AND c.country_code = '${req.params.country_code}'`;
+      // looking if city is already in favourites
+      let sql_already_fav = `SELECT * FROM users u, favourites f, cities c WHERE u.email = '${user.email}' AND u.email = f.email AND f.city_id = c.city_id AND c.name = '${req.params.city}' AND c.country_code = '${req.params.country_code}'`;
       db.query(sql_already_fav, (err, result) => {
         if (err) throw err;
 
@@ -39,7 +39,7 @@ router.get(
               console.log("Ville déjà dans la base de données");
             }
 
-            let sql_add_city_fav = `INSERT INTO favories (city_id, email) SELECT city_id, email FROM cities c, users u WHERE c.name = '${req.params.city}'  AND country_code = '${req.params.country_code}' AND u.email = '${user.email}'`;
+            let sql_add_city_fav = `INSERT INTO favourites (city_id, email) SELECT city_id, email FROM cities c, users u WHERE c.name = '${req.params.city}'  AND country_code = '${req.params.country_code}' AND u.email = '${user.email}'`;
             db.query(sql_add_city_fav, (err, result) => {
               if (err) throw err;
             });
@@ -50,7 +50,7 @@ router.get(
       });
     }
 
-    res.status(200).redirect("/");
+    res.status(200).redirect(`/weather/${req.params.city}/${req.params.country_code}/${req.params.lat}/${req.params.lon}`);
   }
 );
 

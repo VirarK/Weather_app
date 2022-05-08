@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link id="website-icon" rel="icon" href="images/weather/unknown.png" />
+    <link id="website-icon" rel="icon" href="/images/weather/unknown.png" />
     <title id="website-title">Unknown</title>
   </head>
 
@@ -11,11 +11,13 @@
 		<!-- Header-->
 		<header class="container-fluid d-flex align-items-arround">
 			<div>
-				<img
-				src="images/animatedWeather-unscreen (1).gif"
-				alt="wicon mt-3"
-				width="64"
-				/>
+				<a href="/" class="href">
+					<img
+					src="/images/animatedWeather-unscreen (1).gif"
+					alt="wicon mt-3"
+					width="64"
+					/>
+				</a>
 			</div>
 		<!--sidePanel-->
 		{{!-- <div id="sidePanel" class="sidepanel text-center">
@@ -146,7 +148,7 @@
 					<div id="place" class="h3">Localisation inconnu</div>
 					<script>
 						function new_fav() {
-							window.location = `/favories/new/${city_found.city}/${city_found.country_code}/${city_found.lat}/${city_found.lon}`;
+							window.location = `/favourites/{{city}}/{{country_code}}/{{lat}}/{{lon}}`;
 						}
 					</script>
 					{{#if user}}
@@ -167,7 +169,7 @@
 				<div id="weather-container" class="text-center mx-3 my-2">
 				<img
 					id="icon-weather"
-					src="images/weather/unknown.png"
+					src="/images/weather/unknown.png"
 					width="56"
 					height="56"
 					alt="icon weather"
@@ -228,11 +230,11 @@
     />
 
     <!-- import the webpage's javascript file -->
-    <script>
-      const weather = {};
+    <script src="/js/constante.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/js/weather.js"></script>
+    <script src="/js/looking_for_city.js"></script>
+	<script>
+      	fill_place("{{city}}", "{{country_code}}", {{lat}}, {{lon}})
     </script>
-    <script src="js/utils.js"></script>
-    <script src="js/weather.js"></script>
-    <script src="js/looking_for_city.js"></script>
-	
 </html>

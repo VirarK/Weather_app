@@ -1,14 +1,7 @@
-let user_location = null;
-let city_found = null;
-
-const open_weather_key_hasnae = "27ea29f7607830944e90d5e9f0560259";
-const open_weather_key_melissa = "b0dcff87aa3fbe043e172859070fb6a3";
-const open_weather_key_mickael = "e4b40859cda1f2ff60ebabf6202a6de6";
-const open_weather_key = open_weather_key_hasnae;
+const weather = {};
 
 const today = new Date(Date.now());
 let dt = Math.floor(today / 1000);
-const shift_hours = 3;
 
 var css_custom = null;
 
@@ -106,12 +99,16 @@ function transform_date(date, mode = 0) {
 /**
  * Return country code corresponding to country name.
  *
- * @param {String} country_code the country code (FR, EN, ...).
+ * @param {String} country the country code (FR, EN, ...).
  * @returns the country full name (France, ...).
  */
-function transform_country_code() {
-  let region_names = new Intl.DisplayNames(["en"], { type: "region" });
-  return region_names.of(city_found.country_code);
+function transform_country(country) {
+  try {
+    let region_names = new Intl.DisplayNames(["en"], { type: "region" });
+    return region_names.of(country);
+  } catch(RangeError) {
+    return country;
+  }
 }
 
 // ##############################################################################################
@@ -184,8 +181,8 @@ async function get_ip_adress() {
 /**
  * Get current, forecast hourly and daily weather.
  */
-async function get_weather() {
-  let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${city_found.lat}&lon=${city_found.lon}&appid=${open_weather_key}&lang=fr&units=metric&exclude=minutely,alerts`;
+async function get_weather(city, country, lat, lon) {
+  let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${open_weather_key}&lang=fr&units=metric&exclude=minutely,alerts`;
   await fetch(api)
     .then(function (response) {
       let data = response.json();
@@ -198,15 +195,15 @@ async function get_weather() {
       weather.daily = data.daily;
     })
     .then(function () {
-      fill_weather();
+      fill_weather(city, country, lat, lon);
     });
 }
 
 /**
  * Get previous hours weather.
  */
-async function get_weather_hours() {
-  let api = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${city_found.lat}&lon=${city_found.lon}&dt=${dt}&appid=${open_weather_key}&lang=fr`;
+async function get_weather_hours(city, country, lat, lon) {
+  let api = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${lon}&dt=${dt}&appid=${open_weather_key}&lang=fr&units=metric`;
   await fetch(api)
     .then(function (response) {
       data = response.json();
@@ -225,19 +222,15 @@ async function get_weather_hours() {
 /**
  * Fill user place in html with latitude and longitude.
  */
-async function fill_place() {
-  let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${city_found.lat}&lon=${city_found.lon}&limit=2&appid=${open_weather_key}`;
+async function fill_place(city, country, lat, lon) {
+  let api = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=2&appid=${open_weather_key}`;
   await fetch(api)
     .then(function (response) {
       let data = response.json();
       return data;
     })
-    .then(function (data) {
-      city_found.city = data[0].name;
-      city_found.country_code = data[0].country;
-    })
     .then(function () {
-      get_weather();
+      get_weather(city, country, lat, lon);
     });
 }
 
@@ -255,18 +248,18 @@ function fill_date() {
 /**
  * Fill current weather in html.
  */
-function fill_weather() {
+function fill_weather(city, country, lat, lon) {
   //
   document.getElementById("place").innerHTML = `${
-    city_found.city
-  }, ${transform_country_code()}`;
+    city
+  }, ${transform_country(country)}`;
   document.getElementById(
     "weather-short-description"
   ).innerHTML = `${weather.current.weather[0].description}`;
 
   // set today weather icon
   var icon = document.getElementById("icon-weather");
-  var dir_icon = `images/weather/${weather.current.weather[0].icon}.png`;
+  var dir_icon = `/images/weather/${weather.current.weather[0].icon}.png`;
   icon.setAttribute("src", dir_icon);
   icon.setAttribute("width", "128");
   icon.setAttribute("height", "128");
@@ -284,7 +277,7 @@ function fill_weather() {
   document.getElementById("website-icon").setAttribute("href", dir_icon);
   document.getElementById(
     "website-title"
-  ).innerHTML = `météo de ${city_found.city}`;
+  ).innerHTML = `météo de ${city}`;
 
   //
   document.getElementById("UV").innerHTML = `UV ${weather.current.uvi}`;
@@ -298,43 +291,43 @@ function fill_weather() {
     "clouds"
   ).innerHTML = `Nuage ${weather.current.clouds}%`;
 
-  get_weather_hours();
+  get_weather_hours(city, country, lat, lon);
 }
 
 /**
  * fill hours weather in html.
  */
-function fill_hours_weather() {
+ function fill_hours_weather() {
   if (weather.current.weather[0].icon.includes("d")) {
-    css_custom = "px-3 m-4 rounded my-light-white-bg";
+    css_custom = "px-2 mx-2 my-1 rounded my-light-white-bg";
   } else {
-    css_custom = "px-3 m-4 rounded my-dark-white-bg";
+    css_custom = "px-2 mx-2 my-1 rounded my-dark-white-bg";
   }
 
   var div_weather_hours = document.getElementById("weather-hour");
   div_weather_hours.innerHTML = "";
 
   // previous hour
-  var i = 1;
-  for (i; i < today.getHours; i += shift_hours) {
+  var date = new Date(weather.previous_hourly[0].dt*1000);
+  var end = today.getHours() - date.getHours()
+
+  for (i = 0; i < end; i++) {
     var div_weather_hours_i = document.createElement("div");
     div_weather_hours_i.setAttribute("class", css_custom);
 
     // Write the hour
     var text_hour_i = document.createElement("div");
-    if (i < 10) {
-      text_hour_i.innerHTML = "0" + i + "H";
+    var date_i = new Date(weather.previous_hourly[i].dt * 1000);
+    if (date_i.getHours() < 10) {
+      text_hour_i.innerHTML = "0" + date_i.getHours() + "H";
     } else {
-      text_hour_i.innerHTML = i + "H";
+      text_hour_i.innerHTML = date_i.getHours() + "H";
     }
-
-    var div_weather_hours = document.getElementById("weather-hour");
-    div_weather_hours.innerHTML = "";
 
     // Write hour weather
     var balise_temp_previous_hour_i = document.createElement("div");
     var text_temp_previous_hour_i = Math.floor(
-      weather.previous_hourly[i - 1].temp
+      weather.previous_hourly[i].temp
     );
     balise_temp_previous_hour_i.innerHTML = `${text_temp_previous_hour_i}°C`;
 
@@ -345,35 +338,32 @@ function fill_hours_weather() {
   }
 
   // forcast hour
-  var j = 1;
-  for (i; i < 24; i += shift_hours) {
+  for (i = 0; i < 24 - end - 2; i++) {
     var div_weather_hours_i = document.createElement("div");
     div_weather_hours_i.setAttribute("class", css_custom);
 
     // Write the hour
     var text_hour_i = document.createElement("div");
-    if (i < 10) {
-      text_hour_i.innerHTML = "0" + i + "H";
+    var date_i = new Date(weather.forecast_hourly[i].dt * 1000)
+    if (date_i.getHours() < 10) {
+      text_hour_i.innerHTML = "0" + date_i.getHours() + "H";
     } else {
-      text_hour_i.innerHTML = i + "H";
+      text_hour_i.innerHTML = date_i.getHours() + "H";
     }
 
     // Write hour weather
     var balise_temp_forecast_hour_i = document.createElement("div");
-    var text_temp_forecast_hour_i = Math.floor(weather.forecast_hourly[j].temp);
+    var text_temp_forecast_hour_i = Math.floor(weather.forecast_hourly[i].temp);
     balise_temp_forecast_hour_i.innerHTML = `${text_temp_forecast_hour_i}°C`;
 
     div_weather_hours_i.appendChild(text_hour_i);
     div_weather_hours_i.appendChild(balise_temp_forecast_hour_i);
 
     div_weather_hours.appendChild(div_weather_hours_i);
-
-    j += shift_hours;
   }
 
   fill_week_weather();
 }
-
 /**
  * Fill weather week in html.
  */
@@ -399,7 +389,7 @@ function fill_week_weather() {
     // Draw icon
     var weather_date_i = document.createElement("div");
     var weather_icon_date_i = document.createElement("img");
-    var weather_dir_icon_date_i = `images/weather/${weather.daily[i].weather[0].icon}.png`;
+    var weather_dir_icon_date_i = `/images/weather/${weather.daily[i].weather[0].icon}.png`;
     weather_icon_date_i.setAttribute("src", weather_dir_icon_date_i);
     weather_icon_date_i.setAttribute("width", "56");
     weather_icon_date_i.setAttribute("height", "56");
@@ -435,7 +425,7 @@ function fill_week_weather() {
 function fill_color_theme() {
   var bg = document.body;
 
-  var weather_dir_img = `url(images/bg/${weather.current.weather[0].icon}.jpg)`;
+  var weather_dir_img = `url(/images/bg/${weather.current.weather[0].icon}.jpg)`;
   bg.style.backgroundImage = weather_dir_img;
 
   //
@@ -458,4 +448,5 @@ function reset_weather() {
 
 // ##############################################################################################
 
-get_location();
+// get_location();
+

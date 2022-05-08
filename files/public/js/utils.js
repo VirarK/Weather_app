@@ -29,7 +29,7 @@ setInterval(() => {
 });
 
 /*change login.hbs bg*/
-function changeBg() {
+function change_bg() {
 	if(document.body) {
 		let date = new Date();
 		let hours = date.getHours();
@@ -52,9 +52,9 @@ function changeBg() {
 }
 
 /*change login.hbs colors*/
-function changeColors() {
-	if (changeBg() == "n") {
-		console.log("night");
+function change_colors() {
+	if (change_bg() == "n") {
+		//console.log("night");
 		let cn = document.getElementById("seConnecter");
 		let cnx = document.getElementById("cnx");
 		let rs = document.getElementById("rs");
@@ -62,15 +62,27 @@ function changeColors() {
 		let time = document.getElementById("time");
 		let sc = document.getElementById("sInscrire");
 
-		cn.style.color = "white";
-		cnx.style.color = "white";
-		rs.style.color = "white";
-		gif.style.backgroundImage = "";
-		time.style.color = "white";
-		sc.style.color = "white";
-	} else if (changeBg() == "d") {
-		console.log("day");
+		if (cn) {
+			cn.style.color = "white";
+		}
+		if (cnx) {
+			cnx.style.color = "white";
+		}
+		if (rs) {
+			rs.style.color = "white";
+		}
+		if (gif) {
+			gif.style.backgroundImage = "";
+		}
+		if (time) {
+			time.style.color = "white";
+		}
+		if (sc) {
+			sc.style.color = "white";
+		}
+	} else if (change_bg() == "d") {
+		//console.log("day");
 	}
 }
 
-changeColors();
+change_colors();
