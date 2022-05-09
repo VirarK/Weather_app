@@ -1,5 +1,3 @@
-const key = process.env.OPEN_WEATHER_KEY
-
 /**
  * Return corresponding french day.
  *

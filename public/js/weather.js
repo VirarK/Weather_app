@@ -1,4 +1,3 @@
-const key = process.env.OPEN_WEATHER_KEY
 const weather = {};
 
 const today = new Date(Date.now());
