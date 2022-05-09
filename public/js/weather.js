@@ -1,5 +1,3 @@
-const dotenv = require("dotenv");
-
 const key = process.env.OPEN_WEATHER_KEY
 const weather = {};
 
