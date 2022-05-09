@@ -16,7 +16,7 @@ const db = mysql.createConnection({
 
 exports.login = async(req, res) => {
     try {
-        const { email, password     } = req.body;
+        const { email, password } = req.body;
 
         if (!email || !password) {
             return res.status(400).render('login', {
@@ -34,7 +34,7 @@ exports.login = async(req, res) => {
                     const token = jwt.sign({ email }, process.env.JWT_SECRET, {
                         expiresIn: process.env.JWT_EXPIRES_IN
                     });
-                    
+
                     const cookieOptions = {
                         expires: new Date(
                             Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
@@ -88,9 +88,7 @@ exports.register = (req, res) => {
                         if (error) {
                             console.log(error);
                         } else {
-                            return res.render('register', {
-                                message2: "Utilisateur enregistré"
-                            });
+                            res.status(200).redirect("/login");
                         }
                     })
                 });
