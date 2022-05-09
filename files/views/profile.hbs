@@ -68,9 +68,13 @@
               
             </div>
             <div>
-              {{#each favs}}
-                <div><a href="/weather/{{this.name}}/{{this.country_code}}/{{this.lat}}/{{this.lon}}">{{this.name}}, {{this.country_code}}, ({{this.lat}}, {{this.lon}})</a></div>
-              {{/each}}
+              {{#if favs}}
+                {{#each favs}}
+                  <div><a href="/weather/{{this.name}}/{{this.country_code}}/{{this.lat}}/{{this.lon}}">{{this.name}}, {{this.country_code}}, ({{this.lat}}, {{this.lon}})</a></div>
+                {{/each}}
+              {{else}}
+                <div>Aucun favoris</div>
+              {{/if}}
             </div>
           </div>
         </div>

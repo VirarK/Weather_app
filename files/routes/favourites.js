@@ -8,4 +8,6 @@ router.get("/new/:city/:country_code/:lat/:lon", authController.isLoggedIn, favC
 
 router.get("/del/:city/:country_code/:lat/:lon", authController.isLoggedIn, favController.del_favourite);
 
+router.get("/clear", authController.isLoggedIn, favController.clear_favourite);
+
 module.exports = router;
