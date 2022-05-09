@@ -35,7 +35,6 @@ function change_bg() {
 /*change login.hbs colors*/
 function change_colors() {
 	if (change_bg() == "n") {
-		//console.log("night");
 		let cn = document.getElementById("seConnecter");
 		let cnx = document.getElementById("cnx");
 		let rs = document.getElementById("rs");
@@ -61,8 +60,6 @@ function change_colors() {
 		if (sc) {
 			sc.style.color = "white";
 		}
-	} else if (change_bg() == "d") {
-		//console.log("day");
 	}
 }
 

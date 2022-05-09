@@ -107,21 +107,7 @@ header {
     background-image: url("/bg/01d.jpg") no-repeat center center fixed;
     background-size: cover !important;
 }
-/*
-.btn-primary {
-    border-radius: 5px;
-    text-decoration: none;
-    background-color: lightgray;
-    border-color: lightgray;
-    border: solid 1px black;
-    color: var(--my_black);
-}
 
-.btn-primary a {
-    text-decoration: none;
-    color: var(--my_black);
-}
-*/
 .cnx a {
     color: white;
     text-decoration:none; 
