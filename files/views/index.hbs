@@ -17,53 +17,6 @@
 				width="64"
 				/>
 			</div>
-		<!--sidePanel-->
-		{{!-- <div id="sidePanel" class="sidepanel text-center">
-			<a
-				href="javascript:void(0)"
-				class="closebtn col-4"
-				onclick="close_nav()"
-				title="Cliquez pour fermer le menu principal"
-				>&times;
-			</a>
-			<img
-				src="images/animatedWeather-unscreen (1).gif"
-				alt="wicon mt-3"
-				width="115"
-			/>
-			<div
-				class="input-group d-flex justify-content-center my-3"
-				title="lancez la recherche"
-			>
-			<div class="form-outline">
-				<button type="button" class="btn btn-dark btn-sm">
-					<input
-						type="search"
-						id="form1"
-						class="form-control"
-						placeholder="Chercher une ville..."
-					/>
-					<i class="bx bx-search-alt" style="color: #f1ebeb"></i>
-				</button>
-			</div>
-			<a href="#" class="city">City1</a>
-			<a href="#" class="city">City2</a>
-			<a href="#" class="city">City3</a>
-			<div id="fav-city-1">Ville1</div>
-			<div id="fav-city-2">Ville2</div>
-			<div id="fav-city-3">Ville3</div>
-			<div id="fav-city-4">Ville4</div>
-			<div id="fav-city-5">Ville5</div>
-			<div>...</div>
-		</div>
-		<button
-			class="btn openbtn"
-			onclick="open_nav()"
-			title="Cliquez pour accéder au menu principal"
-		>
-			<i class="bx bxs-home d-inline-block bx-lg" style="color: #f8f5f5"></i>
-		</button> --}}
-		<!--end sidePannel-->
 
 		<!--navBar-->
 		<div class="d-flex offset-md-6 ms-auto">
@@ -79,9 +32,18 @@
 					<i class="bx bxs-map bx-sm" style="color: rgb(35, 34, 34)"></i>
 					</button>
 				</div>
+				<script>
+					function handle(e){
+						if (e.keyCode === 13){
+							looking_for_city()
+						}
+						return false;
+					}
+				</script>
 				<div class="form-outline">
 					<input
 						type="search"
+						onkeypress="handle(event)"
 						id="input-name-city"
 						class="form-control rounded"
 						placeholder="ex: Versailles, France"
@@ -186,16 +148,6 @@
 			</div>
 			</div>
 		</main>
-
-		{{!-- <footer class="container my-5">
-			<div class="row">
-			<div class="d-flex align-items-center justify-content-center">
-				<div class="px-2">Potitique de confidentialité</div>
-				<div class="px-2">A propos de ???</div>
-				<div class="px-2">Autre</div>
-			</div>
-			</div>
-		</footer> --}}
 		</div>
 	</body>
 
