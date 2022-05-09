@@ -1,7 +1,5 @@
 const dotenv = require("dotenv");
-const path = require("path");
 
-dotenv.config({ path: './config.env' })
 const key = process.env.OPEN_WEATHER_KEY
 
 /**
