@@ -147,19 +147,34 @@
 					<div class="d-flex">
 					<div id="place" class="h3">Localisation inconnu</div>
 					<script>
-						function new_fav() {
-							window.location = `/favourites/{{city}}/{{country_code}}/{{lat}}/{{lon}}`;
+						function new_favourite() {
+							window.location = `/favourites/new/{{city}}/{{country_code}}/{{lat}}/{{lon}}`;
+						}
+
+						function del_favourite() {
+							window.location = `/favourites/del/{{city}}/{{country_code}}/{{lat}}/{{lon}}`;
 						}
 					</script>
 					{{#if user}}
-						<button
-							onclick="new_fav()"
-							class="btn btn-outline favoris"
-							title="Cliquez pour ajouter au favoris"
-						>
-						<i class="bx bxs-star bx-sm" style="color: rgb(231, 185, 85)">
-						</i>
-						</button>
+						{{#if is_favourite}}
+							<button
+								onclick="del_favourite()"
+								class="btn btn-outline favoris"
+								title="Cliquez pour supprimer des favoris"
+							>
+							<i class="bx bxs-star bx-sm" style="color: rgb(231, 185, 85)">
+							</i>
+							</button>
+						{{else}}
+							<button
+								onclick="new_favourite()"
+								class="btn btn-outline favoris"
+								title="Cliquez pour ajouter au favoris"
+							>
+							<i class="bx bxs-star bx-sm" style="color: rgb(255, 255, 255)">
+							</i>
+							</button>
+						{{/if}}
 					{{/if}}
 					</div>
 				</div>
