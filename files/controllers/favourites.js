@@ -89,6 +89,35 @@ exports.del_favourite = async(req, res) => {
   }
 };
 
+/* exports.clear_favourite = async(req, res) => {
+  if (req.user) {
+    var user = req.user
+    let sql_already_fav = `SELECT * FROM users u, favourites f, cities c WHERE u.email = '${user.email}' AND u.email = f.email AND f.city_id = c.city_id`;
+      db.query(sql_already_fav, (err, result) => {
+        if (err) throw err;
+        
+        if (result[0] != undefined) {
+          for (var i = 0; i < result.lenght; i++) {
+            let sql_found_city_id = `SELECT city_id FROM cities WHERE name = '${req.params.city}' AND country_code = '${req.params.country_code}'`
+            db.query(sql_found_city_id, (err, result) => {
+              if (err) throw err;
+
+              if (result[0] != undefined) {
+                let sql_del_fav = `DELETE FROM favourites WHERE city_id = ${result[0].city_id}`
+                db.query(sql_del_fav, (err, result) => {
+                  if (err) throw err;
+                  else {
+                    res.status(200).redirect(`/weather/${req.params.city}/${req.params.country_code}/${req.params.lat}/${req.params.lon}`);
+                  }
+                })
+              }
+            })
+          }
+        }
+      })
+  }
+}; */
+
 exports.is_favourite = async(req, res, next) => {
 	if (req.user) {
 		var user = req.user

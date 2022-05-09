@@ -259,12 +259,17 @@ function fill_color_theme() {
 
   //
   var main_container = document.getElementById("main-container");
+  var lc = document.getElementById("localisation");
   if (weather.current.weather[0].icon.includes("n")) {
     main_container.classList.remove("my-black");
     main_container.classList.add("my-white");
+
+    lc.style.color = "var(--my_white)";
   } else {
     main_container.classList.remove("my-white");
     main_container.classList.add("my-black");
+
+    lc.style.color = "var(--my_black)";
   }
 }
 

@@ -46,8 +46,26 @@
 
         <div class="col-8 my-3">
           <div class="card text-center PP d-flex justify-content-center">
-            <div class="card-header">
-              Liste favoris
+            <div class="d-flex flex-row card-header justify-content-between">
+              <div class="center">
+                Liste favoris
+              </div>
+              <div>
+              <script>
+                function clear_favourite() {
+                  window.location = `/favourites/clear`;
+                }
+              </script>
+              <button
+                onclick="clear_favourite()"
+                type="button"
+                class="btn btn-outline"
+                title="Supprimer tous les favoris"
+              >
+              <i class="bx bx-trash bx-sm"></i>
+              </button>
+              </div>
+              
             </div>
             <div>
               {{#each favs}}
@@ -65,5 +83,9 @@
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
       crossorigin="anonymous"
     ></script>
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
   </body>
 </html>

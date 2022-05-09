@@ -22,14 +22,14 @@
 		<div class="d-flex offset-md-6 ms-auto">
 			<!-- Search button-->
 			<div class="input-group align-items-center">
-				<div class="localisation">
+				<div>
 					<button
 						onclick="get_location()"
 						type="button"
 						class="btn btn-outline"
 						title="Ville actuelle"
 					>
-					<i class="bx bxs-map bx-sm" style="color: rgb(35, 34, 34)"></i>
+					<i id="localisation" class="bx bxs-map bx-sm"></i>
 					</button>
 				</div>
 				<script>
@@ -60,16 +60,6 @@
 				></i>
 			</button>
 
-			<!-- button shortcut for user's favorite cities -->
-			{{!-- <button
-				type="button"
-				class="btn btn-outline-dark mx-2 rounded"
-				title="Cliquez pour accéder aux villes favorites"
-			>
-				<i class="bx bxs-bookmark-star my-white bx-sm"></i>
-			</button> --}}
-
-			<!--login button-->
 			{{#if user}}
 				<button class="cnx btn ms-2 btn-outline-dark rounded">
 				<a href="/profile" class="href">{{user.username}}</a>
