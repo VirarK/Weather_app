@@ -4,8 +4,7 @@ const dotenv = require("dotenv");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
-// require('dotenv').config()
-dotenv.config()
+dotenv.config({ path: './config.env' })
 const key = process.env.OPEN_WEATHER_KEY
 
 const app = express();
