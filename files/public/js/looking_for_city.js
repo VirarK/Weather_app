@@ -2,6 +2,7 @@ async function looking_for_city() {
 	var lat = null;
 	var lon = null;
 	var country = null
+	var unknown = false
 
 	var place = document.getElementById("input-name-city").value;
 	var table_place = place.split(",");
@@ -20,13 +21,21 @@ async function looking_for_city() {
 			return data;
 		})
 		.then(function(data) {
-			lat = data[0].lat;
-			lon = data[0].lon;
-			country = data[0].country
-			city = data[0].name
+			if (!data[0]) {
+				unknown = true
+			} else {
+				lat = data[0].lat;
+				lon = data[0].lon;
+				country = data[0].country
+				city = data[0].name
+			}
 		})
 		.then(function() {
-			window.location = `/weather/${city}/${country}/${lat}/${lon}`;
+			if (!unknown) {
+				window.location = `/weather/${city}/${country}/${lat}/${lon}`;
+			} else {
+				alert(`${place} : Ville ou Pays inconnu`);
+			}
 		});
 	}
 	else {
