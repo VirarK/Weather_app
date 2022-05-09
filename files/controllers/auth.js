@@ -102,6 +102,7 @@ exports.register = (req, res) => {
 exports.isLoggedIn = async(req, res, next) => {
     if (req.cookies.jwt) {
         try {
+            console.log(req.cookies.jwt)
             //1) verify the token
             const decoded = await promisify(jwt.verify)(req.cookies.jwt,
                 process.env.JWT_SECRET
@@ -122,6 +123,7 @@ exports.isLoggedIn = async(req, res, next) => {
             return next();
         }
     } else {
+        req.user = null;
         next();
     }
 }

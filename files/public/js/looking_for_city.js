@@ -9,7 +9,9 @@ async function looking_for_city() {
 	if (table_place.length == 2) {
 		var city = table_place[0];
 		var country = table_place[1]
-		country = country.slice(1)
+		while (country[1] == " ") {
+			country = country.slice(1)
+		}
 
 		let api = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&limit=1&appid=${open_weather_key}`;
 		await fetch(api)
