@@ -127,23 +127,46 @@ function fill_weather(city, country, lat, lon) {
  * fill hours weather in html.
  */
  function fill_hours_weather() {
+  var num_elem_by_carousel = 4
+  css_custom = "px-2 mx-2 my-1 rounded "
   if (weather.current.weather[0].icon.includes("d")) {
-    css_custom = "px-2 mx-2 my-1 rounded my-light-white-bg";
+    css_custom += "my-light-white-bg";
   } else {
-    css_custom = "px-2 mx-2 my-1 rounded my-dark-white-bg";
+    css_custom += "my-dark-white-bg";
   }
 
   var div_weather_hours = document.getElementById("weather-hour");
   div_weather_hours.innerHTML = "";
 
   // previous hour
-  var date = new Date(weather.previous_hourly[0].dt*1000);
-  var end = today.getHours() - date.getHours()
+  var date = new Date(weather.current.dt * 1000);
+  var end = date.getHours();
 
-  for (i = 0; i < end; i++) {
+  var div_carousel = null
+  var div_carousel_d_flex = null
+
+  var i = 0;
+  for (; i <= end - 2; i++) {
     var div_weather_hours_i = document.createElement("div");
-    div_weather_hours_i.setAttribute("class", css_custom);
+    
+    if (i % 5 == 0) {
+      if (div_carousel != null) {
+        div_weather_hours.appendChild(div_carousel)
+      }
+      div_carousel = document.createElement("div");
+      div_carousel.classList.add("carousel-item");
+      if (i == 0) {
+        div_carousel.classList.add("active");
+      }
 
+      div_carousel_d_flex = document.createElement("div");
+      div_carousel_d_flex.classList.add("d-flex");
+      div_carousel_d_flex.classList.add("justify-content-center");
+      div_carousel.appendChild(div_carousel_d_flex)
+    }
+
+    div_weather_hours_i.setAttribute("class", css_custom);
+    
     // Write the hour
     var text_hour_i = document.createElement("div");
     var date_i = new Date(weather.previous_hourly[i].dt * 1000);
@@ -163,11 +186,24 @@ function fill_weather(city, country, lat, lon) {
     div_weather_hours_i.appendChild(text_hour_i);
     div_weather_hours_i.appendChild(balise_temp_previous_hour_i);
 
-    div_weather_hours.appendChild(div_weather_hours_i);
+    div_carousel_d_flex.appendChild(div_weather_hours_i);
   }
 
   // forcast hour
-  for (i = 0; i < 24 - end - 2; i++) {
+  var j = i;
+  end = 24 - end;
+  for (var i = 1; i <= end; i++) {
+    if (j % 5 == 0) {
+      div_weather_hours.appendChild(div_carousel)
+      div_carousel = document.createElement("div");
+      div_carousel.classList.add("carousel-item");
+
+      div_carousel_d_flex = document.createElement("div");
+      div_carousel_d_flex.classList.add("d-flex");
+      div_carousel_d_flex.classList.add("justify-content-center");
+      div_carousel.appendChild(div_carousel_d_flex)
+    }
+
     var div_weather_hours_i = document.createElement("div");
     div_weather_hours_i.setAttribute("class", css_custom);
 
@@ -188,8 +224,12 @@ function fill_weather(city, country, lat, lon) {
     div_weather_hours_i.appendChild(text_hour_i);
     div_weather_hours_i.appendChild(balise_temp_forecast_hour_i);
 
-    div_weather_hours.appendChild(div_weather_hours_i);
+    div_carousel_d_flex.appendChild(div_weather_hours_i);
+    j++;
   }
+
+  div_carousel.appendChild(div_carousel_d_flex)
+  div_weather_hours.appendChild(div_carousel)
 
   fill_week_weather();
 }
