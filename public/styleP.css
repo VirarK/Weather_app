@@ -1,3 +1,7 @@
+bodu {
+    background-image: "./public/images/bg-profile.jpg";
+}
+
 nav {
     background: linear-gradient( #1871ff, rgb(112, 130, 255));
     color: #fff;
