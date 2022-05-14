@@ -1,5 +1,5 @@
-bodu {
-    background-image: "./public/images/bg-profile.jpg";
+body {
+    background-image: url("./public/images/bg-profile.jpg");
 }
 
 nav {
