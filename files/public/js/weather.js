@@ -127,7 +127,6 @@ function fill_weather(city, country, lat, lon) {
  * fill hours weather in html.
  */
  function fill_hours_weather() {
-  var num_elem_by_carousel = 4
   css_custom = "px-2 mx-2 my-1 rounded "
   if (weather.current.weather[0].icon.includes("d")) {
     css_custom += "my-light-white-bg";
@@ -194,9 +193,14 @@ function fill_weather(city, country, lat, lon) {
   end = 24 - end;
   for (var i = 1; i <= end; i++) {
     if (j % 5 == 0) {
-      div_weather_hours.appendChild(div_carousel)
+      if (div_carousel != null) {
+        div_weather_hours.appendChild(div_carousel)
+      }
       div_carousel = document.createElement("div");
       div_carousel.classList.add("carousel-item");
+      if (j == 0) {
+        div_carousel.classList.add("active");
+      }
 
       div_carousel_d_flex = document.createElement("div");
       div_carousel_d_flex.classList.add("d-flex");
