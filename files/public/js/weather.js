@@ -357,7 +357,6 @@ function updateTime() {
 	}
 }
 
-//setInterval(updateTime, 100)
 moment.tz.add([
   "Africa/Abidjan|LMT GMT|g.8 0|01|-2ldXH.Q|48e5",
   "Africa/Nairobi|LMT +0230 EAT +0245|-2r.g -2u -30 -2J|012132|-2ua2r.g N6nV.g 3Fbu h1cu dzbJ|47e5",

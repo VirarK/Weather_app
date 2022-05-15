@@ -144,7 +144,7 @@ async function set_position(geolocation) {
     });
 }
 
-document.getElementById("image_input").addEventListener("change", function () {
+/* document.getElementById("image_input").addEventListener("change", function () {
   if (this.files[0]) {
     var picture = new FileReader();
     picture.readAsDataURL(this.files[0]);
@@ -155,4 +155,4 @@ document.getElementById("image_input").addEventListener("change", function () {
       document.getElementById("uploadedImage").style.display = "block";
     });
   }
-});
+}); */

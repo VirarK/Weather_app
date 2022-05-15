@@ -228,9 +228,10 @@
     <script src="/js/utils.js"></script>
     <script src="/js/weather.js"></script>
     <script src="/js/looking_for_city.js"></script>
-	<script>
-      	fill_place("{{city}}", "{{country_code}}", {{lat}}, {{lon}})
-    </script>
 		
     <link rel="stylesheet" href="/style.css" />
+	
+	<script>
+      	get_weather("{{city}}", "{{country_code}}", {{lat}}, {{lon}})
+    </script>
 </html>
