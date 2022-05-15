@@ -130,11 +130,11 @@ function fill_weather(city, country, lat, lon) {
  * fill hours weather in html.
  */
  function fill_hours_weather() {
-  css_custom = "px-2 mx-2 my-1 rounded "
+  css_custom = "px-2 mx-2 my-1 rounded"
   if (weather.current.weather[0].icon.includes("d")) {
-    css_custom += "my-light-white-bg";
+    css_custom += " my-light-white-bg";
   } else {
-    css_custom += "my-dark-white-bg";
+    css_custom += " my-dark-white-bg";
   }
 
   var div_weather_hours = document.getElementById("weather-hour");
@@ -171,6 +171,7 @@ function fill_weather(city, country, lat, lon) {
     
     // Write the hour
     var text_hour_i = document.createElement("div");
+    text_hour_i.classList.add("text-center");
     var date_i = new Date(weather.previous_hourly[i].dt * 1000);
     if (date_i.getHours() < 10) {
       text_hour_i.innerHTML = "0" + date_i.getHours() + "H";
@@ -180,6 +181,7 @@ function fill_weather(city, country, lat, lon) {
 
     // Write hour weather
     var balise_temp_previous_hour_i = document.createElement("div");
+    balise_temp_previous_hour_i.classList.add("text-center");
     var text_temp_previous_hour_i = Math.floor(
       weather.previous_hourly[i].temp
     );
@@ -216,6 +218,7 @@ function fill_weather(city, country, lat, lon) {
 
     // Write the hour
     var text_hour_i = document.createElement("div");
+    text_hour_i.classList.add("text-center");
     var date_i = new Date(weather.forecast_hourly[i].dt * 1000)
     if (date_i.getHours() < 10) {
       text_hour_i.innerHTML = "0" + date_i.getHours() + "H";
@@ -225,6 +228,7 @@ function fill_weather(city, country, lat, lon) {
 
     // Write hour weather
     var balise_temp_forecast_hour_i = document.createElement("div");
+    balise_temp_forecast_hour_i.classList.add("text-center");
     var text_temp_forecast_hour_i = Math.floor(weather.forecast_hourly[i].temp);
     balise_temp_forecast_hour_i.innerHTML = `${text_temp_forecast_hour_i}°C`;
 
@@ -240,6 +244,7 @@ function fill_weather(city, country, lat, lon) {
 
   fill_week_weather();
 }
+
 /**
  * Fill weather week in html.
  */
@@ -250,6 +255,7 @@ function fill_week_weather() {
   // create week days
   for (var i = 1; i < 7; i++) {
     var div_weather_week_i = document.createElement("div");
+    div_weather_week_i.classList.add("d-flex");
     div_weather_week_i.setAttribute("class", css_custom);
 
     // Write date
@@ -258,36 +264,41 @@ function fill_week_weather() {
       today.getMonth(),
       today.getDate() + i
     );
+
     var date_i_transform = transform_date(date_i, 1);
     var text_date_i = document.createElement("div");
+    text_date_i.classList.add("text-center");
     text_date_i.innerHTML = date_i_transform;
 
+    div_weather_week_i.appendChild(text_date_i);
+
     // Draw icon
-    var weather_date_i = document.createElement("div");
+    var weather_icon_date_div_i = document.createElement("div");
+    weather_icon_date_div_i.classList.add("text-center");
     var weather_icon_date_i = document.createElement("img");
     var weather_dir_icon_date_i = `/images/weather/${weather.daily[i].weather[0].icon}.png`;
     weather_icon_date_i.setAttribute("src", weather_dir_icon_date_i);
     weather_icon_date_i.setAttribute("width", "56");
     weather_icon_date_i.setAttribute("height", "56");
 
-    weather_date_i.appendChild(weather_icon_date_i);
+    weather_icon_date_div_i.appendChild(weather_icon_date_i);
+    div_weather_week_i.appendChild(weather_icon_date_div_i);
 
     // Write max and min temperature
     var temperature_day_i_max = document.createElement("div");
     temperature_day_i_max.innerHTML = `max : ${Math.floor(
       weather.daily[i].temp.max
     )}°C`;
+    temperature_day_i_max.classList.add("text-center");
 
     var temperature_day_i_min = document.createElement("div");
     temperature_day_i_min.innerHTML = `min : ${Math.floor(
       weather.daily[i].temp.min
     )}°C`;
+    temperature_day_i_min.classList.add("text-center");
 
-    weather_date_i.appendChild(temperature_day_i_max);
-    weather_date_i.appendChild(temperature_day_i_min);
-
-    div_weather_week_i.appendChild(text_date_i);
-    div_weather_week_i.appendChild(weather_date_i);
+    div_weather_week_i.appendChild(temperature_day_i_max);
+    div_weather_week_i.appendChild(temperature_day_i_min);
 
     div_weather_week.appendChild(div_weather_week_i);
   }
