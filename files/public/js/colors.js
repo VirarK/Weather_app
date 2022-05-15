@@ -1,14 +1,3 @@
-/* sidePanel functions */
-/*show sidePanel of width 325*/
-function open_nav() {
-	document.getElementById("sidePanel").style.width = "330px";
-}
-
-/* hide sidePanel width 0 */
-function close_nav() {
-	document.getElementById("sidePanel").style.width = "0";
-}
-
 /*change login.hbs bg*/
 function change_bg() {
 	if(document.body) {

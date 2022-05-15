@@ -88,15 +88,18 @@
 			<main class="container">
 				<div class="row">
 					<div class="d-flex justify-content-center my-3 align-middle">
-						<div id="place-container" class="text-center mx-3">
+						<div id="place-container" class="d-flex flex-column justify-content-center text-center mx-3">
 							<!--Clock-->
-							<div class="time-zone my-2">
-								<div id="time">time</div>
+							<div class="d-flex flex-row justify-content-center">
+								<div id="hour">00</div>
+								<div>:</div>
+								<div id="minute"></div>
+								<div>:</div>
+								<div id="second">00</div>
 							</div>
+							<!--End clock-->
 							<div>
-								<div class="d-flex">
-									<div id="place" class="h3">Localisation inconnu</div>
-								</div>
+								<div id="place" class="h3">Localisation inconnu</div>
 							</div>
 							<div id="date" class="h4"></div>
 							<div id="weather-short-description" class="h5">Météo inconnu</div>
@@ -125,7 +128,7 @@
 					<div id="clouds" class="px-2"></div>
 				</div>
 			
-				<div id="carousel-weather-hour" class="carousel slide" data-interval="false">
+				<div id="carousel-weather-hour" class="carousel slide my-4" data-interval="false">
 
 					{{!-- <ol class="carousel-indicators">
 						<li data-target="#carousel-weather-hour" data-slide-to="0" class="active"></li>
@@ -186,6 +189,7 @@
     <script src="/js/constante.js"></script>
 	<script src="/js/colors.js"></script>
     <script src="/js/utils.js"></script>
+    <script src="/js/time.js"></script>
     <script src="/js/weather.js"></script>
     <script src="/js/looking_for_city.js"></script>
 	<script>
