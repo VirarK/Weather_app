@@ -9,6 +9,12 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../styleP.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- import the webpage's javascript file -->
+    <script src="/js/utils.js" defer></script>
     <title>Mon profil</title>
   </head>
   <body class="pbody">
@@ -22,13 +28,33 @@
     <div class="container mt-4">
       <div class="row">
         <div class="col-4">
-          <div class="card card-p my-3">
-            <div class="avatar-ctn rounded-pill">
+          <div class="card card-p my-5 rounded-pill">
+            <div
+              id="display_image"
+              class="avatar-ctn ml-auto mr-auto rounded-circle my-3"
+            >
               <img
+                id="uploadedImage"
                 src="../images/avatar.png"
-                class="avatar"
+                alt="Uploaded Image"
+                class="avatar rounded-circle"
                 alt="user profile picture"
+                accept="image/png, image/jpeg"
               />
+            </div>
+            <input
+              type="file"
+              id="image_input"
+              style="display: none;"
+              onchange="previewFile()"
+            />
+            <div class="btn my-2 ml-auto mr-auto" type="button">
+              <i
+                class="bx bxs-camera bx-md"
+                onclick="document.getElementById('image_input').click();"
+                title="Upload a profile picture"
+              >
+              </i>
             </div>
             <div class="card-body">
               <h5
@@ -37,50 +63,69 @@
               <p class="card-text">
                 <a
                   href="#"
-                  class="btn btn-primary d-flex justify-content-center"
+                  class="btn btn-dark d-flex justify-content-center"
                 >{{user.email}}</a>
               </p>
+              <h6 class="infos my-5"> your personal profil informations</h2>
+                <div class="other d-flex justify-content-center ">
+                    <i class='bx bxl-instagram'></i>
+                    <i class='bx bxl-meta' ></i>
+                    <i class='bx bxl-snapchat' ></i>
+                    <i class='bx bxl-twitter' ></i>
+                </div>
             </div>
           </div>
         </div>
 
-        <div class="col-8 my-3">
-          <div class="card text-center PP d-flex justify-content-center">
-            <div class="d-flex flex-row card-header justify-content-between align-items-center">
+        <div class="S col-8 me-3 rounded">
+          <div class="card text-center PP d-flex justify-content-center rounded">
+            <div
+              class="d-flex flex-row card-header justify-content-between align-items-center"
+            >
               <div>
                 Liste favoris
               </div>
               <div>
-              <script>
-                function clear_favourite() {
-                  window.location = `/favourites/clear`;
-                }
-              </script>
-              <button
-                onclick="clear_favourite()"
-                type="button"
-                class="btn btn-outline"
-                title="Supprimer tous les favoris"
-              >
-              <i class="bx bx-trash bx-sm"></i>
-              </button>
+                <script>
+                  function clear_favourite() { window.location =
+                  `/favourites/clear`; }
+                </script>
+                <button
+                  onclick="clear_favourite()"
+                  type="button"
+                  class="btn btn-outline"
+                  title="Supprimer tous les favoris"
+                >
+                  <i class="bx bx-trash bx-sm"></i>
+                </button>
               </div>
-              
+
             </div>
             <div>
               {{#if favs}}
                 {{#each favs}}
-                  <div><a href="/weather/{{this.name}}/{{this.country_code}}/{{this.lat}}/{{this.lon}}">{{this.name}}, {{this.country_code}}, ({{this.lat}}, {{this.lon}})</a></div>
+                  <div><a
+                      href="/weather/{{this.name}}/{{this.country_code}}/{{this.lat}}/{{this.lon}}"
+                    >{{this.name}},
+                      {{this.country_code}}, ({{this.lat}},
+                      {{this.lon}})</a></div>
                 {{/each}}
               {{else}}
-                <div>Aucun favoris</div>
+                <div class="aucun">Aucun favoris</div>
               {{/if}}
             </div>
           </div>
+           <div class="socialM d-flex justify-content-center">
+                    <i class='bx bxl-instagram bx-lg mr-5'></i>
+                    <i class='bx bxl-meta bx-lg mr-5'></i>
+                    <i class='bx bxl-snapchat bx-lg mr-5' ></i>
+                    <i class='bx bxl-twitter bx-lg' ></i>
+           </div>
         </div>
       </div>
 
     </div>
+
 
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
