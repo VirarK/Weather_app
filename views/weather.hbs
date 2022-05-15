@@ -5,10 +5,6 @@
 
     <link id="website-icon" rel="icon" href="/images/weather/unknown.png" />
     <title id="website-title">Unknown</title>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment-with-locales.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone.min.js"></script>
-
   </head>
 
 	<body class="bg-image">
@@ -94,16 +90,11 @@
 			<main class="container">
 				<div class="row">
 				<div class="d-flex justify-content-center my-3 align-middle">
-					<div id="place-container" class="d-flex flex-column justify-content-center text-center mx-3">
+					<div id="place-container" class="text-center mx-3">
 					<!--Clock-->
-					<div class="d-flex flex-row justify-content-center">
-						<div id="hour">00</div>
-						<div>:</div>
-						<div id="minute">00</div>
-						<div>:</div>
-						<div id="second">00</div>
-					</div>
-					<!--End clock-->
+					{{!-- <div class="time-zone my-2">
+						<div id="time">time</div>
+					</div> --}}
 					<div>
 						<div class="d-flex">
 							<div id="place" class="h3">Localisation inconnu</div>
@@ -166,63 +157,36 @@
 					<div id="clouds" class="px-2"></div>
 				</div>
 
-				<div id="carousel-weather-hour" class="carousel slide my-4" data-interval="false">
-
-					{{!-- <ol class="carousel-indicators">
-						<li data-target="#carousel-weather-hour" data-slide-to="0" class="active"></li>
-						<li data-target="#carousel-weather-hour" data-slide-to="1"></li>
-						<li data-target="#carousel-weather-hour" data-slide-to="2"></li>
-					</ol> --}}
-
-					<div class="container">
-						<div id="weather-hour" class="d-flex carousel-inner">
-						</div>
-					</div>
-
-					<a href="#carousel-weather-hour" class="carousel-control-prev" role="button" data-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="ture"></span>
-						<span class="sr-only"></span>
-					</a>
-					<a href="#carousel-weather-hour" class="carousel-control-next" role="button" data-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="sr-only"></span>
-					</a>
-				</div>
-
 				<div class="container">
 					<div class="row">
 						<div
-						id="weather-week"
-						class="d-flex flex-wrap align-items-center justify-content-center my-2"
+							id="weather-hour"
+							class="d-flex flex-wrap align-items-center justify-content-center my-2"
+						></div>
+						<div
+							id="weather-week"
+							class="d-flex flex-wrap align-items-center justify-content-center my-2"
 						></div>
 					</div>
 				</div>
-
 			</main>
 		</div>
 	</body>
 
 	<!-- import the webpage's stylesheet -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-
     <link
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 		rel="stylesheet"
 		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 		crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="/style.css" />
     <link
 		href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
 		rel="stylesheet"
     />
 
-	<!-- import the webpage's javascript file -->
+    <!-- import the webpage's javascript file -->
     <script src="/js/constante.js"></script>
     <script src="/js/colors.js"></script>
     <script src="/js/utils.js"></script>
@@ -231,6 +195,4 @@
 	<script>
       	fill_place("{{city}}", "{{country_code}}", {{lat}}, {{lon}})
     </script>
-		
-    <link rel="stylesheet" href="/style.css" />
 </html>

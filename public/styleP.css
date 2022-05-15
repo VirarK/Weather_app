@@ -1,14 +1,9 @@
-.pbody {
-    background: url("../images/bg-profile.jpg");
-    background-size: cover;
-    height: 100vh;
-    padding: 0;
-    margin: 0;
+body {
+    background-image: url("../images/bg-profile.jpg");
 }
 
 nav {
     background: linear-gradient( #1871ff, rgb(112, 130, 255));
-    /* background:linear-gradient( #0e0825, rgb(4, 4, 4), #263c52); */
     color: #fff;
     padding: 30px 60px;
     display: flex;
@@ -41,17 +36,10 @@ nav li a {
 }
 
 .avatar-ctn {
+    background-color: #003cff;
     text-align: center;
     display: flex;
-    width: 200px;
-    height: 200px;
     justify-content: center;
-    background-color: #003cff;
-}
-
-#uploadedImage {
-    width: 200px;
-    height: 200px;
 }
 
 .avatar {
@@ -70,28 +58,12 @@ nav li a {
 }
 
 .card-body {
-    height: 250px;
+    height: 330px;
 }
 
 .card-p {
-    margin: 0;
-    padding: 0;
-    width: 240px;
-}
-
-.infos {
-    display: flex;
-    text-align: center;
-}
-
-.aucun {
-    background-color: rgb(150, 119, 90);
-}
-
-.socialM {
-    margin-top: 100px;
-}
-
-.S {
-    margin-top: 120px;
+    border-radius: solid 3px;
+    border-color: rgba(192, 190, 190, 0.608);
+    margin-left: 5px;
+    margin-right: 5px;
 }
