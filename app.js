@@ -19,7 +19,6 @@ const db = mysql.createConnection({
 const publicDirectory = path.join(__dirname, './public');
 app.use(express.static(publicDirectory));
 
-
 // Récup les données encodées par l'URL (HTML forms)
 app.use(express.urlencoded({ extended: false }));
 

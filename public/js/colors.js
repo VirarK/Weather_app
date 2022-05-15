@@ -1,14 +1,3 @@
-/* sidePanel functions */
-/*show sidePanel of width 325*/
-function open_nav() {
-	document.getElementById("sidePanel").style.width = "330px";
-}
-
-/* hide sidePanel width 0 */
-function close_nav() {
-	document.getElementById("sidePanel").style.width = "0";
-}
-
 /*change login.hbs bg*/
 function change_bg() {
 	if(document.body) {
@@ -16,18 +5,16 @@ function change_bg() {
 		let hours = date.getHours();
 		let whatTime;
 		let bg = document.body.style;
-		let bg_day = "url(../images/bg-log.jpg)";
-		let bg_night = "url(../images/night.jpg)";
+		bg.height = "100%";
 	
 		if (hours > 9 && hours < 18) {
-			bg.backgroundImage = bg_day;
-			bg.height = "100%";
+			bg.backgroundImage = "url(../images/bg-log.jpg)";
 			whatTime = "d";
 		} else {
-			bg.backgroundImage = bg_night;
-			bg.height = "100%";
+			bg.backgroundImage = "url(../images/night.jpg)";
 			whatTime = "n";
 		}
+
 		return whatTime;
 	}
 }
