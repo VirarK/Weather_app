@@ -1,5 +1,14 @@
+.pbody{
+    background: url("../images/CXK64OTIB9.jpg");
+    background-size: cover;
+    height: 100vh;
+    padding:0;
+    margin:0;
+}
+
 nav {
-    background:linear-gradient( #6da4fc, rgb(248, 220, 169));
+    /* background:linear-gradient( #6da4fc, rgb(248, 220, 169)); */
+    background:linear-gradient( #0e0825, rgb(4, 4, 4), #263c52);
     color: #fff;
     padding: 30px 60px;
     display: flex;
@@ -32,16 +41,24 @@ nav li a {
 }
 
 .avatar-ctn {
-    background-color: orange;
     text-align: center;
     display: flex;
+    width: 200px;
+    height: 200px;
     justify-content: center;
+    background-color: rgb(237, 200, 130);
+}
+
+#uploadedImage{
+    width: 200px;
+    height: 200px;
 }
 
 .avatar {
     width: 65%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
+
 
 .card-header {
     border-radius: solid 5px;
@@ -55,16 +72,29 @@ nav li a {
 }
 
 .card-body {
-    height: 330px;
+    height: 250px;
 }
 .card-p {
-    border-radius: solid 3px;
-    border-color: rgba(192, 190, 190, 0.608);
-    margin-left: 5px;
-    margin-right: 5px;
+    margin: 0;
+    padding: 0;
+    width: 240px;
 }
 
-#image_inputt{
+.infos{
     display: flex;
-    align-items: center;
+    text-align: center;
 }
+
+.aucun{
+    background-color: rgb(150, 119, 90);
+}
+
+.socialM{
+    margin-top: 100px;
+    
+}
+
+.S{
+    margin-top: 120px;
+}
+
