@@ -182,24 +182,34 @@
             </div>
           </div>
 
-          <a href="#carousel-weather-hour" class="carousel-control-prev" role="button" data-slide="prev">
-						<span id="prev" class="bx bxs-chevron-left bx-lg"></span>
-						<span class="sr-only"></span>
-					</a>
-					<a href="#carousel-weather-hour" class="carousel-control-next" role="button" data-slide="next">
-						<span id="next" class="bx bxs-chevron-right bx-lg"></span>
-						<span class="sr-only"></span>
-					</a>
+          <a
+            href="#carousel-weather-hour"
+            class="carousel-control-prev"
+            role="button"
+            data-slide="prev"
+          >
+            <span id="prev" class="bx bxs-chevron-left bx-lg"></span>
+            <span class="sr-only"></span>
+          </a>
+          <a
+            href="#carousel-weather-hour"
+            class="carousel-control-next"
+            role="button"
+            data-slide="next"
+          >
+            <span id="next" class="bx bxs-chevron-right bx-lg"></span>
+            <span class="sr-only"></span>
+          </a>
         </div>
 
         <div class="container">
-					<div class="row">
-						<div
-						id="weather-week"
-						class="d-flex flex-wrap align-items-center justify-content-center my-2"
-						></div>
-					</div>
-				</div>
+          <div class="row">
+            <div
+              id="weather-week"
+              class="d-flex flex-wrap align-items-center justify-content-center my-2"
+            ></div>
+          </div>
+        </div>
 
       </main>
     </div>
@@ -229,18 +239,20 @@
     rel="stylesheet"
   />
 
-	<!-- import the webpage's javascript file -->
-    <script>
-      var timezone = null;
-    </script>
-    <script src="/js/constante.js"></script>
-    <script src="/js/utils.js"></script>
-    <script src="/js/weather.js"></script>
-    <script src="/js/looking_for_city.js"></script>
-		
-    <link rel="stylesheet" href="/style.css" />
-	
-	<script>
-      	get_weather("{{city}}", "{{country_code}}", {{lat}}, {{lon}})
-    </script>
+  <!-- import the webpage's javascript file -->
+  <script>
+    var timezone = null;
+  </script>
+  <script src="/js/constante.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/weather.js"></script>
+  <script src="/js/looking_for_city.js"></script>
+
+  <link rel="stylesheet" href="/style.css" />
+
+  <script>
+    get_weather("{{city}}", "{{country_code}}",
+    {{lat}},
+    {{lon}})
+  </script>
 </html>

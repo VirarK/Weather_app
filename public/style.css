@@ -104,7 +104,7 @@ header {
 }
 
 .bg-image {
-    background-image: url("images/bg/01d.jpg") no-repeat center center fixed;
+    background-image: url("/bg/01d.jpg") no-repeat center center fixed;
     background-size: cover !important;
 }
 
@@ -129,4 +129,7 @@ header {
 
 .footer{
     color: white;
+    margin-bottom: 0%;
 }
+
+
