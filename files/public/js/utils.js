@@ -145,7 +145,7 @@ async function set_position(geolocation) {
 }
 
 var image_input = document.querySelector("#image_input")
-if (image_input != null) {
+if (image_input) {
   image_input.addEventListener("change", function () {
     console.log(this.files);
     const reader = new FileReader();
@@ -160,9 +160,9 @@ if (image_input != null) {
 document.addEventListener("DOMContentLoaded", () => {
   const recentImageUrl = localStorage.getItem("recent-image");
   if (recentImageUrl) {
-    document
-      .querySelector("#uploadedImage")
-      .setAttribute("src", recentImageUrl);
+    var uploaded_image = document.getElementById("uploadedImage");
+    if (uploaded_image)
+      uploaded_image.setAttribute("src", recentImageUrl);
   }
 });
 
