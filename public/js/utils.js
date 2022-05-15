@@ -87,15 +87,9 @@ function transform_date(date, mode = 0) {
   }
 }
 
-/**
- * Return country code corresponding to country name.
- *
- * @param {String} country the country code (FR, EN, ...).
- * @returns the country full name (France, ...).
- */
-function transform_country(country) {
+function transform_country(lang, country) {
   try {
-    let region_names = new Intl.DisplayNames(["en"], { type: "region" });
+    let region_names = new Intl.DisplayNames([lang], { type: "region" });
     return region_names.of(country);
   } catch (RangeError) {
     return country;
