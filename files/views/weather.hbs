@@ -6,231 +6,256 @@
     <link id="website-icon" rel="icon" href="/images/weather/unknown.png" />
     <title id="website-title">Unknown</title>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment-with-locales.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment-with-locales.min.js"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone.min.js"
+    ></script>
 
   </head>
 
-	<body class="bg-image">
-		<!-- Header-->
-		<header class="container-fluid d-flex align-items-arround">
-		<div>
-			<a href="/" class="href">
-				<img
-				src="/images/animatedWeather-unscreen (1).gif"
-				alt="wicon mt-3"
-				width="64"
-				/>
-			</a>
-		</div>
+  <body class="bg-image">
+    <!-- Header-->
+    <header class="container-fluid d-flex align-items-arround">
+      <div>
+        <a href="/" class="href">
+          <img
+            src="/images/animatedWeather-unscreen (1).gif"
+            alt="wicon mt-3"
+            width="64"
+          />
+        </a>
+      </div>
 
-		<!--navBar-->
-		<div class="d-flex offset-md-6 ms-auto">
-			<!-- Search button-->
-			<div class="input-group align-items-center">
-				<div>
-					<button
-						onclick="get_location()"
-						type="button"
-						class="btn btn-outline"
-						title="Ville actuelle"
-					>
-					<i id="localisation" class="bx bxs-map bx-sm"></i>
-					</button>
-				</div>
-				<script>
-					function handle(e){
-						if (e.keyCode === 13){
-							looking_for_city()
-						}
-						return false;
-					}
-				</script>
-				<div class="form-outline">
-					<input
-						type="search"
-						onkeypress="handle(event)"
-						id="input-name-city"
-						class="form-control rounded"
-						placeholder="ex: Versailles, France"
-					/>
-				</div>
-				<button
-					type="button"
-					onclick="looking_for_city()"
-					class="research btn btn-dark btn-ms"
-					title="Lancer la recherche"
-				>
-				<i
-				class="bx bx-search-alt my-white bx-sm"
-				></i>
-			</button>
+      <!--navBar-->
+      <div class="d-flex offset-md-6 ms-auto">
+        <!-- Search button-->
+        <div class="input-group align-items-center">
+          <div>
+            <button
+              onclick="get_location()"
+              type="button"
+              class="btn btn-outline"
+              title="Ville actuelle"
+            >
+              <i id="localisation" class="bx bxs-map bx-sm"></i>
+            </button>
+          </div>
+          <script>
+            function handle(e){ if (e.keyCode === 13){ looking_for_city() }
+            return false; }
+          </script>
+          <div class="form-outline">
+            <input
+              type="search"
+              onkeypress="handle(event)"
+              id="input-name-city"
+              class="form-control rounded"
+              placeholder="ex: Versailles, France"
+            />
+          </div>
+          <button
+            type="button"
+            onclick="looking_for_city()"
+            class="research btn btn-dark btn-ms"
+            title="Lancer la recherche"
+          >
+            <i class="bx bx-search-alt my-white bx-sm"></i>
+          </button>
 
-			{{#if user}}
-				<button class="cnx btn ms-2 btn-outline-dark rounded">
-				<a href="/profile" class="href">{{user.username}}</a>
-				</button>
-				<button
-				class="cnx btn mx-2 btn-outline-dark rounded"
-				title="se déconnecter du compte"
-				>
-				<a href="/auth/logout" class="href">Se déconnecter</a>
-				</button>
-			{{else}}
-				<button
-				class="cnx btn ms-2 btn-outline-dark rounded"
-				title="accéder à mon compte"
-				>
-				<a href="/login" class="href">Se connecter</a>
-				</button>
-			{{/if}}
-			</div>
-		</div>
-		<!--end navbar-->
-		</header>
-		<!-- end Header-->
+          {{#if user}}
+            <button class="cnx btn ms-2 btn-outline-dark rounded">
+              <a href="/profile" class="href">{{user.username}}</a>
+            </button>
+            <button
+              class="cnx btn mx-2 btn-outline-dark rounded"
+              title="se déconnecter du compte"
+            >
+              <a href="/auth/logout" class="href">Se déconnecter</a>
+            </button>
+          {{else}}
+            <button
+              class="cnx btn ms-2 btn-outline-dark rounded"
+              title="accéder à mon compte"
+            >
+              <a href="/login" class="href">Se connecter</a>
+            </button>
+          {{/if}}
+        </div>
+      </div>
+      <!--end navbar-->
+    </header>
+    <!-- end Header-->
 
-		<div id="main-container" class="center-block my-5">
-			<main class="container">
-				<div class="row">
-				<div class="d-flex justify-content-center my-3 align-middle">
-					<div id="place-container" class="d-flex flex-column justify-content-center text-center mx-3">
-					<!--Clock-->
-					<div class="d-flex flex-row justify-content-center">
-						<div id="hour">00</div>
-						<div>:</div>
-						<div id="minute">00</div>
-						<div>:</div>
-						<div id="second">00</div>
-					</div>
-					<!--End clock-->
-					<div>
-						<div class="d-flex">
-							<div id="place" class="h3">Localisation inconnu</div>
-							<script>
-								function new_favourite() {
-									window.location = `/favourites/new/{{city}}/{{country_code}}/{{lat}}/{{lon}}`;
-								}
+    <div id="main-container" class="center-block my-5">
+      <main class="container">
+        <div class="row">
+          <div class="d-flex justify-content-center my-3 align-middle">
+            <div
+              id="place-container"
+              class="d-flex flex-column justify-content-center text-center mx-3"
+            >
+              <!--Clock-->
+              <div class="time d-flex flex-row justify-content-center">
+                <div id="hour">00</div>
+                <div>:</div>
+                <div id="minute">00</div>
+                <div>:</div>
+                <div id="second">00</div>
+              </div>
+              <!--End clock-->
+              <div>
+                <div class="d-flex">
+                  <div id="place" class="h3">Localisation inconnu</div>
+                  <script>
+                    function new_favourite() { window.location =
+                    `/favourites/new/{{city}}/{{country_code}}/{{lat}}/{{lon}}`;
+                    } function del_favourite() { window.location =
+                    `/favourites/del/{{city}}/{{country_code}}/{{lat}}/{{lon}}`;
+                    }
+                  </script>
+                  {{#if user}}
+                    {{#if is_favourite}}
+                      <button
+                        onclick="del_favourite()"
+                        class="btn btn-outline favoris"
+                        title="Cliquez pour supprimer des favoris"
+                      >
+                        <i
+                          class="bx bxs-star bx-sm"
+                          style="color: rgb(231, 185, 85)"
+                        >
+                        </i>
+                      </button>
+                    {{else}}
+                      <button
+                        onclick="new_favourite()"
+                        class="btn btn-outline favoris"
+                        title="Cliquez pour ajouter au favoris"
+                      >
+                        <i
+                          class="bx bxs-star bx-sm"
+                          style="color: rgb(255, 255, 255)"
+                        >
+                        </i>
+                      </button>
+                    {{/if}}
+                  {{/if}}
+                </div>
+              </div>
+              <div id="date" class="h4"></div>
+              <div id="weather-short-description" class="h5">Météo inconnu</div>
+            </div>
+            <div id="weather-container" class="text-center mx-3 my-2">
+              <img
+                id="icon-weather"
+                src="/images/weather/unknown.png"
+                width="56"
+                height="56"
+                alt="icon weather"
+              />
+              <div id="temperature">?°c / ?°F</div>
+              <div id="feels-like">Ressenti : ?</div>
+            </div>
+          </div>
+        </div>
 
-								function del_favourite() {
-									window.location = `/favourites/del/{{city}}/{{country_code}}/{{lat}}/{{lon}}`;
-								}
-							</script>
-							{{#if user}}
-								{{#if is_favourite}}
-									<button
-										onclick="del_favourite()"
-										class="btn btn-outline favoris"
-										title="Cliquez pour supprimer des favoris"
-									>
-									<i class="bx bxs-star bx-sm" style="color: rgb(231, 185, 85)">
-									</i>
-									</button>
-								{{else}}
-									<button
-										onclick="new_favourite()"
-										class="btn btn-outline favoris"
-										title="Cliquez pour ajouter au favoris"
-									>
-									<i class="bx bxs-star bx-sm" style="color: rgb(255, 255, 255)">
-									</i>
-									</button>
-								{{/if}}
-							{{/if}}
-							</div>
-						</div>
-						<div id="date" class="h4"></div>
-						<div id="weather-short-description" class="h5">Météo inconnu</div>
-					</div>
-					<div id="weather-container" class="text-center mx-3 my-2">
-						<img
-							id="icon-weather"
-							src="/images/weather/unknown.png"
-							width="56"
-							height="56"
-							alt="icon weather"
-						/>
-						<div id="temperature">?°c / ?°F</div>
-						<div id="feels-like">Ressenti : ?</div>
-					</div>
-				</div>
-				</div>
+        <div
+          id="details-container"
+          class="d-flex flex-wrap align-items-center justify-content-center my-3"
+        >
+          <div id="UV" class="px-2"></div>
+          <div id="wind-speed" class="px-2"></div>
+          <div id="humidity" class="px-2"></div>
+          <div id="clouds" class="px-2"></div>
+        </div>
 
-				<div
-				id="details-container"
-				class="d-flex flex-wrap align-items-center justify-content-center my-3"
-				>
-					<div id="UV" class="px-2"></div>
-					<div id="wind-speed" class="px-2"></div>
-					<div id="humidity" class="px-2"></div>
-					<div id="clouds" class="px-2"></div>
-				</div>
+        <div
+          id="carousel-weather-hour"
+          class="carousel slide my-4"
+          data-interval="false"
+        >
 
-				<div id="carousel-weather-hour" class="carousel slide my-4" data-interval="false">
-
-					{{!-- <ol class="carousel-indicators">
+          {{! <ol class="carousel-indicators">
 						<li data-target="#carousel-weather-hour" data-slide-to="0" class="active"></li>
 						<li data-target="#carousel-weather-hour" data-slide-to="1"></li>
 						<li data-target="#carousel-weather-hour" data-slide-to="2"></li>
-					</ol> --}}
+					</ol> }}
 
-					<div class="container">
-						<div id="weather-hour" class="d-flex carousel-inner">
-						</div>
-					</div>
+          <div class="container">
+            <div id="weather-hour" class="d-flex carousel-inner">
+            </div>
+          </div>
 
-					<a href="#carousel-weather-hour" class="carousel-control-prev" role="button" data-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="ture"></span>
-						<span class="sr-only"></span>
-					</a>
-					<a href="#carousel-weather-hour" class="carousel-control-next" role="button" data-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="sr-only"></span>
-					</a>
-				</div>
+          <a
+            href="#carousel-weather-hour"
+            class="carousel-control-prev"
+            role="button"
+            data-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="ture"></span>
+            <span class="sr-only"></span>
+          </a>
+          <a
+            href="#carousel-weather-hour"
+            class="carousel-control-next"
+            role="button"
+            data-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+          </a>
+        </div>
 
-				<div class="container">
-					<div class="row">
-						<div
-						id="weather-week"
-						class="d-flex flex-wrap align-items-center justify-content-center my-2"
-						></div>
-					</div>
-				</div>
+        <div class="container">
+          <div class="row">
+            <div
+              id="weather-week"
+              class="d-flex flex-wrap align-items-center justify-content-center my-2"
+            ></div>
+          </div>
+        </div>
 
-			</main>
-		</div>
-	</body>
+      </main>
+    </div>
+  </body>
 
-	<!-- import the webpage's stylesheet -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+  <!-- import the webpage's stylesheet -->
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+  ></script>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
 
-    <link
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-		rel="stylesheet"
-		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-		crossorigin="anonymous"
-    />
-    <link
-		href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
-		rel="stylesheet"
-    />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+    crossorigin="anonymous"
+  />
+  <link
+    href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+    rel="stylesheet"
+  />
 
-	<!-- import the webpage's javascript file -->
-    <script src="/js/constante.js"></script>
-    <script src="/js/colors.js"></script>
-    <script src="/js/utils.js"></script>
-    <script src="/js/weather.js"></script>
-    <script src="/js/looking_for_city.js"></script>
-	<script>
-      	fill_place("{{city}}", "{{country_code}}", {{lat}}, {{lon}})
-    </script>
-		
-    <link rel="stylesheet" href="/style.css" />
+  <!-- import the webpage's javascript file -->
+  <script src="/js/constante.js"></script>
+  <script src="/js/colors.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/weather.js"></script>
+  <script src="/js/looking_for_city.js"></script>
+  <script>
+    fill_place("{{city}}", "{{country_code}}",
+    {{lat}},
+    {{lon}})
+  </script>
+
+  <link rel="stylesheet" href="/style.css" />
 </html>

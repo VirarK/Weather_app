@@ -47,7 +47,7 @@ a:hover {
     width: 120px;
 }
 
-#time {
+.time {
     color: black;
     position: relative;
     font-weight: 450;
