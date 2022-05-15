@@ -22,6 +22,10 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+router.get('/credits', (req, res) => {
+    res.render('credits');
+});
+
 router.get('/profile', authController.isLoggedIn, favController.get_favourite, (req, res) => {
     if (req.user) {
         res.render('profile', {

@@ -1,14 +1,14 @@
-.pbody{
-    background: url("../images/CXK64OTIB9.jpg");
+.pbody {
+    background: url("../images/bg-profile.jpg");
     background-size: cover;
     height: 100vh;
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
 }
 
 nav {
     /* background:linear-gradient( #6da4fc, rgb(248, 220, 169)); */
-    background:linear-gradient( #0e0825, rgb(4, 4, 4), #263c52);
+    background: linear-gradient( #0e0825, rgb(4, 4, 4), #263c52);
     color: #fff;
     padding: 30px 60px;
     display: flex;
@@ -36,7 +36,7 @@ nav li a {
 }
 
 .link:hover {
-    color: yellow;
+    color: #829fff;
     text-decoration: none;
 }
 
@@ -46,10 +46,10 @@ nav li a {
     width: 200px;
     height: 200px;
     justify-content: center;
-    background-color: rgb(237, 200, 130);
+    background-color: #003cff;
 }
 
-#uploadedImage{
+#uploadedImage {
     width: 200px;
     height: 200px;
 }
@@ -59,12 +59,10 @@ nav li a {
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
-
 .card-header {
     border-radius: solid 5px;
-    border-color: orange;
+    border-color: #003cff;
 }
-
 
 .PP {
     border-radius: solid 5px;
@@ -74,27 +72,26 @@ nav li a {
 .card-body {
     height: 250px;
 }
+
 .card-p {
     margin: 0;
     padding: 0;
     width: 240px;
 }
 
-.infos{
+.infos {
     display: flex;
     text-align: center;
 }
 
-.aucun{
-    background-color: rgb(150, 119, 90);
+.aucun {
+    background-color: rgb(93, 169, 255);
 }
 
-.socialM{
+.socialM {
     margin-top: 100px;
-    
 }
 
-.S{
+.S {
     margin-top: 120px;
 }
-
