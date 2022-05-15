@@ -21,7 +21,7 @@
     <nav>
       <h4><a href="/" class="link">Menu Principal</a></h4>
       <ul>
-        <li><a href="/auth/logout" class="link">Se déconnecter</a></li>
+        <li><a href="/auth/logout" onclick="deleteStoredImages()" class="link">Se déconnecter</a></li>
       </ul>
     </nav>
 
@@ -45,13 +45,12 @@
             <input
               type="file"
               id="image_input"
-              style="display: none;"
-              onchange="previewFile()"
+              style="display: none"
             />
             <div class="btn my-2 ml-auto mr-auto" type="button">
               <i
                 class="bx bxs-camera bx-md"
-                onclick="document.getElementById('image_input').click();"
+                onclick="document.getElementById('image_input').click()"
                 title="Upload a profile picture"
               >
               </i>
@@ -66,7 +65,7 @@
                   class="btn btn-dark d-flex justify-content-center"
                 >{{user.email}}</a>
               </p>
-              <h6 class="infos my-5"> Vos informations personnelles</h2>
+              <h6 class="infos my-5">Vos informations personnelles</h2>
                 <div class="other d-flex justify-content-center ">
                     <i class='bx bxl-instagram'></i>
                     <i class='bx bxl-meta' ></i>
