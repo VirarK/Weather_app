@@ -1,8 +1,9 @@
 async function looking_for_city() {
 	var lat = null;
 	var lon = null;
-	var country = null
-	var country_code = null
+
+	var country = null;
+	var country_code = null;
 
 	var unknown = false
 
@@ -20,7 +21,7 @@ async function looking_for_city() {
 			country = country.slice(1)
 		}
 
-		let api = `https://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&limit=1&appid=${open_weather_key}`;
+		let api = `https://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&limit=1&appid=${keys[num_key]}`;
 		await fetch(api)
 		.then(function(response) {
 			let data = response.json();
@@ -32,10 +33,14 @@ async function looking_for_city() {
 			} else {
 				lat = data[0].lat;
 				lon = data[0].lon;
-				country_code = data[0].country;
-				city = data[0].name
 
-				if (country.toLocaleLowerCase() != transform_country(country_code).toLocaleLowerCase()) {
+				country_code = data[0].country;
+
+				if (country.toLocaleLowerCase() == transform_country("fr", country_code).toLocaleLowerCase()) {
+					city = data[0].local_names.fr;
+				} else if (country.toLocaleLowerCase() == transform_country("en", country_code).toLocaleLowerCase()) {
+					city = data[0].name;
+				} else {
 					unknown = true;
 				}
 			}
@@ -44,6 +49,7 @@ async function looking_for_city() {
 			if (!unknown) {
 				window.location = `/weather/${city}/${country_code}/${lat}/${lon}`;
 			} else {
+				//alert(`${place} : "${city}" "${country.toLocaleLowerCase()}" "${transform_country(lang, country_code).toLocaleLowerCase()}" Ville ou Pays inconnu`);
 				alert(`${place} : Ville ou Pays inconnu`);
 			}
 		});

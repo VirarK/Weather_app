@@ -98,12 +98,12 @@
 					<div class="d-flex justify-content-center my-3 align-middle">
 						<div id="place-container" class="d-flex flex-column justify-content-center text-center mx-3">
 							<!--Clock-->
-							<div class="d-flex flex-row justify-content-center">
-								<div id="hour">00</div>
+							<div class="time d-flex flex-row justify-content-center">
+								<div id="hour" class="h4">00</div>
 								<div>:</div>
-								<div id="minute"></div>
+								<div id="minute" class="h4">00</div>
 								<div>:</div>
-								<div id="second">00</div>
+								<div id="second" class="h4">00</div>
 							</div>
 							<!--End clock-->
 							<div>
@@ -144,11 +144,11 @@
 					</div>
 
 					<a href="#carousel-weather-hour" class="carousel-control-prev" role="button" data-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="ture"></span>
+						<span id="carousel-control-prev-icon" class="carousel-control-prev-icon"></span>
 						<span class="sr-only"></span>
 					</a>
 					<a href="#carousel-weather-hour" class="carousel-control-next" role="button" data-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span id="carousel-control-next-icon" class="carousel-control-next-icon"></span>
 						<span class="sr-only"></span>
 					</a>
 				</div>
@@ -188,8 +188,10 @@
     <link rel="stylesheet" href="/style.css" />
 
     <!-- import the webpage's javascript file -->
+	<script>
+      var timezone = null;
+    </script>
     <script src="/js/constante.js"></script>
-	<script src="/js/colors.js"></script>
     <script src="/js/utils.js"></script>
     <script src="/js/time.js"></script>
     <script src="/js/weather.js"></script>
