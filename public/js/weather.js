@@ -4,6 +4,8 @@ const today = new Date(Date.now());
 var dt = null;
 var sunrise = null;
 var sunset = null;
+var timezone = null;
+var timezone_offset = null;
 
 var css_custom = null;
 
@@ -52,6 +54,7 @@ async function get_weather(city, country, lat, lon) {
       if (data) {
         dt = data.current.dt;
         timezone = data.timezone;
+        timezone_offset = data.timezone_offset;
         sunrise = data.current.sunrise;
         sunset = data.current.sunset;
 
@@ -483,7 +486,7 @@ function change_colors() {
 		if (icon_next) {
       icon_next.style.color = "var(--my_black)";
 		}
-
+    
     main_container.classList.remove("my-white");
     main_container.classList.add("my-black");
 
@@ -504,9 +507,9 @@ function change_bg() {
 		let hours = date.hours();
 		let bg = document.body.style;
 		bg.height = "100%";
-	
-    var date_sunrise = new Date(sunrise * 1000);
-    var date_sunset = new Date(sunset * 1000);
+
+    var date_sunrise = new Date((sunrise + timezone_offset) * 1000);
+    var date_sunset = new Date((sunset + timezone_offset) * 1000);
     var hour_sunrise = date_sunrise.getHours();
     var hour_sunset = date_sunset.getHours();
 
