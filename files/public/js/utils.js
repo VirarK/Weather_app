@@ -138,7 +138,7 @@ async function set_position(geolocation) {
     });
 }
 
-var image_input = document.querySelector("#image_input")
+var image_input = document.querySelector("#image_input");
 if (image_input) {
   image_input.addEventListener("change", function () {
     console.log(this.files);
@@ -146,8 +146,9 @@ if (image_input) {
     reader.addEventListener("load", () => {
       localStorage.setItem("recent-image", reader.result);
     });
-  
+
     reader.readAsDataURL(this.files[0]);
+    alert("Raffraichir la page pour mettre à jour la photo de profil!");
   });
 }
 
@@ -155,8 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const recentImageUrl = localStorage.getItem("recent-image");
   if (recentImageUrl) {
     var uploaded_image = document.getElementById("uploadedImage");
-    if (uploaded_image)
-      uploaded_image.setAttribute("src", recentImageUrl);
+    if (uploaded_image) uploaded_image.setAttribute("src", recentImageUrl);
   }
 });
 
