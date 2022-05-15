@@ -5,6 +5,14 @@
 
     <link id="website-icon" rel="icon" href="/images/weather/unknown.png" />
     <title id="website-title">Unknown</title>
+
+	<script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment-with-locales.min.js"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone.min.js"
+    ></script>
+
   </head>
 
 	<body class="bg-image">
@@ -193,6 +201,6 @@
     <script src="/js/weather.js"></script>
     <script src="/js/looking_for_city.js"></script>
 	<script>
-      	fill_place("Paris", "FR", 48.856614, 2.3522219)
+      	get_weather("Paris", "FR", 48.856614, 2.3522219)
     </script>
 </html>
