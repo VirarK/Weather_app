@@ -144,20 +144,28 @@ async function set_position(geolocation) {
     });
 }
 
-var image_input = document.getElementById("image_input");
+var image_input = document.querySelector("#image_input")
 if (image_input != null) {
-  image_input.addEventListener("change", add_profile_picture());
+  image_input.addEventListener("change", function () {
+    console.log(this.files);
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      localStorage.setItem("recent-image", reader.result);
+    });
+  
+    reader.readAsDataURL(this.files[0]);
+  });
 }
 
-function add_profile_picture() {
-  if (this.files[0]) {
-    var picture = new FileReader();
-    picture.readAsDataURL(this.files[0]);
-    picture.addEventListener("load", function (event) {
-      document
-        .getElementById("uploadedImage")
-        .setAttribute("src", event.target.result);
-      document.getElementById("uploadedImage").style.display = "block";
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  const recentImageUrl = localStorage.getItem("recent-image");
+  if (recentImageUrl) {
+    document
+      .querySelector("#uploadedImage")
+      .setAttribute("src", recentImageUrl);
   }
+});
+
+function deleteStoredImages() {
+  localStorage.clear();
 }

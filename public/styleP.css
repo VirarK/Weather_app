@@ -1,5 +1,5 @@
 .pbody {
-    background-image: url("../images/bg-profile.jpg");
+    background: url("../images/bg-profile.jpg");
     background-size: cover;
     height: 100vh;
     padding: 0;
@@ -36,7 +36,7 @@ nav li a {
 }
 
 .link:hover {
-    color: yellow;
+    color: #829fff;
     text-decoration: none;
 }
 
@@ -85,7 +85,7 @@ nav li a {
 }
 
 .aucun {
-    background-color: rgb(150, 119, 90);
+    background-color: rgb(93, 169, 255);
 }
 
 .socialM {
