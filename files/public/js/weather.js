@@ -384,33 +384,6 @@ function fill_date() {
   var date = transform_date(today);
   date_html.innerHTML = date;
 
-  fill_color_theme();
-}
-
-/**
- * Set background image and theme color with the current weather.
- */
- function fill_color_theme() {
-  var bg = document.body;
-
-  var weather_dir_img = `url(/images/bg/${weather.current.weather[0].icon}.jpg)`;
-  bg.style.backgroundImage = weather_dir_img;
-
-  //
-  var main_container = document.getElementById("main-container");
-  var lc = document.getElementById("localisation");
-  if (weather.current.weather[0].icon.includes("n")) {
-    main_container.classList.remove("my-black");
-    main_container.classList.add("my-white");
-
-    lc.style.color = "var(--my_white)";
-  } else {
-    main_container.classList.remove("my-white");
-    main_container.classList.add("my-black");
-
-    lc.style.color = "var(--my_black)";
-  }
-
   change_colors();
 }
 
@@ -457,8 +430,21 @@ function updateTime() {
 function change_colors() {
 	let icon_prev = document.getElementById("prev");
 	let icon_next = document.getElementById("next");
+  
+  var lc = document.getElementById("localisation");
+  
+  var bg = document.body;
+  var weather_dir_img = `url(/images/bg/${weather.current.weather[0].icon}.jpg)`;
+  bg.style.backgroundImage = weather_dir_img;
+
+  var main_container = document.getElementById("main-container");
 
 	if (change_bg() == "n") {
+    main_container.classList.remove("my-black");
+    main_container.classList.add("my-white");
+
+    lc.style.color = "var(--my_white)";
+
 		let cn = document.getElementById("seConnecter");
 		let cnx = document.getElementById("cnx");
 		let rs = document.getElementById("rs");
@@ -497,6 +483,11 @@ function change_colors() {
 		if (icon_next) {
       icon_next.style.color = "var(--my_black)";
 		}
+
+    main_container.classList.remove("my-white");
+    main_container.classList.add("my-black");
+
+    lc.style.color = "var(--my_black)";
 	}
   
   updateTime();
