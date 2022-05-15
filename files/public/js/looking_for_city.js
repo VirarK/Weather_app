@@ -37,7 +37,9 @@ async function looking_for_city() {
 				country_code = data[0].country;
 
 				if (country.toLocaleLowerCase() == transform_country("fr", country_code).toLocaleLowerCase()) {
-					city = data[0].local_names.fr;
+					if (data[0].local_names) {
+						city = data[0].local_names.fr;
+					}
 				} else if (country.toLocaleLowerCase() == transform_country("en", country_code).toLocaleLowerCase()) {
 					city = data[0].name;
 				} else {
