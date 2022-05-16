@@ -10,7 +10,7 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment-with-locales.min.js"
     ></script>
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone.min.js"
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data-10-year-range.js"
     ></script>
 
   </head>
@@ -246,13 +246,13 @@
     rel="stylesheet"
   />
 
+  <link rel="stylesheet" href="/style.css" />
+
   <!-- import the webpage's javascript file -->
   <script src="/js/constante.js"></script>
   <script src="/js/utils.js"></script>
   <script src="/js/weather.js"></script>
   <script src="/js/looking_for_city.js"></script>
-
-  <link rel="stylesheet" href="/style.css" />
 
   <script>
     get_weather("{{city}}", "{{country_code}}",
