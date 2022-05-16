@@ -147,14 +147,14 @@ async function get_weather_hours(city, country, lat, lon) {
   div_weather_hours.innerHTML = "";
 
   // previous hour
-  var date = new Date(weather.current.dt * 1000);
-  var end = date.getHours();
+  var str_end_hour = moment(weather.current.dt * 1000).tz(weather.timezone).format("HH");
+  var end_hour = parseInt(str_end_hour);
 
   var div_carousel = null
   var div_carousel_d_flex = null
 
   var i = 0;
-  for (; i <= end - 2; i++) {
+  for (; i <= end_hour - 2; i++) {
     var div_weather_hours_i = document.createElement("div");
     
     if (i % 5 == 0) {
@@ -163,9 +163,6 @@ async function get_weather_hours(city, country, lat, lon) {
       }
       div_carousel = document.createElement("div");
       div_carousel.classList.add("carousel-item");
-      if (i == 0) {
-        div_carousel.classList.add("active");
-      }
 
       div_carousel_d_flex = document.createElement("div");
       div_carousel_d_flex.classList.add("d-flex");
@@ -179,13 +176,13 @@ async function get_weather_hours(city, country, lat, lon) {
     var text_hour_i = document.createElement("div");
     text_hour_i.classList.add("text-center");
     text_hour_i.classList.add("my-1");
-    var date_i = new Date(weather.previous_hourly[i].dt * 1000);
-    if (date_i.getHours() < 10) {
-      text_hour_i.innerHTML = "0" + date_i.getHours() + "H";
-    } else {
-      text_hour_i.innerHTML = date_i.getHours() + "H";
-    }
+    var date_i = moment(weather.previous_hourly[i].dt * 1000).tz(weather.timezone).format("HH");
+    text_hour_i.innerHTML = date_i + "H";
     div_weather_hours_i.appendChild(text_hour_i);
+
+    if (date_i == str_end_hour) {
+      div_carousel.classList.add("active");
+    }
 
     // Draw icon
     var weather_icon_date_div_i = document.createElement("div");
@@ -222,17 +219,14 @@ async function get_weather_hours(city, country, lat, lon) {
 
   // forcast hour
   var j = i;
-  end = 24 - end;
-  for (var i = 1; i <= end; i++) {
+  end_hour = 24 - end_hour;
+  for (var i = 1; i <= end_hour; i++) {
     if (j % 5 == 0) {
       if (div_carousel != null) {
         div_weather_hours.appendChild(div_carousel)
       }
       div_carousel = document.createElement("div");
       div_carousel.classList.add("carousel-item");
-      if (j == 0) {
-        div_carousel.classList.add("active");
-      }
 
       div_carousel_d_flex = document.createElement("div");
       div_carousel_d_flex.classList.add("d-flex");
@@ -247,13 +241,13 @@ async function get_weather_hours(city, country, lat, lon) {
     var text_hour_i = document.createElement("div");
     text_hour_i.classList.add("text-center");
     text_hour_i.classList.add("my-1");
-    var date_i = new Date(weather.forecast_hourly[i].dt * 1000)
-    if (date_i.getHours() < 10) {
-      text_hour_i.innerHTML = "0" + date_i.getHours() + "H";
-    } else {
-      text_hour_i.innerHTML = date_i.getHours() + "H";
-    }
+    var date_i = moment(weather.forecast_hourly[i].dt * 1000).tz(weather.timezone).format("HH");
+    text_hour_i.innerHTML = date_i + "H";
     div_weather_hours_i.appendChild(text_hour_i);
+
+    if (date_i == str_end_hour) {
+      div_carousel.classList.add("active");
+    }
 
     // Draw icon
     var weather_icon_date_div_i = document.createElement("div");
@@ -470,21 +464,21 @@ function change_bg() {
     
     var now = moment(weather.dt * 1000);
     var now_timezone = now.tz(weather.timezone);
-    //console.log(now_timezone.format("LLLL"));
+    // console.log("🚀 ~ file: weather.js ~ line 473 ~ change_bg ~ now_timezone", now_timezone.format("LLLL"));
 
     var sunrise = moment(weather.sunrise * 1000);
     var sunrise_timezone = sunrise.tz(weather.timezone);
-    console.log(sunrise_timezone.format("LLLL"));
+    // console.log("🚀 ~ file: weather.js ~ line 477 ~ change_bg ~ sunrise_timezone", sunrise_timezone.format("LLLL"));
     
     var sunset = moment(weather.sunset * 1000);
     var sunset_timezone = sunset.tz(weather.timezone);
-    console.log(sunset_timezone.format("LLLL"));
+    // console.log("🚀 ~ file: weather.js ~ line 481 ~ change_bg ~ sunset_timezone", sunset_timezone.format("LLLL"));
 
 		if (now_timezone.isAfter(sunrise_timezone) && now_timezone.isBefore(sunset_timezone)) {
-      console.log("day");
+      // console.log("day");
       return "d";
 		} else {
-      console.log("night");
+      // console.log("night");
 			return "n";
 		}
 	}
