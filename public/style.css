@@ -27,6 +27,26 @@ nav li a:hover {
     text-decoration: none;
 }
 
+.h3 {
+    font-size: 4em;
+    font-family: 'Nunito', sans-serif;
+}
+
+.h4 {
+    font-size: 3em;
+    font-family: 'Nunito', sans-serif;
+}
+
+.h5 {
+    font-size: 2em;
+    font-family: 'Nunito', sans-serif;
+}
+
+.h6 {
+    font-size: 1.5em;
+    font-family: 'Nunito', sans-serif;
+}
+
 .avatar-ctn {
     background-color: orange;
     text-align: center;
@@ -103,7 +123,6 @@ header {
     color: var(--my_white);
 }
 
-
 .bg-image {
     background-image: url("/bg/01d.jpg") no-repeat center center fixed;
     background-size: cover !important;
@@ -111,26 +130,25 @@ header {
 
 .cnx a {
     color: white;
-    text-decoration:none; 
+    text-decoration: none;
     font-weight: 650;
 }
+
 .btn-outline-light:hover .bxs-bookmark-star {
     text-decoration: none;
     border: solid 1px rgb(155, 155, 155);
     background-color: rgb(155, 155, 155);
 }
 
-.research{
+.research {
     border-top-right-radius: 5px;
 }
 
 .text-small {
-    font-size: small;
+    font-size: 0.8em;
 }
 
-.footer{
+.footer {
     color: white;
     margin-bottom: 0%;
 }
-
-
