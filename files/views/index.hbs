@@ -12,8 +12,10 @@
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data-10-year-range.js"
     ></script>
-
-  </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap" rel="stylesheet">
+    </head>
 
   <body class="bg-image">
     <!-- Header-->
@@ -97,9 +99,9 @@
               <!--Clock-->
               <div class="time d-flex flex-row justify-content-center">
                 <div id="hour" class="h4">00</div>
-                <div>:</div>
+                <div class = "h4">:</div>
                 <div id="minute" class="h4">00</div>
-                <div>:</div>
+                <div class = "h4">:</div>
                 <div id="second" class="h4">00</div>
               </div>
               <!--End clock-->
@@ -117,8 +119,8 @@
                 height="56"
                 alt="icon weather"
               />
-              <div id="temperature">?°c / ?°F</div>
-              <div id="feels-like">Ressenti : ?</div>
+              <div id="temperature" class="h5">?°c / ?°F</div>
+              <div id="feels-like"  class="h5">Ressenti : ?</div>
             </div>
           </div>
         </div>
@@ -127,10 +129,10 @@
           id="details-container"
           class="d-flex flex-wrap align-items-center justify-content-center my-3"
         >
-          <div id="UV" class="px-2"></div>
-          <div id="wind-speed" class="px-2"></div>
-          <div id="humidity" class="px-2"></div>
-          <div id="clouds" class="px-2"></div>
+          <div id="UV" class="px-2 h5"></div>
+          <div id="wind-speed" class="px-2 h5"></div>
+          <div id="humidity" class="px-2 h5"></div>
+          <div id="clouds" class="px-2 h5"></div>
         </div>
 
         <div
