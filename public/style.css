@@ -28,22 +28,22 @@ nav li a:hover {
 }
 
 .h3 {
-    font-size: 4em;
-    font-family: 'Nunito', sans-serif;
-}
-
-.h4 {
     font-size: 3em;
     font-family: 'Nunito', sans-serif;
 }
 
-.h5 {
+.h4 {
     font-size: 2em;
     font-family: 'Nunito', sans-serif;
 }
 
+.h5 {
+    font-size: 1em;
+    font-family: 'Nunito', sans-serif;
+}
+
 .h6 {
-    font-size: 1.5em;
+    font-size: 0.5em;
     font-family: 'Nunito', sans-serif;
 }
 
