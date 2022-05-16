@@ -79,14 +79,6 @@ video {
     --my_dark_grey: rgba(169, 169, 169, 0.6);
 }
 
-header {
-    size-adjust: 100%;
-}
-
-.navbar-brand {
-    color: var(--my_white);
-}
-
 .my-white {
     color: var(--my_white);
 }
@@ -102,6 +94,15 @@ header {
 .my-dark-white-bg {
     background-color: var(--my_dark_grey);
 }
+
+header {
+    size-adjust: 100%;
+}
+
+.navbar-brand {
+    color: var(--my_white);
+}
+
 
 .bg-image {
     background-image: url("/bg/01d.jpg") no-repeat center center fixed;
