@@ -13,8 +13,6 @@ function transform_country(lang, country) {
     }
 }
 
-// ##############################################################################################
-
 /**
  * Convert celsius in fehrenheit.
  *
@@ -23,6 +21,10 @@ function transform_country(lang, country) {
  */
 function celsius_to_fahrenheit(temperature) {
     return (temperature * 9) / 5 + 32;
+}
+
+function first_letter_cap(str){
+    return (str.charAt(0).toUpperCase() + str.substr(1));
 }
 
 // ##############################################################################################
@@ -54,6 +56,8 @@ async function set_position(geolocation) {
             window.location = `/weather/${city}/${country}/${lat}/${lon}`;
         });
 }
+
+// #######################################################################################
 
 var image_input = document.querySelector("#image_input");
 if (image_input) {
