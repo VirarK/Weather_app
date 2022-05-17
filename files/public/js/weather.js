@@ -147,8 +147,11 @@ function fill_hours_weather() {
     var str_end_hour = moment();
     var end_hour = parseInt(str_end_hour.format("HH"));
 
-    var div_carousel = null
-    var div_carousel_d_flex = null
+    var div_carousel = null;
+    var div_carousel_d_flex = null;
+
+    var active = false;
+    var first_carousel = null;
 
     var i = 0;
     for (; i <= end_hour - 2; i++) {
@@ -160,6 +163,10 @@ function fill_hours_weather() {
             }
             div_carousel = document.createElement("div");
             div_carousel.classList.add("carousel-item");
+
+            if (i == 0) {
+                first_carousel = div_carousel;
+            }
 
             div_carousel_d_flex = document.createElement("div");
             div_carousel_d_flex.classList.add("d-flex");
@@ -179,6 +186,7 @@ function fill_hours_weather() {
 
         if (date_i.format("HH") == str_end_hour.tz(weather.timezone).format("HH")) {
 			div_carousel.classList.add("active");
+            active = true;
         }
 
         // Draw icon
@@ -245,6 +253,7 @@ function fill_hours_weather() {
 
         if (date_i.format("HH") == str_end_hour.tz(weather.timezone).format("HH")) {
 			div_carousel.classList.add("active");
+            active = true;
         }
 
         // Draw icon
@@ -282,6 +291,10 @@ function fill_hours_weather() {
 
     div_carousel.appendChild(div_carousel_d_flex)
     div_weather_hours.appendChild(div_carousel)
+
+    if (!active) {
+        first_carousel.classList.add("active");
+    }
 
     fill_week_weather();
 }
