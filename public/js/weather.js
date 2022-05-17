@@ -51,10 +51,7 @@ async function get_weather(city, country, lat, lon) {
                 weather.current = data.current;
                 weather.forecast_hourly = data.hourly;
                 weather.daily = data.daily;
-                weather.dt = data.current.dt;
                 weather.timezone = data.timezone;
-                weather.sunrise = data.current.sunrise;
-                weather.sunset = data.current.sunset;
             }
             return data;
         })
@@ -118,7 +115,7 @@ function fill_weather(city, country, lat, lon) {
  * Get previous hours weather.
  */
 async function get_weather_hours(city, country, lat, lon) {
-    let api = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${lon}&dt=${weather.dt}&appid=${keys[num_key]}&lang=fr&units=metric`;
+    let api = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${lon}&dt=${weather.current.dt}&appid=${keys[num_key]}&lang=fr&units=metric`;
     await fetch(api)
         .then(function(response) {
             data = response.json();
@@ -147,8 +144,8 @@ function fill_hours_weather() {
     div_weather_hours.innerHTML = "";
 
     // previous hour
-    var str_end_hour = moment(weather.current.dt * 1000).tz(weather.timezone).format("HH");
-    var end_hour = parseInt(str_end_hour);
+    var str_end_hour = moment();
+    var end_hour = parseInt(str_end_hour.format("HH"));
 
     var div_carousel = null
     var div_carousel_d_flex = null
@@ -176,12 +173,12 @@ function fill_hours_weather() {
         var text_hour_i = document.createElement("div");
         text_hour_i.classList.add("text-center");
         text_hour_i.classList.add("my-1");
-        var date_i = moment(weather.previous_hourly[i].dt * 1000).tz(weather.timezone).format("HH");
-        text_hour_i.innerHTML = date_i + "H";
+        var date_i = moment(weather.previous_hourly[i].dt * 1000);
+		text_hour_i.innerHTML = date_i.format("HH") + "H";
         div_weather_hours_i.appendChild(text_hour_i);
 
-        if (date_i == str_end_hour) {
-            div_carousel.classList.add("active");
+        if (date_i.format("HH") == str_end_hour.tz(weather.timezone).format("HH")) {
+			div_carousel.classList.add("active");
         }
 
         // Draw icon
@@ -241,12 +238,12 @@ function fill_hours_weather() {
         var text_hour_i = document.createElement("div");
         text_hour_i.classList.add("text-center");
         text_hour_i.classList.add("my-1");
-        var date_i = moment(weather.forecast_hourly[i].dt * 1000).tz(weather.timezone).format("HH");
-        text_hour_i.innerHTML = date_i + "H";
+        var date_i = moment(weather.forecast_hourly[i].dt * 1000);
+        text_hour_i.innerHTML = date_i.format("HH") + "H";
         div_weather_hours_i.appendChild(text_hour_i);
 
-        if (date_i == str_end_hour) {
-            div_carousel.classList.add("active");
+        if (date_i.format("HH") == str_end_hour.tz(weather.timezone).format("HH")) {
+			div_carousel.classList.add("active");
         }
 
         // Draw icon
@@ -375,37 +372,22 @@ function fill_date() {
  * 
  */
 function updateTime() {
-    var now = moment().tz(weather.timezone);
-    var hour = now.hours();
-    var min = now.minutes();
-    var sec = now.seconds();
+    var now = moment().tz(weather.timezone).format("HH mm ss");
+	var now_split = now.split(" ");
+
     var div_hour = document.getElementById("hour");
     var div_min = document.getElementById("minute");
     var div_sec = document.getElementById("second");
 
-    if (div_hour.innerHTML != hour) {
-        if (hour < 10) {
-            div_hour.innerHTML = "0" + hour;
-        } else {
-            div_hour.innerHTML = hour;
-        }
-    }
-
-    if (div_min.innerHTML != min) {
-        if (min < 10) {
-            div_min.innerHTML = "0" + min;
-        } else {
-            div_min.innerHTML = min;
-        }
-    }
-
-    if (div_sec.innerHTML != sec) {
-        if (sec < 10) {
-            div_sec.innerHTML = "0" + sec;
-        } else {
-            div_sec.innerHTML = sec;
-        }
-    }
+	if (div_hour.innerHTML != now_split[0]) {
+		div_hour.innerHTML = now_split[0];
+	}
+	if (div_min.innerHTML != now_split[1]) {
+		div_min.innerHTML = now_split[1];
+	}
+	if (div_sec.innerHTML != now_split[2]) {
+		div_sec.innerHTML = now_split[2];
+	}
 }
 
 /**
@@ -462,23 +444,18 @@ function change_colors() {
 function change_bg() {
     if (document.body) {
 
-        var now = moment(weather.dt * 1000);
+        var now = moment(weather.dt);
         var now_timezone = now.tz(weather.timezone);
-        // console.log("🚀 ~ file: weather.js ~ line 473 ~ change_bg ~ now_timezone", now_timezone.format("LLLL"));
 
-        var sunrise = moment(weather.sunrise * 1000);
+        var sunrise = moment(weather.current.sunrise * 1000);
         var sunrise_timezone = sunrise.tz(weather.timezone);
-        // console.log("🚀 ~ file: weather.js ~ line 477 ~ change_bg ~ sunrise_timezone", sunrise_timezone.format("LLLL"));
 
-        var sunset = moment(weather.sunset * 1000);
+        var sunset = moment(weather.current.sunset * 1000);
         var sunset_timezone = sunset.tz(weather.timezone);
-        // console.log("🚀 ~ file: weather.js ~ line 481 ~ change_bg ~ sunset_timezone", sunset_timezone.format("LLLL"));
 
         if (now_timezone.isAfter(sunrise_timezone) && now_timezone.isBefore(sunset_timezone)) {
-            // console.log("day");
             return "d";
         } else {
-            // console.log("night");
             return "n";
         }
     }
