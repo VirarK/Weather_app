@@ -72,7 +72,7 @@ function fill_weather(city, country, lat, lon) {
   	}, ${transform_country("fr", country)}`;
     document.getElementById(
         "weather-short-description"
-    ).innerHTML = `${weather.current.weather[0].description}`;
+    ).innerHTML = `${first_letter_cap(weather.current.weather[0].description)}`;
 
     // set today weather icon
     var icon = document.getElementById("icon-weather");
@@ -317,7 +317,7 @@ function fill_week_weather() {
         var text_date_i = document.createElement("div");
         text_date_i.classList.add("text-center");
         text_date_i.classList.add("my-1");
-        text_date_i.innerHTML = date_i.format("ddd D");
+        text_date_i.innerHTML = first_letter_cap(date_i.format("ddd D"));
 
         div_weather_week_i.appendChild(text_date_i);
 
@@ -364,7 +364,7 @@ function fill_week_weather() {
         weather_description_i.classList.add("text-center");
         weather_description_i.classList.add("text-small");
         weather_description_i.classList.add("my-1");
-        weather_description_i.innerHTML = weather.daily[i].weather[0].description;
+        weather_description_i.innerHTML = first_letter_cap(weather.daily[i].weather[0].description);
         div_weather_week_i.appendChild(weather_description_i);
 
         var div_weather_humidity_i = document.createElement("div");
@@ -422,7 +422,7 @@ function fill_week_weather() {
  */
 function fill_date() {
     var date_html = document.getElementById("date");
-    date_html.innerHTML = today.format("dddd D MMMM");
+    date_html.innerHTML = first_letter_cap(today.format("dddd D MMMM"));
 
     change_colors();
 }
