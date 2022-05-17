@@ -144,8 +144,8 @@ function fill_hours_weather() {
     div_weather_hours.innerHTML = "";
 
     // previous hour
-    var str_end_hour = moment().format("HH");
-    var end_hour = parseInt(str_end_hour);
+    var str_end_hour = moment();
+    var end_hour = parseInt(str_end_hour.format("HH"));
 
     var div_carousel = null
     var div_carousel_d_flex = null
@@ -173,12 +173,12 @@ function fill_hours_weather() {
         var text_hour_i = document.createElement("div");
         text_hour_i.classList.add("text-center");
         text_hour_i.classList.add("my-1");
-        var date_i = moment(weather.previous_hourly[i].dt * 1000).format("HH");
-		text_hour_i.innerHTML = date_i + "H";
+        var date_i = moment(weather.previous_hourly[i].dt * 1000);
+		text_hour_i.innerHTML = date_i.format("HH") + "H";
         div_weather_hours_i.appendChild(text_hour_i);
 
-        if (date_i == str_end_hour) {
-            div_carousel.classList.add("active");
+        if (date_i.format("HH") == str_end_hour.tz(weather.timezone).format("HH")) {
+			div_carousel.classList.add("active");
         }
 
         // Draw icon
@@ -238,12 +238,12 @@ function fill_hours_weather() {
         var text_hour_i = document.createElement("div");
         text_hour_i.classList.add("text-center");
         text_hour_i.classList.add("my-1");
-        var date_i = moment(weather.forecast_hourly[i].dt * 1000).format("HH");
-        text_hour_i.innerHTML = date_i + "H";
+        var date_i = moment(weather.forecast_hourly[i].dt * 1000);
+        text_hour_i.innerHTML = date_i.format("HH") + "H";
         div_weather_hours_i.appendChild(text_hour_i);
 
-        if (date_i == str_end_hour) {
-            div_carousel.classList.add("active");
+        if (date_i.format("HH") == str_end_hour.tz(weather.timezone).format("HH")) {
+			div_carousel.classList.add("active");
         }
 
         // Draw icon
