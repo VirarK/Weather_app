@@ -332,8 +332,8 @@ function fill_week_weather() {
         temperature_day_i_max.classList.add("mx-2");
         temperature_day_i_max.classList.add("text-center");
         temperature_day_i_max.innerHTML = `${Math.floor(
-      weather.daily[i].temp.max
-    )}°C`;
+      		weather.daily[i].temp.max
+    	)}°C`;
         temperature_day_i.appendChild(temperature_day_i_max);
 
         var temperature_day_i_min = document.createElement("div");
@@ -341,8 +341,8 @@ function fill_week_weather() {
         temperature_day_i_min.classList.add("text-center");
         temperature_day_i_min.classList.add("align-self-center");
         temperature_day_i_min.innerHTML = `${Math.floor(
-      weather.daily[i].temp.min
-    )}°C`;
+			weather.daily[i].temp.min
+		)}°C`;
         temperature_day_i_min.classList.add("text-small");
         temperature_day_i.appendChild(temperature_day_i_min);
 
