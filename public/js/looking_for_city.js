@@ -55,7 +55,6 @@ async function looking_for_city() {
 			if (!unknown) {
 				window.location = `/weather/${city}/${country_code}/${lat}/${lon}`;
 			} else {
-				//alert(`${place} : "${city}" "${country.toLocaleLowerCase()}" "${transform_country(lang, country_code).toLocaleLowerCase()}" Ville ou Pays inconnu`);
 				alert(`${place} : Ville ou Pays inconnu`);
 			}
 		});
