@@ -100,7 +100,7 @@ function fill_weather(city, country, lat, lon) {
     document.getElementById("UV").innerHTML = `UV ${weather.current.uvi}`;
     document.getElementById(
         "wind-speed"
-    ).innerHTML = `vitesse du vent ${weather.current.wind_speed}m/s`;
+    ).innerHTML = `Vitesse du vent ${weather.current.wind_speed}m/s`;
     document.getElementById(
         "humidity"
     ).innerHTML = `Humidité ${weather.current.humidity}%`;
