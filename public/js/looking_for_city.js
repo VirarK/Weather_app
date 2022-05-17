@@ -38,7 +38,11 @@ async function looking_for_city() {
 
 				if (country.toLocaleLowerCase() == transform_country("fr", country_code).toLocaleLowerCase()) {
 					if (data[0].local_names) {
-						city = data[0].local_names.fr;
+						if (data[0].local_names.fr) {
+							city = data[0].local_names.fr;
+						} else {
+							city = data[0].name;
+						}
 					}
 				} else if (country.toLocaleLowerCase() == transform_country("en", country_code).toLocaleLowerCase()) {
 					city = data[0].name;
