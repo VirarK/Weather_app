@@ -1,9 +1,9 @@
-async function looking_for_city(city, country) {
+async function looking_for_city(city, countrycode) {
     var lat = null;
     var lon = null;
 
-    // var country = null;
-    var country_code = null;
+    var country = null;
+    // var country_code = null;
 
     var unknown = false
 
@@ -24,7 +24,7 @@ async function looking_for_city(city, country) {
     // 		country = country.slice(1)
     // 	}
 
-    let api = `https://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&limit=1&appid=${keys[num_key]}`;
+    let api = `https://api.openweathermap.org/geo/1.0/direct?q=${city},${countrycode}&limit=1&appid=${keys[num_key]}`;
     await fetch(api)
         .then(function(response) {
             let data = response.json();
@@ -33,30 +33,16 @@ async function looking_for_city(city, country) {
         .then(function(data) {
             if (!data[0]) {
                 unknown = true;
-            } else {
+            } else if (data[0].lat && data[0].lon) {
                 lat = data[0].lat;
                 lon = data[0].lon;
-
-                country_code = data[0].country;
-
-                if (country.toLocaleLowerCase() == transform_country("fr", country_code).toLocaleLowerCase()) {
-                    if (data[0].local_names) {
-                        if (data[0].local_names.fr) {
-                            city = data[0].local_names.fr;
-                        } else {
-                            city = data[0].name;
-                        }
-                    }
-                } else if (country.toLocaleLowerCase() == transform_country("en", country_code).toLocaleLowerCase()) {
-                    city = data[0].name;
-                } else {
-                    unknown = true;
-                }
+            } else {
+                unknown = true;
             }
         })
         .then(function() {
             if (!unknown) {
-                window.location = `/weather/${city}/${country_code}/${lat}/${lon}`;
+                window.location = `/weather/${city}/${countrycode}/${lat}/${lon}`;
             } else {
                 alert(`${place} : Ville ou Pays inconnu`);
             }

@@ -31,8 +31,9 @@
           'Entrez une ville...';
         } else {
           var city = place.name;
-          var country = place.address_components[3].long_name
-          looking_for_city(city, country);
+          var countrycode = place.address_components[3].short_name
+          
+          looking_for_city(city, countrycode);
         }
       }
     </script>
@@ -83,14 +84,14 @@
               placeholder="Entrez une ville..."
             />
           </div>
-          <button
+          {{!-- <button
             type="button"
             onclick="looking_for_city()"
             class="research btn btn-dark btn-ms"
             title="Lancer la recherche"
           >
             <i class="bx bx-search-alt my-white bx-sm"></i>
-          </button>
+          </button> --}}
 
           {{#if user}}
             <button class="cnx btn ms-2 btn-outline-dark rounded">
