@@ -144,6 +144,19 @@
                         </i>
                       </button>
                     {{/if}}
+                    {{else}}
+
+                        <button
+                        onclick="alert(`Pour ajouter une ville à vos favoris, connectez-vous !`)"
+                        class="btn btn-outline favoris"
+                        title="Cliquez pour ajouter au favoris"
+                      >
+                        <i
+                          class="bx bxs-star bx-sm"
+                          style="color: rgb(255, 255, 255)"
+                        >
+                        </i>
+                      </button>
                   {{/if}}
                 </div>
               </div>
@@ -168,7 +181,13 @@
           id="details-container"
           class="d-flex flex-wrap align-items-center justify-content-center my-3"
         >
-          <div id="UV" class="px-2 h5"></div>
+          <div id="UV" class="px-2 h5">
+            <img
+              id="image-uv"
+              src="../images/weather/uv.png"
+              alt="UV Image"
+            />
+          </div>
           <div id="wind-speed" class="px-2 h5"></div>
           <div id="humidity" class="px-2 h5"></div>
           <div id="clouds" class="px-2 h5"></div>
