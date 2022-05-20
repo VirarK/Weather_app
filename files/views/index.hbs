@@ -28,12 +28,11 @@
 
         if (!place.geometry) {
           document.getElementById('autocomplete').placeholder = 
-          'Entrez une ville';
+          'Entrez une ville...';
         } else {
-          //document.getElementById('details').innerHTML = place.name;
-          console.log("🚀 ~ file: index.hbs ~ line 34 ~ onPlaceChanged ~ place.name", place.name)
-          console.log("🚀 ~ file: index.hbs ~ line 34 ~ onPlaceChanged ~ place.name", place)
-          console.log("🚀 ~ file: index.hbs ~ line 34 ~ onPlaceChanged ~ place.address_components", place.address_components[3].long_name)
+          var city = place.name;
+          var country = place.address_components[3].long_name
+          looking_for_city(city, country);
         }
       }
     </script>
@@ -81,7 +80,7 @@
               id="autocomplete"
               type="text"
               class="form-control rounded"
-              placeholder="Entrez une ville"
+              placeholder="Entrez une ville..."
             />
           </div>
           <button
