@@ -12,6 +12,32 @@
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data-10-year-range.js"
     ></script>
+    <script>
+      let autocomplete;
+      function initAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(
+          document.getElementById('autocomplete'),
+          {
+            types: ['(cities)']
+          });
+
+          autocomplete.addListener('place_changed', onPlaceChanged);
+      }
+      function onPlaceChanged() {
+        var place = autocomplete.getPlace();
+
+        if (!place.geometry) {
+          document.getElementById('autocomplete').placeholder = 
+          'Entrez une ville...';
+        } else {
+          var city = place.name;
+          var country = place.address_components[3].long_name
+          looking_for_city(city, country);
+        }
+      }
+    </script>
+    <script async defer type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzGmZC0t_ZH4L2UlIQlUZLfshMIBgu8jg&libraries=places&callback=initAutocomplete"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap" rel="stylesheet">
@@ -50,12 +76,12 @@
             return false; }
           </script>
           <div class="form-outline">
+            {{!-- <input placeholder="Entrez une ville" type="text" id="autocomplete" onFocus="initAutocomplete()"> --}}
             <input
-              type="search"
-              onkeypress="handle(event)"
-              id="input-name-city"
+              id="autocomplete"
+              type="text"
               class="form-control rounded"
-              placeholder="ex: Versailles, France"
+              placeholder="Entrez une ville..."
             />
           </div>
           <button
@@ -144,6 +170,19 @@
                         </i>
                       </button>
                     {{/if}}
+                    {{else}}
+
+                        <button
+                        onclick="alert(`Pour ajouter une ville à vos favoris, connectez-vous !`)"
+                        class="btn btn-outline favoris"
+                        title="Cliquez pour ajouter au favoris"
+                      >
+                        <i
+                          class="bx bxs-star bx-sm"
+                          style="color: rgb(255, 255, 255)"
+                        >
+                        </i>
+                      </button>
                   {{/if}}
                 </div>
               </div>
