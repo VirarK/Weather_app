@@ -38,7 +38,7 @@
       }
     </script>
     <script async defer type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzGmZC0t_ZH4L2UlIQlUZLfshMIBgu8jg&libraries=places&callback=initAutocomplete"></script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzGmZC0t_ZH4L2UlIQlUZLfshMIBgu8jg&libraries=places"></script>
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,6 +82,7 @@
               type="text"
               class="form-control rounded"
               placeholder="Entrez une ville..."
+              onFocus="initAutocomplete()"
             />
           </div>
           {{!-- <button

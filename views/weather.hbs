@@ -13,6 +13,7 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data-10-year-range.js"
     ></script>
     <script>
+      
       let autocomplete;
       function initAutocomplete() {
         autocomplete = new google.maps.places.Autocomplete(
@@ -31,13 +32,17 @@
           'Entrez une ville...';
         } else {
           var city = place.name;
-          var countrycode = place.address_components[3].short_name;
+          if(place.address_components.length == 3) {
+            var countrycode = place.address_components[2].short_name;
+          } else {
+            var countrycode = place.address_components[3].short_name;
+          }
           looking_for_city(city, countrycode);
         }
       }
     </script>
     <script async defer type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzGmZC0t_ZH4L2UlIQlUZLfshMIBgu8jg&libraries=places&callback=initAutocomplete"></script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzGmZC0t_ZH4L2UlIQlUZLfshMIBgu8jg&libraries=places"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap" rel="stylesheet">
@@ -82,6 +87,7 @@
               type="text"
               class="form-control rounded"
               placeholder="Entrez une ville..."
+              onFocus="initAutocomplete()"
             />
           </div>
           {{!-- <button
