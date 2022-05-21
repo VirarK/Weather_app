@@ -60,17 +60,16 @@
                 class="card-title d-flex justify-content-center"
               >{{user.username}}</h5>
               <p class="card-text">
-                <a
-                  href="#"
-                  class="btn btn-dark d-flex justify-content-center"
-                >{{user.email}}</a>
+                <div class="text-truncate ">
+                  {{user.email}}
+                </div>
               </p>
               <h6 class="infos my-5">Vos informations personnelles</h2>
                 <div class="other d-flex justify-content-center ">
                     <i class='bx bxl-instagram'></i>
-                    <i class='bx bxl-meta' ></i>
-                    <i class='bx bxl-snapchat' ></i>
-                    <i class='bx bxl-twitter' ></i>
+                    <i class='bx bxl-meta'></i>
+                    <i class='bx bxl-snapchat'></i>
+                    <i class='bx bxl-twitter'></i>
                 </div>
             </div>
           </div>
@@ -106,8 +105,7 @@
                   <div><a
                       href="/weather/{{this.name}}/{{this.country_code}}/{{this.lat}}/{{this.lon}}"
                     >{{this.name}},
-                      {{this.country_code}}, ({{this.lat}},
-                      {{this.lon}})</a></div>
+                      {{this.country_code}}</a></div>
                 {{/each}}
               {{else}}
                 <div class="aucun">Aucun favori !</div>
