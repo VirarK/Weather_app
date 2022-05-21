@@ -367,24 +367,26 @@ function fill_week_weather() {
         weather_description_i.innerHTML = first_letter_cap(weather.daily[i].weather[0].description);
         div_weather_week_i.appendChild(weather_description_i);
 
+        //
         var div_weather_humidity_i = document.createElement("div");
         div_weather_humidity_i.classList.add("d-flex");
         div_weather_humidity_i.classList.add("justify-content-center");
         div_weather_humidity_i.classList.add("my-1");
 
-        var weather_humidity_i_icon = document.createElement("img"); //Pour icônes
-        weather_humidity_i_icon.classList.add("text-center"); //Pour icônes
-        weather_humidity_i_icon.classList.add("mx-1"); //Pour icônes
-        var weather_humidity_i_icon_dir = `/images/weather/drop.png`; //Pour icônes
-        weather_humidity_i_icon.setAttribute("src", weather_humidity_i_icon_dir); //Pour icônes
-        weather_humidity_i_icon.setAttribute("width", "32"); //Pour icônes
-        weather_humidity_i_icon.setAttribute("height", "32"); //Pour icônes
-        div_weather_humidity_i.appendChild(weather_humidity_i_icon); //Pour icônes
-        //Pour icônes
-        var weather_humidity_i_text = document.createElement("div"); //Pour icônes
-        weather_humidity_i_text.classList.add("mx-1"); //Pour icônes
-        weather_humidity_i_text.innerHTML = `${weather.daily[i].humidity}%`; //Pour icônes
-        div_weather_humidity_i.appendChild(weather_humidity_i_text); //Pour icônes
+        var weather_humidity_i_icon = document.createElement("img"); 
+        weather_humidity_i_icon.classList.add("text-center"); 
+        weather_humidity_i_icon.classList.add("mx-1"); 
+
+        var weather_humidity_i_icon_dir = `/images/weather/drop.png`; 
+        weather_humidity_i_icon.setAttribute("src", weather_humidity_i_icon_dir); 
+        weather_humidity_i_icon.setAttribute("width", "32"); 
+        weather_humidity_i_icon.setAttribute("height", "32"); 
+        div_weather_humidity_i.appendChild(weather_humidity_i_icon); 
+        
+        var weather_humidity_i_text = document.createElement("div"); 
+        weather_humidity_i_text.classList.add("mx-1"); 
+        weather_humidity_i_text.innerHTML = `${weather.daily[i].humidity}%`; 
+        div_weather_humidity_i.appendChild(weather_humidity_i_text); 
 
         div_weather_week_i.appendChild(div_weather_humidity_i);
 
