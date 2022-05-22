@@ -227,11 +227,13 @@
   </script>
   <script>  
     let autocomplete;
+    let i = 0;
     function initAutocomplete() {
       autocomplete = new google.maps.places.Autocomplete(
         document.getElementById('autocomplete'),
         {
-          types: ['(cities)']
+          types: ['(cities)'],
+          fields:['']
         });
 
         autocomplete.addListener('place_changed', onPlaceChanged);
@@ -244,7 +246,10 @@
         'Entrez une ville...';
       } else {
         var city = place.name;
-        var countrycode = place.address_components[place.address_components.length-1].short_name;
+        var address_components = place.address_components;
+        var components={}; 
+        jQuery.each(address_components, function(k,v1) {jQuery.each(v1.types, function(k2, v2){components[v2]=v1.short_name});}); 
+        var countrycode = components.country;
         looking_for_city(city, countrycode);
       }
     }
