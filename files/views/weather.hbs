@@ -12,20 +12,7 @@
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data-10-year-range.js"
     ></script>
-    <script>
 
-      let autocomplete; function initAutocomplete() { autocomplete = new
-      google.maps.places.Autocomplete( document.getElementById('autocomplete'),
-      { types: ['(cities)'] }); autocomplete.addListener('place_changed',
-      onPlaceChanged); } function onPlaceChanged() { var place =
-      autocomplete.getPlace(); if (!place.geometry) {
-      document.getElementById('autocomplete').placeholder = 'Entrez une
-      ville...'; } else { var city = place.name;
-      if(place.address_components.length == 3) { var countrycode =
-      place.address_components[2].short_name; } else { var countrycode =
-      place.address_components[3].short_name; } looking_for_city(city,
-      countrycode); } }
-    </script>
     <script
       async
       defer
@@ -295,6 +282,19 @@
   <script src="/js/utils.js"></script>
   <script src="/js/weather.js"></script>
   <script src="/js/looking_for_city.js"></script>
+
+  <script>
+    let autocomplete; function initAutocomplete() { autocomplete = new
+    google.maps.places.Autocomplete( document.getElementById('autocomplete'), {
+    types: ['(cities)'] }); autocomplete.addListener('place_changed',
+    onPlaceChanged); } function onPlaceChanged() { var place =
+    autocomplete.getPlace(); if (!place.geometry) {
+    document.getElementById('autocomplete').placeholder = 'Entrez une ville...';
+    } else { var city = place.name; if(place.address_components.length == 3) {
+    var countrycode = place.address_components[2].short_name; } else { var
+    countrycode = place.address_components[3].short_name; }
+    looking_for_city(city, countrycode); } }
+  </script>
 
   <script>
     get_weather("{{city}}", "{{country_code}}",
