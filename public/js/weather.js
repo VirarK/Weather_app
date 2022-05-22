@@ -97,16 +97,49 @@ function fill_weather(city, country, lat, lon) {
     ).innerHTML = `météo de ${city}`;
 
     //
-    document.getElementById("UV").innerHTML = `UV ${weather.current.uvi}`;
-    document.getElementById(
-        "wind-speed"
-    ).innerHTML = `Vitesse du vent ${weather.current.wind_speed}m/s`;
-    document.getElementById(
-        "humidity"
-    ).innerHTML = `Humidité ${weather.current.humidity}%`;
-    document.getElementById(
-        "clouds"
-    ).innerHTML = `Nuage ${weather.current.clouds}%`;
+    var div_uv = document.getElementById("UV");
+    var icon_uv = document.createElement("img");
+    icon_uv.classList.add("mx-2");
+    icon_uv.setAttribute("src", "/images/weather/UV.png");
+    icon_uv.setAttribute("height", "32");
+    icon_uv.setAttribute("width", "32");
+    div_uv.appendChild(icon_uv);
+    var text_uv = document.createElement("div");
+    text_uv.innerHTML = `UV ${weather.current.uvi}`;
+    div_uv.appendChild(text_uv);
+
+    var div_wind_speed = document.getElementById("wind-speed");
+    var icon_wind_speed = document.createElement("img");
+    icon_wind_speed.classList.add("mx-2");
+    icon_wind_speed.setAttribute("src", "/images/weather/wind2.png");
+    icon_wind_speed.setAttribute("height", "32");
+    icon_wind_speed.setAttribute("width", "32");
+    div_wind_speed.appendChild(icon_wind_speed);
+    var text_wind_speed = document.createElement("div");
+    text_wind_speed.innerHTML = `Vitesse du vent ${weather.current.wind_speed} m/s`;
+    div_wind_speed.appendChild(text_wind_speed);
+
+    var div_humidity = document.getElementById("humidity");
+    var icon_humidity = document.createElement("img");
+    icon_humidity.classList.add("mx-2");
+    icon_humidity.setAttribute("src", "/images/weather/drop.png");
+    icon_humidity.setAttribute("height", "32");
+    icon_humidity.setAttribute("width", "32");
+    div_humidity.appendChild(icon_humidity);
+    var text_humidity = document.createElement("div");
+    text_humidity.innerHTML = `Humidité ${weather.current.humidity}%`;
+    div_humidity.appendChild(text_humidity);
+
+    var div_clouds = document.getElementById("clouds");
+    var icon_clouds = document.createElement("img");
+    icon_clouds.classList.add("mx-2");
+    icon_clouds.setAttribute("src", "/images/weather/clouds_percentage.png");
+    icon_clouds.setAttribute("height", "32");
+    icon_clouds.setAttribute("width", "32");
+    div_clouds.appendChild(icon_clouds);
+    var text_clouds = document.createElement("div");
+    text_clouds.innerHTML = `Nuages ${weather.current.clouds}%`;
+    div_clouds.appendChild(text_clouds);
 
     get_weather_hours(city, country, lat, lon);
 }
@@ -203,12 +236,6 @@ function fill_hours_weather() {
 
         div_weather_hours_i.appendChild(weather_icon_date_div_i);
 
-        //
-        /* var weather_description_i = document.createElement("div");
-        weather_description_i.classList.add("text-center");
-        weather_description_i.innerHTML = weather.previous_hourly[i].weather[0].description;
-        div_weather_hours_i.appendChild(weather_description_i); */
-
         // Write hour weather
         var balise_temp_previous_hour_i = document.createElement("div");
         balise_temp_previous_hour_i.classList.add("my-1");
@@ -270,12 +297,6 @@ function fill_hours_weather() {
 
         div_weather_hours_i.appendChild(weather_icon_date_div_i);
 
-        //
-        /* var weather_description_i = document.createElement("div");
-        weather_description_i.classList.add("text-center");
-        weather_description_i.innerHTML = weather.forecast_hourly[i].weather[0].description;
-        div_weather_hours_i.appendChild(weather_description_i); */
-
         // Write hour weather
         var balise_temp_forecast_hour_i = document.createElement("div");
         balise_temp_forecast_hour_i.classList.add("text-center");
@@ -308,111 +329,130 @@ function fill_week_weather() {
 
     // create week days
     for (var i = 1; i < 7; i++) {
+        // main div
         var div_weather_week_i = document.createElement("div");
         div_weather_week_i.classList.add("d-flex");
         div_weather_week_i.setAttribute("class", css_custom);
 
-        // Write date
+        // date
         var date_i = moment().add(i, "days");
         var text_date_i = document.createElement("div");
         text_date_i.classList.add("text-center");
-        text_date_i.classList.add("my-1");
+        text_date_i.classList.add("my-2");
         text_date_i.innerHTML = first_letter_cap(date_i.format("ddd D"));
-
         div_weather_week_i.appendChild(text_date_i);
 
-        // Draw icon
+        // icon weather
         var weather_icon_date_div_i = document.createElement("div");
         weather_icon_date_div_i.classList.add("text-center");
-        weather_icon_date_div_i.classList.add("my-1");
+        weather_icon_date_div_i.classList.add("my-2");
+
         var weather_icon_date_i = document.createElement("img");
         var weather_dir_icon_date_i = `/images/weather/${weather.daily[i].weather[0].icon}.png`;
         weather_icon_date_i.setAttribute("src", weather_dir_icon_date_i);
-        weather_icon_date_i.setAttribute("width", "100");
-        weather_icon_date_i.setAttribute("height", "100");
-
+        weather_icon_date_i.setAttribute("width", "80");
+        weather_icon_date_i.setAttribute("height", "80");
         weather_icon_date_div_i.appendChild(weather_icon_date_i);
         div_weather_week_i.appendChild(weather_icon_date_div_i);
 
-        // Write max and min temperature
-        var temperature_day_i = document.createElement("div");
-        temperature_day_i.classList.add("d-flex");
-        temperature_day_i.classList.add("justify-content-center");
-        temperature_day_i.classList.add("my-1");
-
-        var temperature_day_i_max = document.createElement("div");
-        temperature_day_i_max.classList.add("mx-2");
-        temperature_day_i_max.classList.add("text-center");
-        temperature_day_i_max.innerHTML = `${Math.floor(
-      		weather.daily[i].temp.max
-    	)}°C`;
-        temperature_day_i.appendChild(temperature_day_i_max);
-
-        var temperature_day_i_min = document.createElement("div");
-        temperature_day_i_min.classList.add("mx-2");
-        temperature_day_i_min.classList.add("text-center");
-        temperature_day_i_min.classList.add("align-self-center");
-        temperature_day_i_min.innerHTML = `${Math.floor(
-			weather.daily[i].temp.min
-		)}°C`;
-        temperature_day_i_min.classList.add("text-small");
-        temperature_day_i.appendChild(temperature_day_i_min);
-        div_weather_week_i.appendChild(temperature_day_i);
-
-        //
+        // description
         var weather_description_i = document.createElement("div");
         weather_description_i.classList.add("text-center");
         weather_description_i.classList.add("text-small");
-        weather_description_i.classList.add("my-1");
+        weather_description_i.classList.add("my-2");
         weather_description_i.innerHTML = first_letter_cap(weather.daily[i].weather[0].description);
         div_weather_week_i.appendChild(weather_description_i);
 
-        //
+        // temperature max
+        var div_temperature_day_i_max = document.createElement("div");
+        div_temperature_day_i_max.classList.add("d-flex");
+        div_temperature_day_i_max.classList.add("align-items-center");
+        div_temperature_day_i_max.classList.add("justify-content-center");
+        div_temperature_day_i_max.classList.add("mx-2");
+        div_temperature_day_i_max.classList.add("mt-2");
+
+        var icon_temperature_day_i_max = document.createElement("img");
+        icon_temperature_day_i_max.setAttribute("src", "/images/weather/hot.png");
+        icon_temperature_day_i_max.setAttribute("height", "32");
+        icon_temperature_day_i_max.setAttribute("width", "32");
+        div_temperature_day_i_max.appendChild(icon_temperature_day_i_max);
+    
+        var text_temperature_day_i_max = document.createElement("div");
+        text_temperature_day_i_max.classList.add("mx-2");
+        text_temperature_day_i_max.classList.add("text-center");
+        text_temperature_day_i_max.innerHTML = `${Math.floor(
+      		weather.daily[i].temp.max
+    	)}°C`;
+        div_temperature_day_i_max.appendChild(text_temperature_day_i_max);
+        div_weather_week_i.appendChild(div_temperature_day_i_max);
+
+        // temperature min
+        var div_temperature_day_i_min = document.createElement("div");
+        div_temperature_day_i_min.classList.add("d-flex");
+        div_temperature_day_i_min.classList.add("align-items-center");
+        div_temperature_day_i_min.classList.add("justify-content-center");
+        div_temperature_day_i_min.classList.add("mx-2");
+        div_temperature_day_i_min.classList.add("mb-2");
+
+        var icon_temperature_day_i_min = document.createElement("img");
+        icon_temperature_day_i_min.setAttribute("src", "/images/weather/cold.png");
+        icon_temperature_day_i_min.setAttribute("height", "32");
+        icon_temperature_day_i_min.setAttribute("width", "32");
+        div_temperature_day_i_min.appendChild(icon_temperature_day_i_min);
+
+        var text_temperature_day_i_min = document.createElement("div");
+        text_temperature_day_i_min.classList.add("mx-2");
+        text_temperature_day_i_min.classList.add("text-center");
+        text_temperature_day_i_min.innerHTML = `${Math.floor(
+			weather.daily[i].temp.min
+		)}°C`;
+        div_temperature_day_i_min.appendChild(text_temperature_day_i_min);
+        div_weather_week_i.appendChild(div_temperature_day_i_min);
+
+        // weather humidity
         var div_weather_humidity_i = document.createElement("div");
         div_weather_humidity_i.classList.add("d-flex");
         div_weather_humidity_i.classList.add("justify-content-center");
-        div_weather_humidity_i.classList.add("my-1");
-
-        var weather_humidity_i_icon = document.createElement("img"); 
-        weather_humidity_i_icon.classList.add("text-center"); 
-        weather_humidity_i_icon.classList.add("mx-1"); 
-
-        var weather_humidity_i_icon_dir = `/images/weather/drop.png`; 
-        weather_humidity_i_icon.setAttribute("src", weather_humidity_i_icon_dir); 
-        weather_humidity_i_icon.setAttribute("width", "32"); 
-        weather_humidity_i_icon.setAttribute("height", "32"); 
-        div_weather_humidity_i.appendChild(weather_humidity_i_icon); 
+        div_weather_humidity_i.classList.add("align-items-center"); 
+        div_weather_humidity_i.classList.add("my-2");
         
-        var weather_humidity_i_text = document.createElement("div"); 
-        weather_humidity_i_text.classList.add("mx-1"); 
-        weather_humidity_i_text.innerHTML = `${weather.daily[i].humidity}%`; 
-        div_weather_humidity_i.appendChild(weather_humidity_i_text); 
-
+        var weather_humidity_i_icon = document.createElement("img");
+        weather_humidity_i_icon.classList.add("text-center");
+        
+        var weather_humidity_i_icon_dir = `/images/weather/drop.png`;
+        weather_humidity_i_icon.setAttribute("src", weather_humidity_i_icon_dir);
+        weather_humidity_i_icon.setAttribute("width", "32");
+        weather_humidity_i_icon.setAttribute("height", "32");
+        div_weather_humidity_i.appendChild(weather_humidity_i_icon);
+        
+        var weather_humidity_i_text = document.createElement("div");
+        weather_humidity_i_text.classList.add("mx-1");
+        weather_humidity_i_text.innerHTML = `${weather.daily[i].humidity}%`;
+        div_weather_humidity_i.appendChild(weather_humidity_i_text);
         div_weather_week_i.appendChild(div_weather_humidity_i);
 
-        //
+        // weather wind
         var div_weather_wind_i = document.createElement("div");
         div_weather_wind_i.classList.add("d-flex");
         div_weather_wind_i.classList.add("justify-content-center");
-        div_weather_wind_i.classList.add("my-1");
+        div_weather_wind_i.classList.add("align-items-center");
+        div_weather_wind_i.classList.add("my-2");
 
         var weather_wind_i_icon = document.createElement("img");
         weather_wind_i_icon.classList.add("text-center");
         weather_wind_i_icon.classList.add("mx-1");
-        var weather_wind_i_icon_dir = `/images/weather/wind.png`;
+        
+        var weather_wind_i_icon_dir = `/images/weather/wind2.png`;
         weather_wind_i_icon.setAttribute("src", weather_wind_i_icon_dir);
         weather_wind_i_icon.setAttribute("width", "32");
         weather_wind_i_icon.setAttribute("height", "32");
-        weather_wind_i_icon.style.transform = `rotate(${weather.daily[i].wind_deg}deg)`;
         div_weather_wind_i.appendChild(weather_wind_i_icon);
 
         var weather_wind_i_text = document.createElement("div");
         weather_wind_i_text.classList.add("mx-1");
-        weather_wind_i_text.innerHTML = `${weather.daily[i].wind_speed}km/h`;
+        weather_wind_i_text.innerHTML = `${weather.daily[i].wind_speed} m/s`;
         div_weather_wind_i.appendChild(weather_wind_i_text);
-
         div_weather_week_i.appendChild(div_weather_wind_i);
-
         div_weather_week.appendChild(div_weather_week_i);
     }
 
