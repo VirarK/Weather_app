@@ -296,13 +296,7 @@
         'Entrez une ville...';
       } else {
         var city = place.name;
-        if(place.address_components.length == 2) {
-          var countrycode = place.address_components[1].short_name;
-        } else if(place.address_components.length == 3) {
-          var countrycode = place.address_components[2].short_name;
-        } else {
-          var countrycode = place.address_components[3].short_name;
-        }
+        var countrycode = place.address_components[place.address_components.length-1].short_name;
         looking_for_city(city, countrycode);
       }
     }
