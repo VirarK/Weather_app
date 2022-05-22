@@ -105,7 +105,7 @@ function fill_weather(city, country, lat, lon) {
     icon_uv.setAttribute("width", "32");
     div_uv.appendChild(icon_uv);
     var text_uv = document.createElement("div");
-    text_uv.innerHTML = `UV ${weather.current.uvi}`;
+    text_uv.innerHTML = `Indice UV : ${weather.current.uvi}`;
     div_uv.appendChild(text_uv);
 
     var div_wind_speed = document.getElementById("wind-speed");
@@ -116,7 +116,7 @@ function fill_weather(city, country, lat, lon) {
     icon_wind_speed.setAttribute("width", "32");
     div_wind_speed.appendChild(icon_wind_speed);
     var text_wind_speed = document.createElement("div");
-    text_wind_speed.innerHTML = `Vitesse du vent ${weather.current.wind_speed} m/s`;
+    text_wind_speed.innerHTML = `Vitesse du vent : ${weather.current.wind_speed} m/s`;
     div_wind_speed.appendChild(text_wind_speed);
 
     var div_humidity = document.getElementById("humidity");
@@ -127,7 +127,7 @@ function fill_weather(city, country, lat, lon) {
     icon_humidity.setAttribute("width", "32");
     div_humidity.appendChild(icon_humidity);
     var text_humidity = document.createElement("div");
-    text_humidity.innerHTML = `Humidité ${weather.current.humidity}%`;
+    text_humidity.innerHTML = `Humidité : ${weather.current.humidity}%`;
     div_humidity.appendChild(text_humidity);
 
     var div_clouds = document.getElementById("clouds");
@@ -138,7 +138,7 @@ function fill_weather(city, country, lat, lon) {
     icon_clouds.setAttribute("width", "32");
     div_clouds.appendChild(icon_clouds);
     var text_clouds = document.createElement("div");
-    text_clouds.innerHTML = `Nuages ${weather.current.clouds}%`;
+    text_clouds.innerHTML = `Nuages : ${weather.current.clouds}%`;
     div_clouds.appendChild(text_clouds);
 
     get_weather_hours(city, country, lat, lon);
@@ -376,7 +376,7 @@ function fill_week_weather() {
         icon_temperature_day_i_max.setAttribute("height", "32");
         icon_temperature_day_i_max.setAttribute("width", "32");
         div_temperature_day_i_max.appendChild(icon_temperature_day_i_max);
-    
+
         var text_temperature_day_i_max = document.createElement("div");
         text_temperature_day_i_max.classList.add("mx-2");
         text_temperature_day_i_max.classList.add("text-center");
@@ -413,18 +413,18 @@ function fill_week_weather() {
         var div_weather_humidity_i = document.createElement("div");
         div_weather_humidity_i.classList.add("d-flex");
         div_weather_humidity_i.classList.add("justify-content-center");
-        div_weather_humidity_i.classList.add("align-items-center"); 
+        div_weather_humidity_i.classList.add("align-items-center");
         div_weather_humidity_i.classList.add("my-2");
-        
+
         var weather_humidity_i_icon = document.createElement("img");
         weather_humidity_i_icon.classList.add("text-center");
-        
+
         var weather_humidity_i_icon_dir = `/images/weather/drop.png`;
         weather_humidity_i_icon.setAttribute("src", weather_humidity_i_icon_dir);
         weather_humidity_i_icon.setAttribute("width", "32");
         weather_humidity_i_icon.setAttribute("height", "32");
         div_weather_humidity_i.appendChild(weather_humidity_i_icon);
-        
+
         var weather_humidity_i_text = document.createElement("div");
         weather_humidity_i_text.classList.add("mx-1");
         weather_humidity_i_text.innerHTML = `${weather.daily[i].humidity}%`;
@@ -441,7 +441,7 @@ function fill_week_weather() {
         var weather_wind_i_icon = document.createElement("img");
         weather_wind_i_icon.classList.add("text-center");
         weather_wind_i_icon.classList.add("mx-1");
-        
+
         var weather_wind_i_icon_dir = `/images/weather/wind2.png`;
         weather_wind_i_icon.setAttribute("src", weather_wind_i_icon_dir);
         weather_wind_i_icon.setAttribute("width", "32");

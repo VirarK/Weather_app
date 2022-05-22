@@ -12,13 +12,6 @@
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data-10-year-range.js"
     ></script>
-
-    <script
-      async
-      defer
-      type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzGmZC0t_ZH4L2UlIQlUZLfshMIBgu8jg&libraries=places"
-    ></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -66,7 +59,7 @@
               type="text"
               class="form-control rounded"
               placeholder="Entrez une ville..."
-              onFocus="initAutocomplete()"
+              {{!-- onFocus="initAutocomplete()" --}}
             />
           </div>
           {{! <button
@@ -283,17 +276,38 @@
   <script src="/js/weather.js"></script>
   <script src="/js/looking_for_city.js"></script>
 
-  <script>
-    let autocomplete; function initAutocomplete() { autocomplete = new
-    google.maps.places.Autocomplete( document.getElementById('autocomplete'), {
-    types: ['(cities)'] }); autocomplete.addListener('place_changed',
-    onPlaceChanged); } function onPlaceChanged() { var place =
-    autocomplete.getPlace(); if (!place.geometry) {
-    document.getElementById('autocomplete').placeholder = 'Entrez une ville...';
-    } else { var city = place.name; if(place.address_components.length == 3) {
-    var countrycode = place.address_components[2].short_name; } else { var
-    countrycode = place.address_components[3].short_name; }
-    looking_for_city(city, countrycode); } }
+  <script>  
+    let autocomplete;
+    function initAutocomplete() {
+      autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('autocomplete'),
+        {
+          types: ['(cities)']
+        });
+
+        autocomplete.addListener('place_changed', onPlaceChanged);
+    }
+    function onPlaceChanged() {
+      var place = autocomplete.getPlace();
+
+      if (!place.geometry) {
+        document.getElementById('autocomplete').placeholder = 
+        'Entrez une ville...';
+      } else {
+        var city = place.name;
+        if(place.address_components.length == 2) {
+          var countrycode = place.address_components[1].short_name;
+        } else if(place.address_components.length == 3) {
+          var countrycode = place.address_components[2].short_name;
+        } else {
+          var countrycode = place.address_components[3].short_name;
+        }
+        looking_for_city(city, countrycode);
+      }
+    }
+  </script>
+  <script async defer type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzGmZC0t_ZH4L2UlIQlUZLfshMIBgu8jg&libraries=places&callback=initAutocomplete"></script>
   </script>
 
   <script>
