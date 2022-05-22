@@ -335,7 +335,9 @@ function fill_week_weather() {
         div_weather_week_i.setAttribute("class", css_custom);
 
         // date
-        var date_i = moment().add(i, "days");
+        var date = moment();
+        var date_i_timezone = date.tz(weather.timezone);
+        var date_i = date_i_timezone.add(i, "days");
         var text_date_i = document.createElement("div");
         text_date_i.classList.add("text-center");
         text_date_i.classList.add("my-2");
@@ -464,7 +466,9 @@ function fill_week_weather() {
  */
 function fill_date() {
     var date_html = document.getElementById("date");
-    date_html.innerHTML = first_letter_cap(today.format("dddd D MMMM"));
+    var now = moment(weather.dt);
+    var now_timezone = now.tz(weather.timezone);
+    date_html.innerHTML = first_letter_cap(now_timezone.format("dddd D MMMM"));
 
     change_colors();
 }
