@@ -148,9 +148,12 @@ function fill_weather(city, country, lat, lon) {
  * Get previous hours weather.
  */
 async function get_weather_hours(city, country, lat, lon) {
-    var yesterday = moment(weather.dt).tz(weather.timezone);
-    yesterday.startOf("day");
-    let api = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${lon}&dt=${yesterday.unix()}&appid=${keys[num_key]}&lang=fr&units=metric`;
+    var now = moment(weather.dt).tz(weather.timezone);
+    //onsole.log("🚀 ~ file: weather.js ~ line 152 ~ get_weather_hours ~ now", now.format("LLLL"))
+    //now.startOf("day");
+    now.subtract(1, "m");
+    //console.log("🚀 ~ file: weather.js ~ line 154 ~ get_weather_hours ~ now", now.format("LLLL"))
+    let api = `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${lon}&dt=${now.unix()}&appid=${keys[num_key]}&lang=fr&units=metric`;
     await fetch(api)
         .then(function(response) {
             data = response.json();
@@ -189,6 +192,7 @@ function fill_hours_weather() {
         var date = moment(item.dt * 1000).tz(weather.timezone);
         
         if(date.isSame(now, 'day') && date.format("HH") != now.format("HH")) {
+            //console.log("🚀 ~ file: weather.js ~ line 252 ~ $.each ~ date", date.format("LLLL"))
             var div_weather_hours_i = document.createElement("div");
 
             if (cpt % 5 == 0) {
@@ -249,6 +253,7 @@ function fill_hours_weather() {
         var date = moment(item.dt * 1000).tz(weather.timezone);
         
         if(date.isSame(now, 'day')) {
+            //console.log("🚀 ~ file: weather.js ~ line 252 ~ $.each ~ date", date.format("LLLL"))
             if (cpt % 5 == 0) {
                 if (div_carousel != null) {
                     div_weather_hours.appendChild(div_carousel)
@@ -323,7 +328,6 @@ function fill_week_weather() {
         var date = moment(item.dt * 1000).tz(weather.timezone);
 
         if (date.format("dddd") != now.format("dddd")) {
-            console.log("🚀 ~ file: weather.js ~ line 322 ~ $.each ~ date", date.format("LLLL"))
             
             // main div
             var div_weather_week_i = document.createElement("div");
